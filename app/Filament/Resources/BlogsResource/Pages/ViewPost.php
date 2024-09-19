@@ -23,15 +23,15 @@ class ViewPost extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('sendNotification')
-                ->label('Send Notification')
-                ->requiresConfirmation()
-                ->icon('heroicon-o-bell')->action(function (Post $record) {
-                    event(new BlogPublished($record));
-                })
-                ->disabled(function (Post $record) {
-                    return $record->isNotPublished();
-                }),
+            // Action::make('sendNotification')
+            //     ->label('Send Notification')
+            //     ->requiresConfirmation()
+            //     ->icon('heroicon-o-bell')->action(function (Post $record) {
+            //         event(new BlogPublished($record));
+            //     })
+            //     ->disabled(function (Post $record) {
+            //         return $record->isNotPublished();
+            //     }),
             Action::make('preview')
                 ->label('Preview')
                 ->requiresConfirmation()

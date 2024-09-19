@@ -146,32 +146,6 @@ class blogs extends Model
                                         ->required()
                                         ->columnSpanFull(),
                                 ]),
-                            Tabs\Tab::make('Enghlish')
-                                ->schema([
-                                    TextInput::make('title_en')
-                                        ->label('Title English')
-                                        ->live(true)
-                                        ->afterStateUpdated(fn (Set $set, ?string $state) => $set(
-                                            'slug_en',
-                                            Str::slug($state)
-                                        ))
-                                        ->unique('posts', 'title_en', null, 'id')
-                                        ->maxLength(255),
-
-                                    TextInput::make('slug_en')
-                                        ->maxLength(255),
-
-                                    Textarea::make('sub_title_en')
-                                        ->label('Sub Title English')
-                                        ->maxLength(255)
-                                        ->columnSpanFull(),
-                                    TiptapEditor::make('body_en')
-                                        ->label('Body English')
-                                        ->profile('default')
-                                        ->disableFloatingMenus()
-                                        ->extraInputAttributes(['style' => 'max-height: 30rem; min-height: 24rem'])
-                                        ->columnSpanFull(),
-                                ])
                             ]),
                     Fieldset::make('Feature Image')
                         ->schema([
