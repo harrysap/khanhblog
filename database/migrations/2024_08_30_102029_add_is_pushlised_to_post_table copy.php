@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stars', function (Blueprint $table) {
-            $table->id();
-            $table->string('ip');
-            $table->string('starrable_type');
-            $table->string('starrable_id');
-            $table->timestamps();
-            $table->index(['starrable_type', 'starrable_id']);
+        Schema::table('settings', function (Blueprint $table) {
+            $table->string('image_home')->nullable();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('star');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('image_home');
+        });
     }
 };
