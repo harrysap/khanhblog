@@ -13,25 +13,25 @@
     <meta name="yandex" content="index, follow">
     <meta name="referrer" content="no-referrer">
     <meta name="format-detection" content="telephone=no">
-    <title>@yield('title', 'Khanh Nguyen')</title>
+    <title>@yield('title', 'Blog')</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased dark:bg-black dark:text-white/50">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 relative">
         <!-- Page Navigation -->
         @include('layouts.navigation')
 
         <!-- Page Content -->
-        <main class="mt-[130px] w-screen overflow-x-hidden">
+        <main class="mt-[150px] w-screen">
             {{ $slot }}
         </main>
 

@@ -29,17 +29,34 @@ export default {
                 'dawn-pink': '#F1E5E4',
                 salmon: '#c593ef',
                 'fair-pink': '#FFEAE4',
-                'bg-main': '#290b50',
+                'bg-main': '#FAF8FF',
                 "bg-secondary": "#F2F0F4",
                 'text-main': '#D0A9F8',
-                "border-main": "#E9DDF4",
-                "text-primary": "#29282D",
+                "border-main": "#E9E8FF",
+                "text-primary": "#282424",
                 "bg-dark": "#290B50",
-                "icon-main": "#D0A9F8",
+                "icon-main": "#FF2AAC",
                 'bg-gray': "#F8F4F9",
+                'bg-overlay': "#211d3f",
+                'bg-selection': "#f8f2c6",
                 'gradient-start': 'rgba(41, 11, 80, 0)',
                 'gradient-end': '#290B50',
-                'border-gray': '#D1D5DB'
+                'border-gray': '#D1D5DB',
+                'btn-bg': '#6A4EE9',
+                'btn-dark': '#282424',
+                'bg-category-1': '#E32525',
+                'bg-category-1-secondary': '#E3252533',
+                'bg-category-2': '#000000',
+                'bg-category-2-secondary': '#00000033',
+                'bg-category-3': '#E9A500',
+                'bg-category-3-secondary': '#E9A50033',
+                'bg-category-4': '#6A4EE9',
+                'bg-category-4-secondary': '#6A4EE933',
+                'bg-category-5': '#5751ff',
+                'bg-category-5-secondary': '#5751ff33',
+                'bg-category-6': '#E9C310',
+                'bg-category-6-secondary': '#E9C31033'
+                
             },
             fontFamily: {
                 cursive: ['Kalam', ...fontFamily.serif],
@@ -48,9 +65,13 @@ export default {
                 sans: ['DM Sans', ...fontFamily.sans],
                 vietnam: ['Be Vietnam Pro', ...fontFamily.sans],
                 'roboto-mono': ['Roboto Mono', ...fontFamily.sans],
+                'manrope': ['Manrope', 'Arial', 'sans-serif'],
+                'reddit': ['Reddit Sans', 'Arial', 'sans-serif'],
             },
             maxWidth: {
                 '8xl': '88rem',
+                'default': '1190px',
+                'laptop': '1280px'
             },
             typography: (theme) => ({
                 DEFAULT: {
@@ -102,6 +123,17 @@ export default {
             screens: {
                 'phone': '480px',
                 'tablet2': '900px',
+                'default': '1190px'
+            },
+            keyframes: {
+                morph: {
+                    '0%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                    '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' },
+                    '100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                },
+            },
+            animation: {
+                morph: 'morph 10s infinite ease-in-out',
             },
         },
     },
