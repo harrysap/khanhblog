@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div>
-                <img class="mx-auto md:w-11/12 w-3/4 animate-morph" src="{{ asset('assets/images/avatar-home.webp') }}"
+                <img class="mx-auto md:w-11/12 w-3/4 animate-morph" src="{{ asset('/storage/assets/image_home.png') }}"
                     alt="khanh-nguyen-blog-logo">
             </div>
         </section>

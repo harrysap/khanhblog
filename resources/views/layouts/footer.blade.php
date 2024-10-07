@@ -90,19 +90,21 @@
                 </div>
                 <div class="flex flex-col gap-8">
                     <div>
-                        <img class="w-40 rounded-3xl" src="{{ asset('assets/images/logo.png') }}"
+                        <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
                     <p>Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức nổi bật</p>
                     <div>
-                        <form class="flex gap-4 bg-white rounded justify-between py-2 px-3 border-border-main shadow-sm">
-                            <input type="email" class="px-4 py-2 bg-transparent !outline-none !border-none focus:!border-none w-fit focus-within:!border-none focus-within:!outline-none"
+                        <form
+                            class="flex gap-4 bg-white rounded justify-between py-2 px-3 border-border-main shadow-sm">
+                            <input type="email"
+                                class="px-4 py-2 bg-transparent !outline-none !border-none focus:!border-none w-fit focus-within:!border-none focus-within:!outline-none"
                                 placeholder="Nhập email của bạn">
-                                <div>
-                                    <button
+                            <div>
+                                <button
                                     class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap">Đăng
                                     ký</button>
-                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
