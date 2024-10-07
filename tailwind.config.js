@@ -44,6 +44,7 @@ export default {
                 'border-gray': '#D1D5DB',
                 'btn-bg': '#6A4EE9',
                 'btn-dark': '#282424',
+                'btn-lg': '#FF8E51',
                 'bg-category-1': '#E32525',
                 'bg-category-1-secondary': '#E3252533',
                 'bg-category-2': '#000000',

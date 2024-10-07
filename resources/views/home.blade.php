@@ -12,7 +12,7 @@
                 <div class="flex flex-col gap-2 font-medium">
                     <label for="enter-email-subcribe-input" class="font-manrope text-sm">Kết nối với email của bạn</label>
                     <div
-                        class="w-full flex justify-between px-3 py-1.5 pl-3.5 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
+                        class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                         <input type="email-subcribe-input" id="email-subcribe-input" name="email-subcribe"
                             x-ref="email-subcribe" placeholder="Nhập địa chỉ email"
                             class="focus:outline-none font-manrope w-full placeholder-[#707070]">
@@ -355,7 +355,7 @@
                 src="{{ asset('assets/images/banner-ads-home.png') }}" alt="ads-banner-1">
         </section>
         <section
-            class="pb-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center flex flex-col default:flex-row gap-8">
+            class="pb-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center  flex-col default:flex-row gap-8">
             <!-- Cột trái -->
             <div x-data="{ openSections: { 1: true, 2: false, 3: false } }" class="w-full lg:w-1/4 sticky top-16 h-fit pt-16">
                 <!-- Title -->

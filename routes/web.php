@@ -16,7 +16,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::prefix('/blog')->group(function () {
-    Route::get('/', ListArticlesController::class)->name('blog');
+    Route::get('/', ListArticlesController::class)->name('blogs');
     Route::get('/search', function () {
         return view('search');
     })->name('search');
@@ -26,6 +26,9 @@ Route::prefix('/blog')->group(function () {
     Route::get('/category/{categoryName}', function ($categoryName) {
         return view('category', ['categoryName' => $categoryName]);
     })->name('category');
+    Route::get('/{blogName}', function ($blogName) {
+        return view('blog', ['blogName' => $blogName]);
+    })->name('blog');
 });
 
 Route::name('admin.')->prefix('/{blog:slug}')->group(function () {
