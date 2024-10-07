@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex my-auto md:mx-[10%]">
                     <h1 data-aos="zoom-in"
-                        class="text-5xl lg:text-6xl w-full sm:w-fit leading-snug md:!leading-tight text-center font-bold relative">
+                        class="text-5xl w-full sm:w-fit leading-snug md:!leading-tight text-center font-bold relative">
                         Uniqe Software Landing Page</h1>
                 </div>
                 <span data-aos="fade-up" class="text-xl font-medium text-center">Lorem ipsum dolor sit amet, consectetur
@@ -873,7 +873,7 @@
         <div class="relative max-w-7xl mx-auto flex flex-col gap-8 px-4 sm:px-2 xl:px-0 py-6 pt-8 md:py-12 lg:py-24">
             <div class="flex flex-col sm:flex-row gap-4">
                 <h1 data-aos="fade-up"
-                    class="text-4xl md:text-5xl lg:text-6xl font-bold leading-snug md:leading-normal lg:leading-relaxed basis-1/4">
+                    class="text-4xl md:text-5xl font-bold leading-snug md:leading-normal lg:leading-relaxed basis-1/4">
                     FAQ</h1>
                 <div class="flex flex-col flex-start justify-evenly gap-4">
                     <span data-aos="fade-up" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
