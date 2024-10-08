@@ -36,6 +36,11 @@ class Settings extends Page implements HasForms
                 'name' => $this->data['site_favicon'],
             ];
         }
+        if (isset($this->data['image_home']) && is_string($this->data['image_home'])) {
+            $this->data['image_home'] = [
+                'name' => $this->data['image_home'],
+            ];
+        }
         $this->data['more_configs'] = $this->data['more_configs'] ?? [];
     }
     public function form(Form $form): Form
@@ -72,10 +77,15 @@ class Settings extends Page implements HasForms
                                         ->visibility('public')
                                         ->moveFiles()
                                         ->getUploadedFileNameForStorageUsing(fn () => 'site_favicon.ico')
-                                        ->columnSpan(2),
-                                ])
-                                    ->columns(4),
-
+                                        ->columnSpan(2),                                   
+                                ])->columns(4),
+                                    FileUpload::make('image_home')
+                                    ->label('Image Home')
+                                    ->image()
+                                    ->directory('assets')
+                                    ->visibility('public')
+                                    ->moveFiles()
+                                    ->getUploadedFileNameForStorageUsing(fn () => 'image_home.png'),
 
                             ]),
                     ])

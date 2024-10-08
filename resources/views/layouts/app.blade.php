@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="vi">
 
 <head>
     <meta charset="utf-8">
@@ -13,7 +13,9 @@
     <meta name="yandex" content="index, follow">
     <meta name="referrer" content="no-referrer">
     <meta name="format-detection" content="telephone=no">
-    <title>@yield('title', 'Blog')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('/storage/assets/site_favicon.ico') }}">
+    <meta name=" description" content= "{{ getSiteSetting()->site_description ?? "Khanh Nguyen's blog" }}">
+    <title>@yield('title', getSiteSetting()->site_name ?? "Khanh Nguyen's blog")</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

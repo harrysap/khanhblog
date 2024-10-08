@@ -90,7 +90,7 @@
                 </div>
                 <div class="flex flex-col gap-8">
                     <div>
-                        <img class="w-40 rounded-3xl" src="{{ asset('assets/images/logo.png') }}"
+                        <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
                     <p class="">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức nổi bật</p>

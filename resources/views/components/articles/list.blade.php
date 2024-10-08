@@ -245,7 +245,7 @@
                     </svg>
                 </div>
                 {{-- Search Input --}}
-                <input type="text" x-model="search" placeholder="{{ __('Search') }} ..."
+                <input type="text" x-model="search" placeholder="{{ __('Tìm kiếm') }} ..."
                     class="w-full appearance-none border-none bg-transparent py-3 pl-12 pr-10 text-sm outline-none placeholder:transition placeholder:duration-200 focus:ring-0 group-focus-within/search-bar:placeholder:translate-x-1 group-focus-within/search-bar:placeholder:opacity-0" />
             </div>
         </div>
@@ -253,7 +253,7 @@
 
     {{-- Categories --}}
     <div class="pt-5">
-        <div class="font-semibold">{{ __('Categories') }}</div>
+        <div class="font-semibold">{{ __('Bài viết') }}</div>
 
         {{-- List Of Categories --}}
         <div class="flex flex-wrap gap-x-2.5 gap-y-3 pt-5">
@@ -290,7 +290,7 @@
                     </div>
                     <div x-show="!filteredArticles.length">
                         <div class="text-sm text-gray-700">
-                            {{ __('No results found') }}
+                            {{ __('Không tìm thấy bài viết') }}
                         </div>
                     </div>
                     <x-ui.pagination />
@@ -320,11 +320,10 @@
                             d="m228.24 219.76l-51.38-51.38a86.15 86.15 0 1 0-8.48 8.48l51.38 51.38a6 6 0 0 0 8.48-8.48ZM38 112a74 74 0 1 1 74 74a74.09 74.09 0 0 1-74-74Z" />
                     </svg>
                     <div class="pt-2 font-semibold text-evening/70">
-                        No Results Found
+                        Không tìm thấy bài viết phù hợp với tìm kiếm của bạn.
                     </div>
                     <div class="pt-0.5 text-sm text-evening/50">
-                        Sorry we couldn't find any articles matching your
-                        search.
+                        xin lỗi, chúng tôi không thể tìm thấy bài viết phù hợp với tìm kiếm của bạn.
                     </div>
                 </div>
             </div>

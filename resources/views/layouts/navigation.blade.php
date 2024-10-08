@@ -6,7 +6,7 @@ mediaQuery.addEventListener('change', (e) => {
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
-        scrolled = window.scrollY > 50;
+    scrolled = window.scrollY > 50;
 });
 
 window.addEventListener('scroll', () => {
@@ -41,7 +41,8 @@ $nextTick(() => {
                 </a>
 
                 <div class="flex gap-6 items-center">
-                    <button class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
+                    <button
+                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
                         ký</button>
                     <button class="hover:scale-105 ease-linear duration-300" @click="open = true">
                         <svg width="25px" height="25px" viewBox="0 -0.5 21 21" version="1.1"
@@ -93,7 +94,7 @@ $nextTick(() => {
                 <div class="shrink-0 flex flex-col justify-center items-center pt-12 pb-8 gap-3">
                     <a href="/">
                         <div>
-                            <img class="w-40 rounded-3xl" src="{{ asset('assets/images/logo.png') }}"
+                            <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
                                 alt="khanh-nguyen-blog-logo">
                         </div>
                     </a>
@@ -222,7 +223,8 @@ $nextTick(() => {
                 <div
                     class="w-full flex justify-between px-3 py-1.5 pl-3.5 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                     <input type="search-section-input" id="search-section-input" name="search-section"
-                        x-ref="search-section" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText" @keydown.enter="handleEnter"
+                        x-ref="search-section" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText"
+                        @keydown.enter="handleEnter"
                         class="focus:outline-none font-manrope w-full placeholder-[#707070]">
                     <div>
                         <button @click="handleEnter"

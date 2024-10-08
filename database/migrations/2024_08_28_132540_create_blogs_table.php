@@ -18,8 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 155)->unique();
             $table->string('slug', 155)->unique();
-            $table->string('name_en', 155)->unique();
-            $table->string('slug_en', 155)->unique();
             $table->timestamps();
         });
 
@@ -76,9 +74,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
-            $table->string('name_en', 50)->unique();
             $table->string('slug', 155)->unique();
-            $table->string('slug_en', 155)->unique();
             $table->timestamps();
         });
 
@@ -109,12 +105,15 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
-        Schema::dropIfExists('posts');
+      
         Schema::dropIfExists('category_post');
+        Schema::dropIfExists('categories');
+        Schema::dropIfExists('post_tag');
         Schema::dropIfExists('seo_details');
+        Schema::dropIfExists('posts');
+  
         Schema::dropIfExists('news_letters');
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('post_tag');
+    
     }
 };
