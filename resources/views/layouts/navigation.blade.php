@@ -19,7 +19,7 @@ $nextTick(() => {
 });">
 
     <nav class="relative z-20">
-        <div :class="scrolled ? 'max-w-full px-4 lg:px-6 py-2.5 default:py-5 translate-y-0 w-full rounded-none !top-0' :
+        <div :class="scrolled ? 'max-w-full px-4 lg:px-6 py-2.5 default:py-4 translate-y-0 w-full rounded-none !top-0' :
             'max-w-default mx-auto py-2.5 default:py-5 px-6 lg:px-8 rounded-full w-auto md:translate-y-[20px]'"
             class="fixed top-2 left-1/2 transform -translate-x-1/2 w-full z-50 bg-white shadow-md transition-all duration-300 ease-in-out border border-border-main flex justify-between items-center font-manrope">
             <div class="max-w-default mx-auto flex justify-between items-center w-full">
@@ -35,10 +35,10 @@ $nextTick(() => {
                 </a>
 
                 <!-- Logo -->
-                <div>
-                    <img class="w-40 rounded-3xl transition-all duration-500" :class="scrolled ? 'w-32' : 'w-40'"
+                <a href="/">
+                    <img class="w-36 sm:w-40 rounded-3xl transition-all duration-500" :class="scrolled ? 'w-32' : 'w-40'"
                         src="{{ asset('assets/images/logo.png') }}" alt="khanh-nguyen-blog-logo">
-                </div>
+                </a>
 
                 <div class="flex gap-6 items-center">
                     <button class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
@@ -80,7 +80,7 @@ $nextTick(() => {
             x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100"
             x-transition:leave="transform transition ease-out duration-500 transition-full"
             x-transition:leave-start="opacity-100" x-transition:leave-end="translate-x-full" aria-label="Sidebar">
-            <div class="h-full px-6 py-4 overflow-y-auto mt-6 relative">
+            <div class="h-full px-6 py-4 overflow-y-auto mt-6 relative overflow-x-hidden">
                 <div class="overflow-x-hidden">
                     <div class="w-24 h-10 absolute rounded-full bg-btn-bg flex items-center pl-3 text-white text-2xl font-bold ease-linear duration-200 -right-14 hover:-translate-x-2 cursor-pointer"
                         @click="open = false">
@@ -91,7 +91,7 @@ $nextTick(() => {
                     </div>
                 </div>
                 <div class="shrink-0 flex flex-col justify-center items-center pt-12 pb-8 gap-3">
-                    <a href="">
+                    <a href="/">
                         <div>
                             <img class="w-40 rounded-3xl" src="{{ asset('assets/images/logo.png') }}"
                                 alt="khanh-nguyen-blog-logo">
@@ -101,12 +101,12 @@ $nextTick(() => {
                 </div>
                 <ul class="space-y-2">
                     <li>
-                        <a href=""
+                        <a href="/"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Home') }}</span>
+                            <span class="ms-3 text-text-primary">Trang Chủ</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <button @click="openService = !openService"
                             class="flex text-primary-500 focus:bg-primary-100 items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="ecommerce-menu">
@@ -175,27 +175,27 @@ $nextTick(() => {
                                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('Travel & Expense Management') }}</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li>
-                        <a href=""
+                        <a href="/blog"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Blog') }}</span>
+                            <span class="ms-3 text-text-primary">Bài Đăng</span>
                         </a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/blog/category"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Document') }}</span>
+                            <span class="ms-3 text-text-primary">Danh Mục Thể Loại</span>
                         </a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/contact"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Contact Us') }}</span>
+                            <span class="ms-3 text-text-primary">Liên Hệ</span>
                         </a>
                     </li>
                 </ul>
-                <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4">
+                <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4 mb-8">
                     <button
                         class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
                         ký</button>

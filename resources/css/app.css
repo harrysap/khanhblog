@@ -66,6 +66,22 @@ body {
     @apply bg-black;
 }
 
+.toc-item {
+    cursor: pointer;
+    @apply text-sm font-manrope;
+}
+.toc-item:hover {
+    color: #6a4ee966;
+}
+.toc-active {
+    font-weight: 600;
+    color: #6a4ee9;
+}
+.toc-highlight {
+    width: 2px;
+    background: #6a4ee9;
+}
+
 @-webkit-keyframes border-transform {
 
     0%,

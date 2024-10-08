@@ -17,7 +17,7 @@
             <div class="flex flex-col default:flex-row gap-4 default:gap-8 lg:w-9/12 items-center mx-auto">
                 <div
                     class="flex gap-4 items-center group cursor-default w-full default:w-6/12 justify-center default:justify-normal">
-                    <div class="relative w-14 lg:w-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center p-3"
+                    <div class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center p-3"
                         style="background-color: {{ $category->primaryColor }}">
                         {!! $category->icon !!}
                         {{-- <div class="absolute z-10 -top-2 -right-0.5 rounded-full w-6 aspect-1 bg-text-main text-xs text-white font-bold flex justify-center items-center">
@@ -58,7 +58,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -75,7 +77,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -92,7 +96,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -109,7 +115,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -126,7 +134,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -143,73 +153,51 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
+                        'thumbnail' =>
+                                'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
+                            ],
                     ];
                 @endphp
-                @foreach ($posts as $post)
+                @foreach ($posts as $index => $post)
                     <article
-                        class="bg-white p-6 rounded-md shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
+                        class="bg-white md:p-4 rounded-xl shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
                         <div class="flex flex-col gap-4">
-                            <div class="flex w-full justify-end">
-                                <div class="w-fit h-8">
-                                    <div
-                                        class="w-fit h-8 absolute rounded-full bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 hover:translate-x-2 cursor-pointer">
+                            <div class="relative overflow-hidden">
+                                <div
+                                    class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
+                                    <a
+                                        href="/blog/category/{{ \Illuminate\Support\Str::slug($post['category']) }}">
                                         <span>{{ $post['category'] }}</span>
-                                    </div>
+                                    </a>
                                 </div>
-                                <div class="flex gap-4 items-center">
-                                    <div class="flex w-5 justify-center">
-                                        <div class="text-xl font-light text-btn-bg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <g fill="none">
-                                                    <rect width="18" height="15" x="3" y="6"
-                                                        stroke="currentColor" rx="2" />
-                                                    <path fill="currentColor"
-                                                        d="M3 10c0-1.886 0-2.828.586-3.414S5.114 6 7 6h10c1.886 0 2.828 0 3.414.586S21 8.114 21 10z" />
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        d="M7 3v3m10-3v3" />
-                                                    <rect width="4" height="2" x="7" y="12" fill="currentColor"
-                                                        rx=".5" />
-                                                    <rect width="4" height="2" x="7" y="16" fill="currentColor"
-                                                        rx=".5" />
-                                                    <rect width="4" height="2" x="13" y="12"
-                                                        fill="currentColor" rx=".5" />
-                                                    <rect width="4" height="2" x="13" y="16"
-                                                        fill="currentColor" rx=".5" />
-                                                </g>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-2">
-                                        <p class="text-xs text-[#4D6385]">{{ $post['date'] }}</p>
-                                    </div>
-                                </div>
+                                <a href="/blog/{{ \Illuminate\Support\Str::slug($post['title']) }}">
+                                    <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
+                                        src="{{ $post['thumbnail'] }}" alt="blog-thumbnail-{{ $index }}">
+                                </a>
                             </div>
-                            <div class="flex flex-col gap-2 sm:gap-4">
+                            <div class="flex flex-col gap-2 sm:gap-4 px-4">
                                 <div class="relative group/title">
                                     <a href="#"
                                         class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"
-                                        title="{{ $post['title'] }}">{{ $post['title'] }}
-                                    </a>
+                                        title="{{ $post['title'] }}">{{ $post['title'] }}</a>
                                     {{-- <div
-                                    class="absolute -bottom-14 flex flex-col items-center hidden mb-5 group-hover/title:flex">
-                                    <div class="w-3 h-3 -mt-2 rotate-135 bg-black"></div>
-                                    <span
-                                        class="relative rounded-md z-10 p-2 leading-normal text-white whitespace-no-wrap bg-black shadow-lg"
-                                        style="font-size: 10px">Test
-                                        dài ơi là dài nè dài ơi là dài nè dài ơi là dài nè dài ơi là dài nè dài
-                                        ơi là dài nè dài ơi là dài nè dài ơi là dài nè</span>
-                                </div> --}}
+                                        class="absolute -bottom-14 flex flex-col items-center hidden mb-5 group-hover/title:flex">
+                                        <div class="w-3 h-3 -mt-2 rotate-135 bg-black"></div>
+                                        <span
+                                            class="relative rounded-md z-10 p-2 leading-normal text-white whitespace-no-wrap bg-black shadow-lg"
+                                            style="font-size: 10px">Test
+                                            dài ơi là dài nè dài ơi là dài nè dài ơi là dài nè dài ơi là dài nè dài
+                                            ơi là dài nè dài ơi là dài nè dài ơi là dài nè</span>
+                                    </div> --}}
                                 </div>
                                 <span
                                     class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"
                                     title="{{ $post['content'] }}">{{ $post['content'] }}</span>
 
                             </div>
-                            <div class="flex gap-4 justify-center">
-                                <div class="flex flex-col gap-3">
-                                    <div class="flex gap-4 items-center">
+                            <div class="flex gap-4 justify-center px-4 pb-4">
+                                <div class="flex gap-4">
+                                    <div class="flex gap-2 items-center">
                                         <div class="flex">
                                             <div>
                                                 <img class="w-5 aspect-1 rounded-full !object-cover"
@@ -221,19 +209,44 @@
                                             <p class="text-xs text-[#4D6385]">{{ $post['name'] }}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="flex gap-4 items-center">
-                                    <div class="flex w-5 justify-center">
-                                        <div class="text-sm font-light text-btn-bg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 1000 1000">
-                                                <path fill="currentColor"
-                                                    d="M1000 501q0 136-67 251T751 934t-251 67t-251-67T67 752T0 501t67-251T249 68T500 1t251 67t182 182t67 251m-117 0q0-158-112.5-270.5T500 118q-126 0-226 74l2 2q-48 35-83 83l-2-2q-74 100-74 226q0 158 112.5 270.5T500 884q126 0 226-74l-2-2q48-35 83-83l2 2q74-100 74-226M680 701q0 25-17.5 42.5T620 761q-26 0-42-18L458 623q-18-18-18-62V241q0-25 17.5-42.5T500 181t42.5 17.5T560 241v315l102 103q18 16 18 42" />
-                                            </svg>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="flex w-5 justify-center">
+                                            <div class="text-sm font-light text-btn-bg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
+                                                    height="1.2em" viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2">
+                                                        <path d="M10 2h4m-2 12l3-3" />
+                                                        <circle cx="12" cy="14" r="8" />
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <p class="text-xs text-[#4D6385]">{{ $post['duration'] }} phút đọc</p>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col gap-2">
-                                        <p class="text-xs text-[#4D6385]">{{ $post['duration'] }} phút đọc</p>
+                                    <div class="flex gap-2 items-center">
+                                        <div class="flex w-5 justify-center">
+                                            <div class="text-sm font-light text-btn-bg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
+                                                    height="1.2em" viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2">
+                                                        <path d="M8 2v4m8-4v4" />
+                                                        <rect width="18" height="18" x="3" y="4"
+                                                            rx="2" />
+                                                        <path
+                                                            d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <p class="text-xs text-[#4D6385]">{{ $post['date'] }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

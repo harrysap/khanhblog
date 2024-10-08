@@ -23,16 +23,16 @@
             progressPath.getBoundingClientRect();
             progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
 
-            // Update progress on scroll
-            var updateProgress = function() {
-                var scroll = window.scrollY;
-                var height = document.documentElement.scrollHeight - window.innerHeight;
-                var progress = pathLength - (scroll * pathLength / height);
-                progressPath.style.strokeDashoffset = progress;
-            };
+            // // Update progress on scroll
+            // var updateProgress = function() {
+            //     var scroll = window.scrollY;
+            //     var height = document.documentElement.scrollHeight - window.innerHeight;
+            //     var progress = pathLength - (scroll * pathLength / height);
+            //     progressPath.style.strokeDashoffset = progress;
+            // };
 
-            // Initialize progress
-            updateProgress();
+            // // Initialize progress
+            // updateProgress();
 
             // Add scroll event listener
             window.addEventListener('scroll', function() {

@@ -15,6 +15,10 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/404', function () {
+    return view('errors.notfound');
+})->name('notfound');
+
 Route::prefix('/blog')->group(function () {
     Route::get('/', ListArticlesController::class)->name('blogs');
     Route::get('/search', function () {
@@ -31,8 +35,10 @@ Route::prefix('/blog')->group(function () {
     })->name('blog');
 });
 
+Route::fallback(function () {
+    return response()->view('errors.notfound', [], 404);
+});
+
 Route::name('admin.')->prefix('/{blog:slug}')->group(function () {
     Route::get('/', ViewArticleController::class)->name('post.show');
 });
-
-
