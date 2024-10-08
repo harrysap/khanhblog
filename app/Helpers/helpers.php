@@ -1,5 +1,6 @@
 <?php
 use App\Models\settings;
+use App\Models\Category;
 if (! function_exists('showBadgeType')) {
     function showBadgeType(string $data) :object
     {
@@ -39,6 +40,12 @@ if (!function_exists('getSiteSetting')) {
     function getSiteSetting()
     {
         return settings::first();
+    }
+}
+if (!function_exists('getCategory')) {
+    function getCategory()
+    {
+        return Category::get();
     }
 }
 ?>

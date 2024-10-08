@@ -38,19 +38,6 @@ class Tag extends Model
                 ->unique('tags', 'slug', null, 'id')
                 ->readOnly()
                 ->maxLength(155),
-            TextInput::make('name_en')
-                ->label('Name (English)')
-                ->live(true)->afterStateUpdated(fn(Set $set, ?string $state) => $set(
-                    'slug_en',
-                    Str::slug($state)
-                ))
-                ->unique('tags', 'name_en', null, 'id')
-                ->required()
-                ->maxLength(50),
-            TextInput::make('slug_en')
-                ->unique('tags', 'slug_en', null, 'id')
-                ->readOnly()
-                ->maxLength(155),
         ];
     }
     public function getTable()

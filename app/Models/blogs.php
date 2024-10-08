@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Filament\Forms\Components\Tabs;
 use Illuminate\Support\Str;
 use Lang;
+use App\Forms\Components\CKEditor;
 class blogs extends Model
 {
     use HasFactory;
@@ -138,11 +139,7 @@ class blogs extends Model
                                     Textarea::make('sub_title')
                                         ->maxLength(255)
                                         ->columnSpanFull(),
-                                    TiptapEditor::make('body')
-                                        ->profile('default')
-                                        ->disableFloatingMenus()
-                                        ->extraInputAttributes(['style' => 'max-height: 30rem; min-height: 24rem','source_code_editor'])
-                                        ->maxContentWidth('3xl')
+                                    CKEditor::make('body')
                                         ->required()
                                         ->columnSpanFull(),
                                 ]),
