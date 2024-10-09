@@ -47,13 +47,13 @@
                         <a href="/blog/category/{{ \Illuminate\Support\Str::slug('Chủ đề 1 dài ơi dài nè') }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
                                 <div
-                                    class="relative w-14 lg:w-16 aspect-1 rounded-full bg-bg-category-3 text-white text-4xl flex justify-center items-center">
+                                    class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full bg-bg-category-3 text-white text-4xl flex justify-center items-center">
                                     {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M0 6.064v11.872h12.13L24 6.064zm3.264 2.208h.005c.863.001 1.915.245 2.676.633l-.82 1.43c-.835-.404-1.255-.442-1.73-.467c-.708-.038-1.064.215-1.069.488c-.007.332.669.633 1.305.838c.964.306 2.19.715 2.377 1.9L7.77 8.437h2.046l2.064 5.576l-.007-5.575h2.37c2.257 0 3.318.764 3.318 2.519c0 1.575-1.09 2.514-2.936 2.514h-.763l-.01 2.094l-3.588-.003l-.25-.908c-.37.122-.787.189-1.23.189c-.456 0-.885-.071-1.263-.2l-.358.919l-2 .006l.09-.462q-.043.038-.087.074c-.535.43-1.208.629-2.037.644l-.213.002a5.1 5.1 0 0 1-2.581-.675l.73-1.448c.79.467 1.286.572 1.956.558c.347-.007.598-.07.761-.239a.56.56 0 0 0 .156-.369c.007-.376-.53-.553-1.185-.756c-.531-.164-1.135-.389-1.606-.735c-.559-.41-.825-.924-.812-1.65a2 2 0 0 1 .566-1.377c.519-.537 1.357-.863 2.363-.863m10.597 1.67v1.904h.521c.694 0 1.247-.23 1.248-.964c0-.709-.554-.94-1.248-.94zm-5.087.767l-.748 2.362c.223.085.481.133.757.133c.268 0 .52-.047.742-.126l-.736-2.37z" />
                                 </svg> --}}
-                                    <img class="rounded-full w-14 lg:w-16 aspect-1"
+                                    <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
                                         src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/d61a6f81-1a45-429f-b69a-ac6b567cfd69-150x150.webp"
                                         alt="post-img-small">
                                     <div
@@ -70,13 +70,13 @@
                         <a href="/blog/category/{{ \Illuminate\Support\Str::slug('Chủ đề 1 dài ơi dài nè') }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
                                 <div
-                                    class="relative w-14 lg:w-16 aspect-1 rounded-full bg-bg-category-1 text-white text-4xl flex justify-center items-center">
+                                    class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full bg-bg-category-1 text-white text-4xl flex justify-center items-center">
                                     {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     viewBox="0 0 32 32">
                                     <path fill="currentColor"
                                         d="M31.518 11.688c.026 0 .064 0 .077-.039c.013-.013.013-.025.013-.038a.07.07 0 0 0-.038-.064c-.026-.013-.052-.013-.09-.013h-.026v.14h.064m-.038-.204c.064 0 .102 0 .128.013c.09.025.09.115.09.14v.039c0 .026-.013.064-.065.09c0 0-.012.012-.025.012l.115.205h-.115l-.09-.192h-.064v.192h-.102v-.499zm.038.703a.445.445 0 0 0 .448-.447a.437.437 0 0 0-.448-.448a.453.453 0 0 0-.447.448c0 .243.204.447.447.447m-.345-.447c0-.192.153-.345.358-.345c.192 0 .345.153.345.345a.344.344 0 0 1-.345.345a.34.34 0 0 1-.358-.345m-3.107 2.851a1.29 1.29 0 0 1-1.24-.933h3.26l.448-.703h-3.708a1.29 1.29 0 0 1 1.24-.934h2.238l.447-.703h-2.736c-1.1 0-1.982.895-1.982 1.982c0 1.1.895 1.982 1.982 1.982h2.353l.447-.704h-2.749m-9.334.704h2.365l.448-.704h-2.749a1.285 1.285 0 0 1-1.292-1.278c0-.716.576-1.279 1.292-1.279h2.238l.447-.703h-2.736c-1.1 0-1.995.895-1.995 1.982c0 1.1.895 1.982 1.982 1.982m-14.487-.69H2.033a1.28 1.28 0 0 1-1.279-1.28c0-.715.576-1.278 1.279-1.278h2.2c.715 0 1.29.575 1.29 1.279c0 .703-.575 1.278-1.278 1.278m-2.263.69h2.301c1.1 0 1.982-.882 1.982-1.981s-.882-1.982-1.982-1.982H1.982A1.99 1.99 0 0 0 0 13.286c0 1.1.895 1.982 1.982 1.982m8.042-1.279a1.342 1.342 0 1 0 0-2.685H6.687v3.964h.767v-3.26h2.52c.357 0 .639.28.639.638c0 .359-.282.64-.64.64H7.825l2.276 1.982h1.113l-1.535-1.292h.345m12.62.601v-3.273h-.767v3.593q0 .154.115.268a.4.4 0 0 0 .282.115h3.478l.447-.703zm-9.334-.703h2.033l-1.074-1.739l-1.982 3.133h-.908l2.404-3.76a.56.56 0 0 1 .473-.242c.192 0 .358.089.46.242l2.417 3.772h-.895l-.422-.703h-2.059zM.371 17.659h1.01l1.227 2.57v-2.57h.653v3.273h-.96l-1.265-2.724v2.711H.371zm3.631 0h2.187v.537H4.705v.78h1.394v.537H4.705v.882H6.24v.537H4.002zm3.593.537h-.972v-.537h2.66v.537h-.972v2.736h-.703v-2.736zm2.532 1.777c.013.23.038.652.792.652c.678 0 .768-.422.768-.588c0-.37-.294-.435-.755-.55c-.498-.128-.716-.179-.882-.294a.73.73 0 0 1-.345-.64c0-.664.626-.958 1.24-.958c.217 0 .652.038.92.32c.18.204.192.421.205.562h-.473c-.025-.41-.37-.499-.69-.499c-.448 0-.73.205-.73.525c0 .294.193.383.59.486c.779.204.869.217 1.06.345c.307.204.32.511.32.652c0 .575-.448 1.023-1.291 1.023c-.243 0-.755-.039-1.01-.371c-.192-.243-.192-.499-.192-.665zm3.196-2.314v2.02c0 .345.077.499.14.588c.206.269.525.32.743.32c.882 0 .882-.69.882-.934V17.66h.435v2.02c0 .179 0 .537-.269.87c-.32.409-.818.447-1.061.447c-.307 0-.857-.09-1.15-.524c-.103-.141-.193-.333-.193-.819V17.66zm3.146 3.273h.447v-3.273h-.447zm2.212 0v-2.89h-1.1v-.383h2.634v.383h-1.099v2.89zm2.084-3.273h2.046v.383h-1.598v1.023h1.521v.384h-1.521v1.087h1.636v.396h-2.084z" />
                                 </svg> --}}
-                                    <img class="rounded-full w-14 lg:w-16 aspect-1"
+                                    <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
                                         src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/surfer-on-a-pink-background-in-the-style-of-minimalist-sets-vector-chrome-plated-subtle-color-variations-kinuko-y-craft-dan-matutina-realistic-forms-everyday-life-65c038a134d5d-150x150.webp"
                                         alt="post-img-small-1">
                                     <div
@@ -93,7 +93,7 @@
                         <a href="/blog/category/{{ \Illuminate\Support\Str::slug('Chủ đề 1 dài ơi dài nè') }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
                                 <div
-                                    class="relative w-14 lg:w-16 aspect-1 rounded-full bg-bg-category-2 text-white text-4xl flex justify-center items-center">
+                                    class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full bg-bg-category-2 text-white text-4xl flex justify-center items-center">
                                     {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -104,7 +104,7 @@
                                             d="m7.27 15.045l2.205-2.934a.9.9 0 0 1 1.197-.225l2.151 1.359a.9.9 0 0 0 1.233-.261l2.214-3.34" />
                                     </g>
                                 </svg> --}}
-                                    <img class="rounded-full w-14 lg:w-16 aspect-1"
+                                    <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
                                         src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/fae9a49c-2b52-4e0e-93fe-e071feb02042-150x150.webp"
                                         alt="post-img-small-3">
                                     <div
@@ -121,13 +121,13 @@
                         <a href="/blog/category/{{ \Illuminate\Support\Str::slug('Chủ đề 1 dài ơi dài nè') }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
                                 <div
-                                    class="relative w-14 lg:w-16 aspect-1 rounded-full bg-bg-category-4 text-white text-4xl flex justify-center items-center">
+                                    class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full bg-bg-category-4 text-white text-4xl flex justify-center items-center">
                                     {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M4 21q-.825 0-1.412-.587T2 19v-4h7v2h6v-2h7v4q0 .825-.587 1.413T20 21zm7-6v-2h2v2zm-9-2V8q0-.825.588-1.412T4 6h4V4q0-.825.588-1.412T10 2h4q.825 0 1.413.588T16 4v2h4q.825 0 1.413.588T22 8v5h-7v-2H9v2zm8-7h4V4h-4z" />
                                 </svg> --}}
-                                    <img class="rounded-full w-14 lg:w-16 aspect-1"
+                                    <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
                                         src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/ebd97452-e5b5-4423-b362-a5f493f80bc1-150x150.webp"
                                         alt="post-img-small-4">
                                     <div
@@ -144,13 +144,13 @@
                         <a href="/blog/category/{{ \Illuminate\Support\Str::slug('Chủ đề 1 dài ơi dài nè') }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
                                 <div
-                                    class="relative w-14 lg:w-16 aspect-1 rounded-full bg-bg-category-5 text-white text-4xl flex justify-center items-center">
+                                    class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full bg-bg-category-5 text-white text-4xl flex justify-center items-center">
                                     {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     viewBox="0 0 20 20">
                                     <path fill="currentColor"
                                         d="M17 16.9v-2.5c0-.7-.1-1.4-.5-2.1s-.9-1.3-1.6-1.7c-.7-.5-2.2-.6-2.9-.6l-1.6 1.7l.6 1.3v3l-1 1.1L9 16v-3l.7-1.3L8 10c-.8 0-2.3.1-3 .6c-.7.4-1.1 1-1.5 1.7S3 13.6 3 14.4v2.5S5.6 18 10 18s7-1.1 7-1.1M10 2.1c-1.9 0-3 1.8-2.7 3.8S8.6 9.3 10 9.3s2.4-1.4 2.7-3.4c.3-2.1-.8-3.8-2.7-3.8" />
                                 </svg> --}}
-                                    <img class="rounded-full w-14 lg:w-16 aspect-1"
+                                    <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
                                         src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/f524ef6f-944b-464d-ab70-19890cc29a97-150x150.webp"
                                         alt="post-img-small-5">
                                     <div
@@ -167,9 +167,11 @@
                     </div>
                     <div class="flex items-center justify-center gap-6">
                         <span class="font-semibold">hoặc ...</span>
-                        <button
+                        <a href="/blog/category"> 
+                            <button
                             class="py-2 px-[22px] bg-btn-bg rounded text-white ease text-nowrap duration-200 hover:bg-btn-dark">Xem
                             Tất Cả</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1030,7 +1032,6 @@
                 </svg>
             </div>
         </section>
-
     </div>
     @push('scripts')
         <!-- Import Swiper and initialize -->

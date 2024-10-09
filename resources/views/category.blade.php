@@ -17,12 +17,12 @@
             <div class="flex flex-col default:flex-row gap-4 default:gap-8 lg:w-9/12 items-center mx-auto">
                 <div
                     class="flex gap-4 items-center group cursor-default w-full default:w-6/12 justify-center default:justify-normal">
-                    <div class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center p-3"
-                        style="background-color: {{ $category->primaryColor }}">
-                        {!! $category->icon !!}
-                        {{-- <div class="absolute z-10 -top-2 -right-0.5 rounded-full w-6 aspect-1 bg-text-main text-xs text-white font-bold flex justify-center items-center">
-                            {{ $category->quantity }}
-                        </div> --}}
+                    <div class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center">
+                        {{-- style="background-color: {{ $category->primaryColor }}"> --}}
+                        {{-- {!! $category->icon !!} --}}
+                        <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
+                            src="https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2024/03/f524ef6f-944b-464d-ab70-19890cc29a97-150x150.webp"
+                            alt="post-img-small-5">
                     </div>
                     <div class="flex flex-col gap-2 w-[150px]">
                         <p
@@ -58,9 +58,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -77,9 +77,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -96,9 +96,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -115,9 +115,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -134,9 +134,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                         [
                             'category' => 'Test nè',
                             'duration' => 4,
@@ -153,9 +153,9 @@
                             'color' => '#E32525',
                             'img' =>
                                 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        'thumbnail' =>
+                            'thumbnail' =>
                                 'https://themes.estudiopatagon.com/wordpress/zento-personal/wp-content/uploads/2019/09/66017f14-c1b4-4033-a177-8615bbfc184a-660x660.webp',
-                            ],
+                        ],
                     ];
                 @endphp
                 @foreach ($posts as $index => $post)
@@ -165,8 +165,7 @@
                             <div class="relative overflow-hidden">
                                 <div
                                     class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
-                                    <a
-                                        href="/blog/category/{{ \Illuminate\Support\Str::slug($post['category']) }}">
+                                    <a href="/blog/category/{{ \Illuminate\Support\Str::slug($post['category']) }}">
                                         <span>{{ $post['category'] }}</span>
                                     </a>
                                 </div>
@@ -212,11 +211,10 @@
                                     <div class="flex gap-2 items-center">
                                         <div class="flex w-5 justify-center">
                                             <div class="text-sm font-light text-btn-bg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                    height="1.2em" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor"
-                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
+                                                    viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2">
                                                         <path d="M10 2h4m-2 12l3-3" />
                                                         <circle cx="12" cy="14" r="8" />
                                                     </g>
@@ -230,11 +228,10 @@
                                     <div class="flex gap-2 items-center">
                                         <div class="flex w-5 justify-center">
                                             <div class="text-sm font-light text-btn-bg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                    height="1.2em" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor"
-                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
+                                                    viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2">
                                                         <path d="M8 2v4m8-4v4" />
                                                         <rect width="18" height="18" x="3" y="4"
                                                             rx="2" />
