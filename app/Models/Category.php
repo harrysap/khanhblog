@@ -33,22 +33,28 @@ class Category extends Model
                 })
                 ->unique('categories', 'name', null, 'id')
                 ->required()
+                ->label('Tên thể loại')
                 ->maxLength(155),
                 TextInput::make('slug')
                     ->unique('categories', 'slug', null, 'id')
                     ->readOnly()
                     ->maxLength(255),
-            FileUpload::make('svg')
-                ->label('Photo')
+                TextArea::make('description')
+                ->label('Mô tả')
+                ->maxLength(255)
+                ,
+                ColorPicker::make('background')
+                ->label('Màu chủ đề ')
+                ->required(),
+                FileUpload::make('svg')
+                ->label('Hình ảnh')
                 ->directory('/categories-images')
-                ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
+                ->hint('Kích thước khuyến nghị là 300x300')
                 ->image()
                 ->preserveFilenames()
                 ->imageEditor()
                 ->maxSize(1024 * 5)
                 ->rules('dimensions:max_width=1920,max_height=1004')
-                ->required(),
-                ColorPicker::make('background')
                 ->required(),
         ];
     }

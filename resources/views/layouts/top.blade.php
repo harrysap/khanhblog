@@ -36,7 +36,7 @@
 
             // Add scroll event listener
             window.addEventListener('scroll', function() {
-                updateProgress();
+                // updateProgress();
 
                 if (window.scrollY > 50) {
                     progressWrap.classList.add('active-progress');

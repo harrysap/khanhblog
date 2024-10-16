@@ -21,6 +21,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <x-seo::meta />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

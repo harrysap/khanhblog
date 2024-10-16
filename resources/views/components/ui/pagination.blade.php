@@ -84,7 +84,7 @@
 >
     {{-- Previous Button --}}
     <div
-        class="mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl text-xs text-neutral-700 transition duration-300"
+        class="mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded text-xs text-neutral-700 transition duration-300"
         :class="{
             'bg-neutral-200/60' : ! whiteBackground,
             'bg-white shadow-lg shadow-black/5' : whiteBackground,
@@ -115,7 +115,7 @@
 
     {{-- Current Page Button --}}
     <div
-        class="absolute left-1/2 top-0 z-10 mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl bg-salmon text-sm text-white shadow-lg shadow-salmon/50 transition-all duration-300 md:hidden"
+        class="absolute left-1/2 top-0 z-10 mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded bg-btn-bg text-sm text-white shadow transition-all duration-300 md:hidden"
         :class="{
             'scale-110' : moveAnimation,
 
@@ -128,7 +128,7 @@
 
     <template x-if="totalPages <= 8">
         <div
-            class="absolute left-1/2 top-0 z-10 mx-0.5 hidden h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl bg-salmon text-sm text-white shadow-lg shadow-salmon/50 transition-all duration-300 md:flex"
+            class="absolute left-1/2 top-0 z-10 mx-0.5 hidden h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl bg-btn-bg text-sm text-white shadow transition-all duration-300 md:flex"
             :class="{
                 'scale-110' : moveAnimation,
                 '!left-[40px]' : currentPage === 1,
@@ -146,7 +146,7 @@
 
     <template x-if="totalPages > 8">
         <div
-            class="absolute left-1/2 top-0 z-10 mx-0.5 hidden h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl bg-salmon text-sm text-white shadow-lg shadow-salmon/50 transition-all duration-300 md:flex"
+            class="absolute left-1/2 top-0 z-10 mx-0.5 hidden h-[36px] min-w-[36px] select-none items-center justify-center rounded bg-btn-bg text-sm text-white shadow transition-all duration-300 md:flex"
             :class="{
                 'scale-110' : moveAnimation,
                 '!left-[40px]' : currentPage === 1,
@@ -351,7 +351,7 @@
 
     {{-- Next Arrow --}}
     <div
-        class="mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded-xl text-xs text-neutral-700 transition duration-300"
+        class="mx-0.5 flex h-[36px] min-w-[36px] select-none items-center justify-center rounded text-xs text-neutral-700 transition duration-300"
         :class="{
             'bg-neutral-200/60' : ! whiteBackground,
             'bg-white shadow-lg shadow-black/5' : whiteBackground,

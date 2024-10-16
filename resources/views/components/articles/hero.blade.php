@@ -1,7 +1,6 @@
 <div x-cloak x-data="{}"
     class="mx-auto w-full max-w-7xl px-4 sm:px-2 xl:px-0 pt-20 pb-5 border-b border-merino">
     <div class="relative flex max-w-screen-lg items-start gap-10 md:gap-20 min-[840px]:justify-between">
-        {{-- Left Side --}}
         <div x-data="{}" x-init="() => {
             if (reducedMotion) return
             gsap.timeline()
@@ -58,14 +57,11 @@
                     '<',
                 )
         }">
-            {{-- Header --}}
             <div class="flex items-start gap-3">
-                {{-- Title --}}
                 <div class="text-5xl font-black" x-ref="plugins">
                     {{ __('Content') }}
                 </div>
 
-                {{-- Star --}}
                 <div x-ref="plugins_star" class="relative -top-3.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
                         <path fill="currentColor"
@@ -74,14 +70,11 @@
                 </div>
             </div>
 
-            {{-- Message --}}
             <div x-ref="message" class="w-[23rem] pt-10 text-lg font-medium text-dolphin">
                 {{ __('A collection of articles written by the TSC team.') }}
             </div>
 
-            {{-- Stats --}}
             <div x-ref="stats" class="flex flex-wrap items-center gap-20 pt-10">
-                {{--                 Articles --}}
                 <div class="group/stat gsap-stat will-change-transform">
                     <div class="relative inline text-3xl font-black text-evening">
                         <span>{{ number_format($articlesCount) }}</span>
@@ -91,7 +84,6 @@
                     <div class="pt-4 text-sm text-dolphin">Articles</div>
                 </div>
 
-                {{-- Authors --}}
                 <div class="group/stat gsap-stat will-change-transform">
                     <div class="relative inline text-3xl font-black text-evening">
                         <span>{{ number_format(999) }}+</span>
@@ -116,7 +108,6 @@
             </div>
         </div>
 
-        {{-- Right Side --}}
         <div x-data="{}" x-init="() => {
             if (reducedMotion) return
             gsap.timeline()
@@ -157,12 +148,10 @@
                 )
         }"
             class="absolute transition-all duration-100 opacity-20 sm:opacity-100 -bottom-[1.3rem] md:-bottom-[1.65rem] -right-5 -z-10 w-72 shrink-0 md:relative md:right-auto md:top-auto md:w-80 min-[840px]:block">
-            {{-- Illustration --}}
             <img x-ref="communitylightbulbs"
                 src="{{ Vite::asset('resources/images/articles/handsholdinglightbulbs.webp') }}"
                 alt="Hands holding light bulbs" class="block w-5/6 sm:w-full" />
 
-            {{-- Decoration Circles --}}
             <div x-ref="circle1"
                 class="absolute -right-24 bottom-10 hidden h-3 w-3 rounded-full bg-blue-200 md:-left-40 md:right-auto md:h-3 md:w-3 min-[900px]:block">
             </div>

@@ -36,12 +36,13 @@ $nextTick(() => {
 
                 <!-- Logo -->
                 <a href="/">
-                    <img class="w-36 sm:w-40 rounded-3xl transition-all duration-500" :class="scrolled ? 'w-32' : 'w-40'"
-                        src="{{ asset('assets/images/logo.png') }}" alt="khanh-nguyen-blog-logo">
+                    <img class="w-36 sm:w-40 rounded-3xl transition-all duration-500"
+                        :class="scrolled ? 'w-32' : 'w-40'" src="{{ asset('storage/assets/site_logo.png') }}"
+                        alt="khanh-nguyen-blog-logo">
                 </a>
 
                 <div class="flex gap-6 items-center">
-                    <button
+                    <button onclick="scrollAndFocus()"
                         class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
                         ký</button>
                     <button class="hover:scale-105 ease-linear duration-300" @click="open = true">
@@ -180,7 +181,7 @@ $nextTick(() => {
                     <li>
                         <a href="/blog"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">Bài Đăng</span>
+                            <span class="ms-3 text-text-primary">Bài Viết</span>
                         </a>
                     </li>
                     <li>
@@ -197,8 +198,7 @@ $nextTick(() => {
                     </li>
                 </ul>
                 <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4 mb-8">
-                    <button
-                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
+                    <button class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
                         ký</button>
                 </div>
             </div>
@@ -206,14 +206,15 @@ $nextTick(() => {
     </div>
 
     <div x-init="$watch('searchShow', value => {
-        if (value) $refs.searchSectionInput.focus();
-        document.body.classList.toggle('overflow-hidden', value)
+        if (value) {
+            $nextTick(() => $refs.searchSectionInput.focus());
+            document.body.classList.toggle('overflow-hidden', value);
+        }
     })"
         @keydown.escape.window="closing = true; setTimeout(() => {searchShow = false; closing = false; console.log('Test: ', closing)}, 400)"
         x-show="searchShow" x-transition.opacity.duration.400ms
         class="fixed inset-0 bg-bg-overlay bg-opacity-70 flex justify-center items-center z-50 hidden"
-        id="search-section"
-        @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 250)">
+        id="search-section" @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 250)">
         <!-- Container chính của overlay -->
         <div x-show="searchShow" :class="closing ? 'zoom-out' : 'zoom-in'"
             class="relative p-6 text-center max-w-lg w-full">
@@ -223,7 +224,7 @@ $nextTick(() => {
                 <div
                     class="w-full flex justify-between px-3 py-1.5 pl-3.5 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                     <input type="search-section-input" id="search-section-input" name="search-section"
-                        x-ref="search-section" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText"
+                        x-ref="searchSectionInput" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText"
                         @keydown.enter="handleEnter"
                         class="focus:outline-none font-manrope w-full placeholder-[#707070]">
                     <div>
@@ -233,7 +234,6 @@ $nextTick(() => {
                     </div>
                 </div>
             </div>
-
         </div>
         <button class="absolute top-3 right-2 text-white"
             @click="closing = true; setTimeout(() => {searchShow = false; closing = true}, 250)">
@@ -248,6 +248,7 @@ $nextTick(() => {
         </button>
     </div>
 
+
     @push('scripts')
         <script>
             function handleEnter() {
@@ -255,6 +256,18 @@ $nextTick(() => {
                     const searchSlug = this.searchText.trim().toLowerCase().replace(/\s+/g, '-');
                     window.location.href = `/blog/search?query=${searchSlug}`;
                 }
+            }
+
+            function scrollAndFocus() {
+                const targetId = window.location.pathname === '/' ? 'register-form-home' : 'register-form';
+                const inputId = window.location.pathname === '/' ? 'email-subcribe-input-home' : 'email-subcribe-input';
+
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                document.getElementById(inputId).focus();
             }
         </script>
     @endpush

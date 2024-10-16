@@ -1,40 +1,32 @@
-@php
-    $blog = (object) [
-        'title' => 'Title dài ơi là dài nè Title dài ơi là dài nè Title dài ơi là dài nè Title dài ơi là dài nè',
-        'quantity' => 10,
-        'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                viewBox="0 0 32 32">
-                <path fill="currentColor"
-                    d="M31.518 11.688c.026 0 .064 0 .077-.039c.013-.013.013-.025.013-.038a.07.07 0 0 0-.038-.064c-.026-.013-.052-.013-.09-.013h-.026v.14h.064m-.038-.204c.064 0 .102 0 .128.013c.09.025.09.115.09.14v.039c0 .026-.013.064-.065.09c0 0-.012.012-.025.012l.115.205h-.115l-.09-.192h-.064v.192h-.102v-.499zm.038.703a.445.445 0 0 0 .448-.447a.437.437 0 0 0-.448-.448a.453.453 0 0 0-.447.448c0 .243.204.447.447.447m-.345-.447c0-.192.153-.345.358-.345c.192 0 .345.153.345.345a.344.344 0 0 1-.345.345a.34.34 0 0 1-.358-.345m-3.107 2.851a1.29 1.29 0 0 1-1.24-.933h3.26l.448-.703h-3.708a1.29 1.29 0 0 1 1.24-.934h2.238l.447-.703h-2.736c-1.1 0-1.982.895-1.982 1.982c0 1.1.895 1.982 1.982 1.982h2.353l.447-.704h-2.749m-9.334.704h2.365l.448-.704h-2.749a1.285 1.285 0 0 1-1.292-1.278c0-.716.576-1.279 1.292-1.279h2.238l.447-.703h-2.736c-1.1 0-1.995.895-1.995 1.982c0 1.1.895 1.982 1.982 1.982m-14.487-.69H2.033a1.28 1.28 0 0 1-1.279-1.28c0-.715.576-1.278 1.279-1.278h2.2c.715 0 1.29.575 1.29 1.279c0 .703-.575 1.278-1.278 1.278m-2.263.69h2.301c1.1 0 1.982-.882 1.982-1.981s-.882-1.982-1.982-1.982H1.982A1.99 1.99 0 0 0 0 13.286c0 1.1.895 1.982 1.982 1.982m8.042-1.279a1.342 1.342 0 1 0 0-2.685H6.687v3.964h.767v-3.26h2.52c.357 0 .639.28.639.638c0 .359-.282.64-.64.64H7.825l2.276 1.982h1.113l-1.535-1.292h.345m12.62.601v-3.273h-.767v3.593q0 .154.115.268a.4.4 0 0 0 .282.115h3.478l.447-.703zm-9.334-.703h2.033l-1.074-1.739l-1.982 3.133h-.908l2.404-3.76a.56.56 0 0 1 .473-.242c.192 0 .358.089.46.242l2.417 3.772h-.895l-.422-.703h-2.059zM.371 17.659h1.01l1.227 2.57v-2.57h.653v3.273h-.96l-1.265-2.724v2.711H.371zm3.631 0h2.187v.537H4.705v.78h1.394v.537H4.705v.882H6.24v.537H4.002zm3.593.537h-.972v-.537h2.66v.537h-.972v2.736h-.703v-2.736zm2.532 1.777c.013.23.038.652.792.652c.678 0 .768-.422.768-.588c0-.37-.294-.435-.755-.55c-.498-.128-.716-.179-.882-.294a.73.73 0 0 1-.345-.64c0-.664.626-.958 1.24-.958c.217 0 .652.038.92.32c.18.204.192.421.205.562h-.473c-.025-.41-.37-.499-.69-.499c-.448 0-.73.205-.73.525c0 .294.193.383.59.486c.779.204.869.217 1.06.345c.307.204.32.511.32.652c0 .575-.448 1.023-1.291 1.023c-.243 0-.755-.039-1.01-.371c-.192-.243-.192-.499-.192-.665zm3.196-2.314v2.02c0 .345.077.499.14.588c.206.269.525.32.743.32c.882 0 .882-.69.882-.934V17.66h.435v2.02c0 .179 0 .537-.269.87c-.32.409-.818.447-1.061.447c-.307 0-.857-.09-1.15-.524c-.103-.141-.193-.333-.193-.819V17.66zm3.146 3.273h.447v-3.273h-.447zm2.212 0v-2.89h-1.1v-.383h2.634v.383h-1.099v2.89zm2.084-3.273h2.046v.383h-1.598v1.023h1.521v.384h-1.521v1.087h1.636v.396h-2.084z" />
-            </svg>',
-        'primaryColor' => '#E32525',
-        'secondaryColor' => '#E3252533',
-    ];
-@endphp
 <x-app-layout>
     <div class="">
         <section class="max-w-default mx-auto flex px-4 flex-col justify-between gap-6 ">
             <div class="breadcrumb flex gap-2 font-manrope text-sm">
                 <a href="/" class="font-semibold hidden md:block">Trang chủ</a>
-                <a href="/" class="md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
-                        <g fill="none" fill-rule="evenodd">
+                <a href="/" class="md:hidden font-extralight pt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
                             <path
-                                d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                            <path fill="currentColor"
-                                d="M13.228 2.688a2 2 0 0 0-2.456 0l-8.384 6.52C1.636 9.795 2.05 11 3.003 11H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8h.997c.952 0 1.368-1.205.615-1.791zM13 19v-6a1 1 0 0 0-2 0v6H6v-8.99c0-.317-.146-.6-.375-.785L12 4.267l6.375 4.958a1 1 0 0 0-.375.785V19z" />
+                                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                         </g>
                     </svg>
                 </a>
-                <span>»</span>
-                <p class="text-nowrap">Bài viết</p>
-                <span>»</span>
-                <p class="">{{ $blog->title }}</p>
+                <span class="cursor-default">»</span>
+                <a href="/blog" class="text-nowrap">Bài viết</a>
+                <span class="cursor-default">»</span>
+                @if ($article->categories->isNotEmpty())
+                    <a href="/blog/category/{{ $article->categories->first()->slug }}">
+                        {{ $article->categories->first()->name }}
+                    </a>
+                @endif
+                <span class="cursor-default">»</span>
+                <p class="cursor-default">
+                    {{ App::getLocale() === 'vi' ? $article->title : $article->title_en ?? $article->title }}</p>
             </div>
             <div class="rounded-2xl aspect-w-16 aspect-h-9 md:aspect-h-6 overflow-hidden">
-                <img class=""
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/01/6937165e-bb7e-4432-87c7-b8f8c3fa9896-1700x700.webp"
-                    alt="blog-thumbnail">
+                <img class="object-cover" src="{{ $article->featurePhoto }}" alt="{{ $article->photo_alt_text }}">
             </div>
             <div class="flex justify-center flex-col default:flex-row gap-8">
                 <!-- Cột trái -->
@@ -77,7 +69,12 @@
                                 </div>
                                 <p class="text-sm text-[#4D6385] font-semibold">Thể loại:</p>
                             </div>
-                            <span class="text-sm text-[#4D6385]">Test</span>
+                            @if ($article->categories->isNotEmpty())
+                                <span class="text-sm text-[#4D6385]">{{ $article->categories->first()->name }}</span>
+                            @else
+                                <span class="text-sm text-[#4D6385]"><i>Không xác định</i></span>
+                            @endif
+                            </span>
                         </div>
                         <div class="flex gap-1">
                             <div class="flex gap-2">
@@ -93,7 +90,7 @@
                                 </div>
                                 <p class="text-sm text-[#4D6385] font-semibold">Tác giả:</p>
                             </div>
-                            <span class="text-sm text-[#4D6385]">Test</span>
+                            <span class="text-sm text-[#4D6385]">{{ $article->user->name }}</span>
                         </div>
                         <div class="flex gap-1">
                             <div class="flex gap-2">
@@ -109,7 +106,7 @@
                                 </div>
                                 <p class="text-sm text-[#4D6385] font-semibold">Thời lượng đọc:</p>
                             </div>
-                            <span class="text-sm text-[#4D6385]">5 phút</span>
+                            <span class="text-sm text-[#4D6385]">{{ $reading_time }}</span>
                         </div>
                         <div class="flex gap-1">
                             <div class="flex gap-2">
@@ -125,7 +122,13 @@
                                 </div>
                                 <p class="text-sm text-[#4D6385] font-semibold">Ngày cập nhật:</p>
                             </div>
-                            <span class="text-sm text-[#4D6385]">19/05/2023</span>
+                            <span class="text-sm text-[#4D6385]">
+                                @if ($article->updated_at->diffInDays(now()) > 30)
+                                    {{ $article->updated_at->format('d/m/Y') }}
+                                @else
+                                    {{ $article->updated_at->diffForHumans() }}
+                                @endif
+                            </span>
                         </div>
 
                     </div>
@@ -150,7 +153,7 @@
                         <h2 class="font-semibold text-lg">Nội Dung Bài Viết</h2>
                     </div>
 
-                    <div id="toc-container" class="mt-4 pl-2 w-full text-sm">
+                    <div id="toc-container" class="mt-4 pl-2 w-full text-sm max-h-[300px] overflow-y-scroll">
                         <div class="relative">
                             <div id="toc-highlight" class="toc-highlight absolute left-0 h-6 top-0 rounded-full">
                             </div>
@@ -165,12 +168,11 @@
                 <div
                     class="w-full md:w-[96%] md:mx-auto default:mx-0 default:-mr-[15px] default:w-3/4 mr-2 z-10 overflow-visible">
                     <div
-                        class="h-fit rounded-xl mt-0 md:-mt-[80px] default:-mt-[70px] bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] p-6">
+                        class="h-fit rounded-xl mt-0 md:-mt-[80px] default:-mt-[70px] bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] px-4 md:p-6">
                         <div id="blog-title" class="flex flex-col gap-4 items-center">
-                            <h1 class="font-bold text-4xl leading-normal text-center">Unveiling the Web Browser:
-                                Gateway
-                                to the World
-                                Wide Web</h1>
+                            <h1 class="font-bold text-4xl leading-normal text-center">
+                                {{ App::getLocale() === 'vi' ? $article->title : $article->title_en ?? $article->title }}
+                            </h1>
                             <div class="flex gap-2 text-sm font-light text-btn-bg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
                                     viewBox="0 0 24 24">
@@ -182,20 +184,37 @@
                                     </g>
                                 </svg>
                                 <p class="text-xs text-[#4D6385] font-semibold">Ngày đăng:</p>
-                                <span class="text-xs text-[#4D6385]">19/05/2023</span>
+                                <span
+                                    class="text-xs text-[#4D6385]">{{ $article->created_at->format('d/m/Y') }}</span>
                             </div>
                         </div>
 
+                        @if (App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title)
+                            <div class="mt-4">
+                                <p class="text-sm font-semibold">
+                                    <i>
+                                        {{ App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title }}
+                                    </i>
+                                </p>
+                            </div>
+                        @endif
+
                         <div
                             class="font-manrope sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto
-                         prose-a:break-words
-                         prose-blockquote:not-italic
-                         prose-code:break-words
-                         prose-code:bg-black-100
-                         p-code:bg-merino
-                         prose-code:font-normal prose-code:before:hidden
-                         prose-code:after:hidden [&_p]:before:hidden [&_p]:after:hidden">
+                                prose-a:break-words
+                                prose-blockquote:not-italic
+                                prose-code:break-words
+                                prose-code:bg-black-100
+                                p-code:bg-merino
+                                prose-code:font-normal prose-code:before:hidden
+                                prose-code:after:hidden [&_p]:before:hidden [&_p]:after:hidden blog-container">
                             <style>
+                                .blog-container * {
+                                    max-width: 100%;
+                                    height: auto;
+                                    box-sizing: border-box;
+                                }
+
                                 .blog-container {
                                     line-height: 1.6;
                                 }
@@ -245,231 +264,22 @@
                                     text-decoration: underline;
                                 }
                             </style>
-                            <div class="blog-container mt-4">
-                                <img src="https://via.placeholder.com/800x400.png?text=Web+Development"
-                                    alt="Web Development">
-                                <p>Welcome to our comprehensive guide on web development! In this article, we will cover
-                                    various aspects of
-                                    building websites, including HTML, CSS, and JavaScript. We will also dive into the
-                                    basics of responsive
-                                    design and provide a few best practices to help you create beautiful and functional
-                                    websites.</p>
-
-                                <h1 id="introduction">1. Introduction to Web Development</h1>
-                                <p>Web development refers to the process of building, creating, and maintaining
-                                    websites. It involves a
-                                    combination of coding, designing, and managing site content to ensure that the
-                                    website is accessible,
-                                    functional, and visually appealing. Typically, web development is divided into two
-                                    main categories: frontend
-                                    and backend development.</p>
-
-                                <h2 id="frontend">1.1 Frontend Development</h2>
-                                <p>Frontend development focuses on the parts of the website that users see and interact
-                                    with. It involves using
-                                    technologies such as HTML, CSS, and JavaScript to create the visual layout, design
-                                    elements, and interactive
-                                    features of a website.</p>
-
-                                <h2 id="backend">1.2 Backend Development</h2>
-                                <p>Backend development deals with the server-side of the website, including databases,
-                                    server configuration, and
-                                    application logic. It ensures that the frontend interacts correctly with data and
-                                    other resources to provide
-                                    a seamless user experience.</p>
-
-                                <img src="https://via.placeholder.com/800x400.png?text=Frontend+vs+Backend"
-                                    alt="Frontend vs Backend">
-
-                                <h1 id="html-css">2. Getting Started with HTML and CSS</h1>
-                                <p>HTML (Hypertext Markup Language) is the backbone of web pages. It structures the
-                                    content and layout of the
-                                    website. CSS (Cascading Style Sheets), on the other hand, is used to style and
-                                    format the layout created by
-                                    HTML.</p>
-
-                                <h2 id="html">2.1 Understanding HTML</h2>
-                                <p>HTML consists of various elements such as headings, paragraphs, links, images, and
-                                    more. Here is an example
-                                    of a basic HTML structure:</p>
-                                <pre><code>
-                                &lt;!DOCTYPE html&gt;
-                                &lt;html&gt;
-                                &lt;head&gt;
-                                &lt;title&gt;My Website&lt;/title&gt;
-                                &lt;/head&gt;
-                                &lt;body&gt;
-                                &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
-                                &lt;p&gt;This is a paragraph.&lt;/p&gt;
-                                &lt;/body&gt;
-                                &lt;/html&gt;
-                                </code></pre>
-
-                                <h2 id="css">2.2 Understanding CSS</h3>
-                                    <p>CSS is used to style the HTML elements. You can define the colors, fonts, and
-                                        layout
-                                        of your website. For
-                                        example:</p>
-                                    <pre><code>
-                                body {
-                                    background-color: #f0f0f0;
-                                    font-family: Arial, sans-serif;
-                                }
-                                
-                                h1 {
-                                    color: #333;
-                                }
-                                
-                                p {
-                                    color: #555;
-                                }
-                                </code></pre>
-
-                                    <h1 id="responsive-design">3. Responsive Web Design</h1>
-                                    <p>Responsive web design is an approach to web development that ensures that a
-                                        website
-                                        looks good on all devices
-                                        (desktops, tablets, and mobile phones). It involves using flexible layouts,
-                                        media
-                                        queries, and responsive
-                                        images to create a seamless user experience.</p>
-
-                                    <blockquote>
-                                        "Responsive design is not about making things fit on a screen. It’s about
-                                        designing
-                                        the right experience for
-                                        the right context." - Trent Walton
-                                    </blockquote>
-
-                                    <h2 id="media-queries">3.1 Using Media Queries</h2>
-                                    <p>Media queries allow you to apply different styles depending on the screen size.
-                                        Here's a basic example:</p>
-                                    <pre><code>
-                                /* Mobile devices */
-                                @media (max-width: 600px) {
-                                    body {
-                                        background-color: lightblue;
-                                    }
-                                }
-                                
-                                /* Tablets */
-                                @media (max-width: 768px) {
-                                    body {
-                                        background-color: lightgreen;
-                                    }
-                                }
-                                </code></pre>
-
-                                    <h1 id="best-practices">4. Best Practices in Web Development</h1>
-                                    <p>Here are a few best practices to keep in mind when developing websites:</p>
-                                    <ul>
-                                        <li><strong>Write clean and maintainable code</strong>: Use proper indentation,
-                                            comments, and meaningful
-                                            names for classes and IDs.</li>
-                                        <li><strong>Optimize images and assets</strong>: Use compressed images and
-                                            minimize
-                                            HTTP requests for faster
-                                            page load times.</li>
-                                        <li><strong>Ensure cross-browser compatibility</strong>: Test your website on
-                                            different browsers to ensure
-                                            that it works correctly.</li>
-                                    </ul>
-
-                                    <h1 id="conclusion">5. Conclusion</h1>
-                                    <p>Web development is an exciting and ever-evolving field. By understanding the
-                                        fundamentals of HTML, CSS, and
-                                        JavaScript, and following best practices, you can create amazing websites that
-                                        provide great user
-                                        experiences. Keep learning, and happy coding!</p>
-                            </div>
+                            {!! App::getLocale() === 'vi' ? $article->body : $article->body_en ?? $article->body !!}
                         </div>
 
                         <div class="mt-14">
                             <div class="flex gap-2">
-                                <p class="font-semibold text-nowrap">Thẻ được gắn:</p>
-                                <div class="flex flex-wrap gap-4">
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
+                                @if ($article->tags && $article->tags->isNotEmpty())
+                                    <p class="font-semibold text-nowrap">Thẻ được gắn:</p>
+                                    <div class="flex flex-wrap gap-4">
+                                        @foreach ($article->tags as $tag)
+                                            <div
+                                                class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+                                                {{ $tag->name }}
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-                                    <div
-                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                        Test nè
-                                    </div>
-
-                                </div>
+                                @endif
                             </div>
                             <div class="flex flex-col items-center py-8 my-8 border-t-[1px] border-border-main">
                                 <div class="flex gap-3 items-center">
@@ -525,7 +335,8 @@
                                         </svg>
                                     </a>
                                 </div>
-                                <div x-data="{ currentLink: window.location.href }" class="flex flex-col gap-2 font-medium w-8/12 mt-4">
+                                <div x-data="{ currentLink: window.location.href }"
+                                    class="flex flex-col gap-2 font-medium w-full sm:w-8/12 mt-4">
                                     <div
                                         class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                                         <input readonly type="blog-link-input" id="blog-link-input" name="blog-link"
@@ -546,129 +357,139 @@
                     {{-- Navigation --}}
                     <div class="flex flex-col md:flex-row items-center justify-between w-full mx-auto my-8 gap-10">
                         <!-- Previous Article -->
-                        <div
-                            class="flex items-center justify-between bg-btn-lg text-white p-6 pl-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/previousBtn">
-                            <div class="flex items-center">
-                                <div
-                                    class="bg-white text-btn-lg rounded-full w-28 h-8 -ml-10 flex items-center justify-end pr-3 mr-4 -translate-x-2 ease-linear duration-200 group-hover/previousBtn:translate-x-0">
-                                    <!-- Icon left arrow -->
-                                    <span class="font-semibold text-text-primary">&larr;</span>
+                        @if ($previous_blog)
+                            <a href="/blog/{{ $previous_blog->slug }}"
+                                title="{{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}"
+                                class="flex items-center justify-between bg-btn-lg text-white p-6 pl-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/previousBtn">
+                                <div class="grid grid-cols-7 items-center gap-4">
+                                    <div
+                                        class="col-span-1 bg-white text-btn-lg rounded-full w-20 h-8 flex items-center justify-end pr-3 -translate-x-12 ease-linear duration-200 group-hover/previousBtn:-translate-x-10">
+                                        <!-- Icon left arrow -->
+                                        <span class="font-semibold text-text-primary">&larr;</span>
+                                    </div>
+                                    <div class="w-full col-span-6">
+                                        <p class="text-sm font-manrope">Bài Viết Trước</p>
+                                        <p class="font-semibold line-clamp-2">
+                                            {{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}
+                                            {{-- Displaying Images in HTML: The img tag a masterclass dài thêm nha dài thêm nha dài thêm nha dài thêm --}}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-sm font-manrope">Bài Viết Trước</p>
-                                    <p class="font-semibold">Text Tags: Blocks, headings and Inlines a quick start ✍️
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                        @endif
 
-                        <div class="hidden md:block w-[2px] h-14 rounded-full bg-border-main"></div>
+                        <div
+                            class="hidden md:block w-[2px] h-14 rounded-full bg-border-main {{ !$previous_blog || !$next_blog ? 'opacity-0' : '' }}">
+                        </div>
 
                         <!-- Next Article -->
-                        <div
-                            class="flex items-center justify-between bg-btn-lg text-white p-6 pr-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/nextBtn">
-                            <div class="flex items-center justify-end w-full">
-                                <div class="text-right">
-                                    <p class="text-sm font-manrope">Bài Viết Tiếp Theo</p>
-                                    <p class="font-semibold">Displaying Images in HTML: The img tag a masterclass</p>
+                        @if ($next_blog)
+                            <a href="/blog/{{ $next_blog->slug }}"
+                                title="{{ App::getLocale() === 'vi' ? $next_blog->title : $next_blog->title_en ?? $next_blog->title }}"
+                                class="flex items-center justify-between bg-btn-lg text-white p-6 pr-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/nextBtn">
+                                <div class="grid grid-cols-7 items-center gap-4">
+                                    <div class="text-right col-span-6">
+                                        <p class="text-sm font-manrope">Bài Viết Tiếp Theo</p>
+                                        <p class="font-semibold line-clamp-2">
+                                            {{ App::getLocale() === 'vi' ? $next_blog->title : $next_blog->title_en ?? $next_blog->title }}
+                                            {{-- Displaying Images in HTML: The img tag a masterclass dài thêm nha dài thêm nha dài thêm nha dài thêm nha --}}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="col-span-1 bg-white text-btn-lg rounded-full w-20 h-8 flex items-center justify-start pl-3 sm:translate-x-5 md:translate-x-1 default:translate-x-2 ease-linear duration-200 md:group-hover/nextBtn:translate-x-0">
+                                        <!-- Icon right arrow -->
+                                        <span class="font-semibold text-text-primary">&rarr;</span>
+                                    </div>
                                 </div>
-                                <div
-                                    class="bg-white text-btn-lg rounded-full w-28 h-8 -mr-10 flex items-center justify-start pl-3 ml-4 translate-x-2 ease-linear duration-200 group-hover/nextBtn:translate-x-0">
-                                    <!-- Icon right arrow -->
-                                    <span class="font-semibold text-text-primary">&rarr;</span>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                        @endif
                     </div>
 
                     {{-- Categories --}}
-                    <div class="bg-white rounded-lg shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] p-8 py-10 mx-auto my-8">
+                    <div
+                        class="bg-white rounded-lg shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] p-4 sm:p-8 py-6 sm:py-10 mx-auto my-8">
                         <!-- Header Section -->
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex flex-col gap-4 sm:gap-0 sm:flex-row items-center justify-between mb-4">
                             <div class="flex items-center">
                                 <div class="flex gap-4 items-center cursor-pointer group">
-                                    <div class="relative w-14 lg:w-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center p-2.5"
-                                        style="background-color: #F95353">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    <div
+                                        class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center">
+                                        {{-- style="background-color: #F95353"> --}}
+                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             viewBox="0 0 24 24">
                                             <path fill="currentColor"
                                                 d="M0 6.064v11.872h12.13L24 6.064zm3.264 2.208h.005c.863.001 1.915.245 2.676.633l-.82 1.43c-.835-.404-1.255-.442-1.73-.467c-.708-.038-1.064.215-1.069.488c-.007.332.669.633 1.305.838c.964.306 2.19.715 2.377 1.9L7.77 8.437h2.046l2.064 5.576l-.007-5.575h2.37c2.257 0 3.318.764 3.318 2.519c0 1.575-1.09 2.514-2.936 2.514h-.763l-.01 2.094l-3.588-.003l-.25-.908c-.37.122-.787.189-1.23.189c-.456 0-.885-.071-1.263-.2l-.358.919l-2 .006l.09-.462q-.043.038-.087.074c-.535.43-1.208.629-2.037.644l-.213.002a5.1 5.1 0 0 1-2.581-.675l.73-1.448c.79.467 1.286.572 1.956.558c.347-.007.598-.07.761-.239a.56.56 0 0 0 .156-.369c.007-.376-.53-.553-1.185-.756c-.531-.164-1.135-.389-1.606-.735c-.559-.41-.825-.924-.812-1.65a2 2 0 0 1 .566-1.377c.519-.537 1.357-.863 2.363-.863m10.597 1.67v1.904h.521c.694 0 1.247-.23 1.248-.964c0-.709-.554-.94-1.248-.94zm-5.087.767l-.748 2.362c.223.085.481.133.757.133c.268 0 .52-.047.742-.126l-.736-2.37z" />
-                                        </svg>
-                                        <div class="absolute z-0 inset-0 rounded-full ring-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-                                            style="--tw-ring-color: '#F9535333';">
-                                        </div>
+                                        </svg> --}}
+                                        <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
+                                            src="{{ asset('storage/' . $article->categories->first()->svg) }}"
+                                            alt="post-img-small-5">
+                                        {{-- <div class="absolute z-0 inset-0 rounded-full ring-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                                            style="--tw-ring-color: {{ $$article->categories->first()['secondaryColor'] }};">
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="ml-4 flex flex-col gap-1.5">
-                                    <p class="text-sm text-gray-600 font-manrope">Nhiều hơn với <span
+                                    <p class="text-sm text-gray-600 font-manrope">Những bài viết gần đây của <span
                                             class="font-semibold">Thể loại</span></p>
-                                    <h2 class="text-2xl font-bold text-gray-800">Fundamentals</h2>
+                                    @if ($article->categories->isNotEmpty())
+                                        <h2 class="text-2xl font-bold text-gray-800">
+                                            {{ $article->categories->first()->name }}</h2>
+                                    @else
+                                        <h2 class="text-2xl font-bold text-gray-800">{{ $article->user->name }}</h>
+                                    @endif
                                 </div>
                             </div>
-                            <button onclick="handleNavigateBlogCategory('Databases')"
-                                class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
-                                Xem Toàn Bộ Bài Viết
-                            </button>
+                            @if ($article->categories->isNotEmpty())
+                                <a href="/blog/category/{{ $article->categories->first()->slug }}"
+                                    class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
+                                    Xem Toàn Bộ Bài Viết
+                                </a>
+                            @else
+                                <a href="/blog"
+                                    class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
+                                    Xem Toàn Bộ Bài Viết
+                                </a>
+                            @endif
+
                         </div>
 
                         <!-- Articles List -->
-                        <ul class="flex flex-col gap-1 mt-8">
-                            <!-- Article 1 -->
-                            <li class="flex gap-3 items-center pl-4">
-                                <div class="font-semibold">
-                                    <span
-                                        class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">1</span>
-                                </div>
-                                <a href="#" class="font-semibold text-start hover:underline line-clamp-1">
-                                    Understanding how Links and protocols works 🚀
-                                </a>
-                            </li>
+                        <ul class="flex flex-col gap-1 mt-8" x-ref="article_cards_wrapper" x-init="() => {
+                            autoAnimate($refs.article_cards_wrapper)
+                        }">
+                            @foreach ($category_blogs as $index => $blog)
+                                <!-- Article -->
+                                <li class="flex gap-3 items-center pl-4">
+                                    <div class="font-semibold">
+                                        <span
+                                            class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">
+                                            {{ $index + 1 }}
+                                        </span>
+                                    </div>
+                                    <a href="/blog/{{ $blog->slug }}"
+                                        class="font-semibold text-start hover:underline line-clamp-1">
+                                        {{ $blog->title ?? $blog->title_en }}
+                                    </a>
+                                </li>
 
-                            <li class="flex gap-3 items-center pl-4">
-                                <div class="font-semibold invisible">
-                                    <span
-                                        class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">1</span>
-                                </div>
-                                <span class="h-[1px] w-full bg-border-main"></span>
-                            </li>
-
-                            <!-- Article 2 -->
-                            <li class="flex gap-3 items-center pl-4">
-                                <div class="font-semibold">
-                                    <span
-                                        class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">2</span>
-                                </div>
-                                <a href="#" class="font-semibold text-start hover:underline line-clamp-1">
-                                    HTTP, Web Browsers, and Web Servers
-                                </a>
-                            </li>
-
-                            <li class="flex gap-3 items-center pl-4">
-                                <div class="font-semibold invisible">
-                                    <span
-                                        class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">1</span>
-                                </div>
-                                <span class="h-[1px] w-full bg-border-main"></span>
-                            </li>
-
-                            <!-- Article 3 -->
-                            <li class="flex gap-3 items-center pl-4">
-                                <div class="font-semibold">
-                                    <span
-                                        class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">3</span>
-                                </div>
-                                <a href="#" class="font-semibold text-start hover:underline line-clamp-1">
-                                    Introduction to CSS 🚀
-                                </a>
-                            </li>
-
+                                @if ($index < count($category_blogs) - 1)
+                                    <li class="flex gap-3 items-center pl-4">
+                                        <div class="font-semibold invisible">
+                                            <span
+                                                class="w-6 h-[28px] px-4 flex bg-black rounded justify-center items-center text-white ease duration-200 text-sm aspect-1">1</span>
+                                        </div>
+                                        <span class="h-[1px] w-full bg-border-main"></span>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
+
                     </div>
 
                     <!-- Comment Form Component -->
                     <div x-data="replyForm()" class="">
                         <h3 class="text-lg font-bold mb-4">Để lại Lời nhắn</h3>
-                        <div class="mb-4">
+                        {{-- <div class="mb-4">
                             <textarea x-model="comment" placeholder="Bình luận" rows="6"
                                 class="w-full p-4 border rounded-sm font-manrope resize-none text-text-primary text-xs focus:outline-none focus:ring-1 focus:ring-[rgba(106,78,233,.4)] border-border-main shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] peer outline-none ring ring-gray-200 duration-500 focus:border-transparent relative focus:shadow-[0px_0px_10px_-3px_rgba(106,78,233,.4)]"></textarea>
                         </div>
@@ -699,11 +520,17 @@
                         <button @click="submitComment()"
                             class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap">
                             Đăng bài
-                        </button>
+                        </button> --}}
+                        <div class="fb-comments w-full" data-href="{{ url()->current() }}" data-width="900"
+                            data-numposts="5"></div>
                     </div>
 
                 </div>
             </div>
+        </section>
+        <section class="pt-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center">
+            <img class="w-full min-h-32 h-full object-cover rounded-sm shadow-md"
+                src="{{ asset('assets/images/banner-ads-home.png') }}" alt="ads-banner-1">
         </section>
         <section>
             <div class="relative bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] overflow-hidden my-8 md:my-14">
@@ -711,16 +538,16 @@
                     class="py-8 md:py-12 max-w-default flex w-auto mx-auto px-4 sm:px=12 md:px-24 default:px-0 relative z-10">
                     <div class="flex flex-col mx-auto md:flex-row justify-between items-center">
                         <div class="flex flex-col gap-4 md:gap-8">
-                            <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Join to
-                                our community 🙌</h3>
+                            <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Đăng ký
+                                nhận bảng tin 🙌</h3>
                             <p class="text-base default:text-lg text-center md:text-left md:w-9/12 leading-loose">
-                                Unlock full access to Zento and see the entire
-                                library of paid-members only posts.</p>
+                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ tôi qua email.</p>
                         </div>
                         <div class="flex flex-col items-center justify-center gap-4 md:gap-8">
-                            <p class="text-center md:text-left">Subscribe to our Newsletter, cancel at anytime.</p>
+                            <p class="text-center md:text-left">Đăng ký ngay bây giờ, huỷ bất cứ khi nào.</p>
                             <div>
                                 <button
+                                    onclick="document.getElementById('register-form').scrollIntoView({ behavior: 'smooth', block: 'start' }); document.getElementById('email-subcribe-input').focus();"
                                     class="py-2 px-[22px] bg-black rounded text-white ease duration-200 text-nowrap">Đăng
                                     ký</button>
                             </div>
@@ -752,6 +579,11 @@
 
     </div>
     @push('scripts')
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=553287087063901&autoLogAppEvents=1">
+        </script>
+
         <script>
             function replyForm() {
                 return {
@@ -798,62 +630,206 @@
                 }
             }
 
+            // document.addEventListener('DOMContentLoaded', () => {
+            //     const blogContainer = document.querySelector('.blog-container');
+            //     const tocList = document.getElementById('toc-list');
+            //     const tocHighlight = document.getElementById('toc-highlight');
+
+            //     // Get all headers in the blog content
+            //     const headers = blogContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            //     const tocItems = [];
+
+            //     headers.forEach((header, index) => {
+            //         const id = `header-${index}`;
+            //         header.setAttribute('id', id);
+
+            //         // Create list item for each header
+            //         const li = document.createElement('li');
+            //         li.innerHTML =
+            //             `<a class="toc-item text-sm block pl-${header.tagName.replace('H', '') * 2}" data-id="${id}">${header.innerText}</a>`;
+            //         tocList.appendChild(li);
+
+            //         // Store header position for scroll tracking
+            //         tocItems.push({
+            //             id,
+            //             offsetTop: header.offsetTop
+            //         });
+            //     });
+
+            //     // Handle clicking on a TOC item
+            //     document.querySelectorAll('.toc-item').forEach(item => {
+            //         item.addEventListener('click', (e) => {
+            //             const id = e.target.getAttribute('data-id');
+            //             document.getElementById(id).scrollIntoView({
+            //                 behavior: 'smooth',
+            //                 block: 'start'
+            //             });
+            //         });
+            //     });
+
+            //     // Handle scroll to highlight active item
+            //     window.addEventListener('scroll', () => {
+            //         const scrollPosition = window.scrollY;
+
+            //         tocItems.forEach((item, index) => {
+            //             if (scrollPosition >= item.offsetTop - 10) {
+            //                 // Highlight the active toc item
+            //                 document.querySelectorAll('.toc-item').forEach(el => el.classList.remove(
+            //                     'toc-active'));
+            //                 document.querySelector(`[data-id="${item.id}"]`).classList.add(
+            //                     'toc-active');
+
+            //                 // Move highlight bar
+            //                 const activeElement = document.querySelector(`[data-id="${item.id}"]`);
+            //                 tocHighlight.style.top = `${activeElement.offsetTop}px`;
+            //                 tocHighlight.style.height = `${activeElement.offsetHeight}px`;
+            //             }
+            //         });
+            //     });
+            // });
+
             document.addEventListener('DOMContentLoaded', () => {
                 const blogContainer = document.querySelector('.blog-container');
                 const tocList = document.getElementById('toc-list');
                 const tocHighlight = document.getElementById('toc-highlight');
 
-                // Get all headers in the blog content
                 const headers = blogContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                if (headers.length == 0) {
+                    document.querySelector("#toc-container").innerHTML = "<span>Bài viết không đánh chỉ mục</span>";
+                    return;
+                }
                 const tocItems = [];
+                let lowestLevel = Infinity;
+
+
+                headers.forEach((header) => {
+                    const level = parseInt(header.tagName.replace('H', ''), 10);
+                    if (level < lowestLevel) {
+                        lowestLevel = level;
+                    }
+                });
 
                 headers.forEach((header, index) => {
                     const id = `header-${index}`;
                     header.setAttribute('id', id);
 
-                    // Create list item for each header
+                    const level = parseInt(header.tagName.replace('H', ''), 10);
+
+                    let displayedLevel = level - (lowestLevel -
+                        1);
+
+                    const paddingLeft = displayedLevel * 7;
+
                     const li = document.createElement('li');
-                    li.innerHTML =
-                        `<a class="toc-item text-sm block pl-${header.tagName.replace('H', '') * 2}" data-id="${id}">${header.innerText}</a>`;
+                    const a = document.createElement('a');
+                    a.className = 'toc-item text-sm block';
+                    a.textContent = header.innerText;
+                    a.setAttribute('data-id', id);
+                    a.style.paddingLeft = `${paddingLeft}px`;
+                    li.appendChild(a);
                     tocList.appendChild(li);
 
-                    // Store header position for scroll tracking
                     tocItems.push({
                         id,
-                        offsetTop: header.offsetTop
+                        offsetTop: header.offsetTop,
+                        level,
+                        element: a,
                     });
                 });
 
-                // Handle clicking on a TOC item
-                document.querySelectorAll('.toc-item').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        const id = e.target.getAttribute('data-id');
-                        document.getElementById(id).scrollIntoView({
+                tocItems.forEach(item => {
+                    if (item.level === lowestLevel) {
+                        item.element.style.display = 'block';
+                    } else {
+                        item.element.style.display = 'none';
+                    }
+                });
+
+                tocList.addEventListener('click', (e) => {
+                    const item = e.target.closest('.toc-item');
+                    if (item) {
+                        const id = item.getAttribute('data-id');
+                        const targetElement = document.getElementById(id);
+
+                        targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    });
+
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window
+                            .pageYOffset; // Get the target element's position
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
 
-                // Handle scroll to highlight active item
                 window.addEventListener('scroll', () => {
                     const scrollPosition = window.scrollY;
 
+                    let currentVisibleLevel = lowestLevel;
+
                     tocItems.forEach((item, index) => {
                         if (scrollPosition >= item.offsetTop - 10) {
-                            // Highlight the active toc item
+                            if (item.level > currentVisibleLevel) {
+                                let leftIndex = -1;
+                                let rightIndex = -1;
+
+                                for (let i = index - 1; i >= 0; i--) {
+                                    if (tocItems[i].level === currentVisibleLevel) {
+                                        leftIndex = i;
+                                        break;
+                                    }
+                                }
+
+                                for (let i = index + 1; i < tocItems.length; i++) {
+                                    if (tocItems[i].level === currentVisibleLevel) {
+                                        rightIndex = i;
+                                        break;
+                                    }
+                                }
+
+                                tocItems.forEach((innerItem, idx) => {
+                                    if ((idx >= leftIndex && idx <= rightIndex) || innerItem
+                                        .level === currentVisibleLevel) {
+                                        innerItem.element.style.display = 'block';
+                                    } else {
+                                        innerItem.element.style.display = 'none';
+                                    }
+                                });
+                            } else {
+                                tocItems.forEach(innerItem => {
+                                    if (innerItem.level === currentVisibleLevel) {
+                                        innerItem.element.style.display = 'block';
+                                    } else {
+                                        innerItem.element.style.display = 'none';
+                                    }
+                                });
+                            }
+
                             document.querySelectorAll('.toc-item').forEach(el => el.classList.remove(
                                 'toc-active'));
-                            document.querySelector(`[data-id="${item.id}"]`).classList.add(
-                            'toc-active');
+                            item.element.classList.add('toc-active');
 
-                            // Move highlight bar
-                            const activeElement = document.querySelector(`[data-id="${item.id}"]`);
-                            tocHighlight.style.top = `${activeElement.offsetTop}px`;
-                            tocHighlight.style.height = `${activeElement.offsetHeight}px`;
+                            tocHighlight.style.top = `${item.element.offsetTop}px`;
+                            tocHighlight.style.height = `${item.element.offsetHeight}px`;
+
+                            const tocContainer = document.getElementById('toc-container');
+            const tocItemPosition = item.element.offsetTop - tocContainer.offsetTop + tocContainer.scrollTop;
+            const tocContainerHeight = tocContainer.clientHeight;
+            
+            // Adjust scroll position if the item is out of view
+            if (tocItemPosition < tocContainer.scrollTop || tocItemPosition >= tocContainer.scrollTop + tocContainerHeight) {
+                tocContainer.scrollTop = tocItemPosition - tocContainerHeight / 2;
+            }
                         }
                     });
                 });
+
             });
         </script>
     @endpush
