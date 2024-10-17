@@ -6,7 +6,7 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TextArea;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
@@ -39,7 +39,7 @@ class Category extends Model
                     ->unique('categories', 'slug', null, 'id')
                     ->readOnly()
                     ->maxLength(255),
-                TextArea::make('description')
+                Textarea::make('description')
                 ->label('Mô tả')
                 ->maxLength(255)
                 ,
