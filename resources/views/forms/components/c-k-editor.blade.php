@@ -390,7 +390,8 @@
         "
     >
         <div class="block w-full max-w-none rounded-lg border border-gray-300 bg-white p-3 opacity-70 shadow-sm transition duration-75 prose dark:prose-invert dark:border-gray-600 dark:bg-gray-700 dark:text-white overflow-y-auto
-        editor-container editor-container_classic-editor editor-container_include-style" id="editor-container">
+        editor-container editor-container_classic-editor editor-container_include-style"
+             style="max-height: 500px; overflow-y: auto;" id="editor-container">
             <div class="editor-container__editor">
                 <textarea x-ref="ckEditor"
                           id="{{ $getId() }}"
