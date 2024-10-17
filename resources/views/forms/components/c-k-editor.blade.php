@@ -8,6 +8,7 @@
         }
     </script>
 @endpushonce
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" />
 <x-dynamic-component :component="$getFieldWrapperView()" :id="$getId()" :label="$getLabel()" :label-sr-only="$isLabelHidden()" :helper-text="$getHelperText()"
     :hint="$getHint()" :hint-icon="$getHintIcon()" :required="$isRequired()" :state-path="$getStatePath()" :field="$field">
     <div wire:ignore x-data="{ state: $wire.entangle('{{ $getStatePath() }}'), isUpdatingFromEditor: false }" x-init="import('ckeditor5').then(module => {
@@ -378,13 +379,14 @@
             });
     });">
         <div class="block w-full max-w-none rounded-lg border border-gray-300 bg-white p-3 opacity-70 shadow-sm transition duration-75 prose dark:prose-invert dark:border-gray-600 dark:bg-gray-700 dark:text-white overflow-y-auto
-    editor-container editor-container_classic-editor editor-container_include-style sticky top-0"
+        editor-container editor-container_classic-editor editor-container_include-style"
             style="max-height: 500px; overflow-y: auto;" id="editor-container">
-            <div class="editor-container__editor">
+            <div class="editor-container__editor" style="max-height: 500px; overflow-y: auto;">
                 <textarea x-ref="ckEditor" id="{{ $getId() }}" name="{{ $getId() }}" x-model="state"
                     {{ $attributes->merge(['class' => 'form-control']) }}>
-      </textarea>
+        </textarea>
             </div>
         </div>
+
     </div>
 </x-dynamic-component>
