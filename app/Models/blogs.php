@@ -99,16 +99,17 @@ class blogs extends Model
     public static function getForm()
     {
         return [
-            Section::make('Blog Details')
+            Section::make('Chi Tiết Bài Viết')
                 ->schema([
-                    Fieldset::make('Titles')
+                    Fieldset::make('Trạng thái')
                         ->schema([
                             Select::make('category_id')
-                                ->multiple()
+                                // ->multiple()
                                 ->preload()
                                 ->createOptionForm(Category::getForm())
                                 ->searchable()
                                 ->relationship('categories', 'name')
+                                ->label('Thể loại')
                                 ->columnSpanFull(),
                             Select::make('tag_id')
                                 ->multiple()
@@ -116,12 +117,19 @@ class blogs extends Model
                                 ->createOptionForm(Tag::getForm())
                                 ->searchable()
                                 ->relationship('tags', 'name')
+                                ->label('Thẻ')
                                 ->columnSpanFull(),
+                            ToggleButtons::make('status')
+                                ->live()
+                                ->inline()
+                                ->options(PostStatus::class)
+                                ->label('Trạng thái')
+                                ->required()
                         ]),
 
                     Tabs::make('Tabs')
                         ->tabs([
-                            Tabs\Tab::make('Vietnamese')
+                            Tabs\Tab::make('Tiếng Việt')
                                 ->schema([
                                     TextInput::make('title')
                                         ->live(true)
@@ -131,56 +139,61 @@ class blogs extends Model
                                         ))
                                         ->required()
                                         ->unique('posts', 'title', null, 'id')
+                                        ->label('Tiêu đề')
                                         ->maxLength(255),
 
                                     TextInput::make('slug')
+                                        ->label('Đường dẫn')
                                         ->maxLength(255),
 
                                     Textarea::make('sub_title')
                                         ->maxLength(255)
+                                        ->label('Tóm tắt nội dung')
                                         ->columnSpanFull(),
                                     CKEditor::make('body')
                                         ->required()
+                                        ->label('Nội dung chính')
                                         ->columnSpanFull(),
                                 ]),
                             ]),
-                    Fieldset::make('Feature Image')
+                    Fieldset::make('Hình Ảnh')
                         ->schema([
                             FileUpload::make('cover_photo_path')
-                                ->label('Cover Photo')
+                                ->label('Ảnh minh hoạ')
                                 ->directory('/blog-feature-images')
-                                ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
+                                ->hint('Ảnh minh hoạ dùng cho bài viết. Kích thước đề nghị là 1200 X 628')
                                 ->image()
                                 ->preserveFilenames()
                                 ->imageEditor()
                                 ->maxSize(1024 * 5)
                                 ->rules('dimensions:max_width=1920,max_height=1004')
                                 ->required(),
-                            TextInput::make('photo_alt_text')->required(),
+                                TextInput::make('photo_alt_text')->required()->label('Tiêu đề ảnh'),
                         ])->columns(1),
 
-                    Fieldset::make('Status')
-                        ->schema([
+                    // Fieldset::make('Status')
+                    //     ->schema([
 
-                            ToggleButtons::make('status')
-                                ->live()
-                                ->inline()
-                                ->options(PostStatus::class)
-                                ->required(),
+                    //         ToggleButtons::make('status')
+                    //             ->live()
+                    //             ->inline()
+                    //             ->options(PostStatus::class)
+                    //             ->required(),
 
-//                            DateTimePicker::make('scheduled_for')
-//                                ->visible(function ($get) {
-//                                    return $get('status') === PostStatus::SCHEDULED->value;
-//                                })
-//                                ->required(function ($get) {
-//                                    return $get('status') === PostStatus::SCHEDULED->value;
-//                                })
-//                                ->minDate(now()->addMinutes(5))
-//                                ->native(false),
-                        ]),
+                    //        DateTimePicker::make('scheduled_for')
+                    //            ->visible(function ($get) {
+                    //                return $get('status') === PostStatus::SCHEDULED->value;
+                    //            })
+                    //            ->required(function ($get) {
+                    //                return $get('status') === PostStatus::SCHEDULED->value;
+                    //            })
+                    //            ->minDate(now()->addMinutes(5))
+                    //            ->native(false),
+                    //     ]),
                     Select::make('user_id')
                      ->relationship('user', 'name')
                         ->nullable(false)
+                        ->label('Người đăng')
                         ->default(auth()->id()),
 
                 ]),
@@ -192,18 +205,32 @@ class blogs extends Model
     }
     public function getDataArray(): array
     {
+        $averageReadingSpeed = 200;
+        $wordCount = str_word_count(strip_tags($this->content));
+        $totalSeconds = ceil(($wordCount / $averageReadingSpeed) * 60);
+
+        $minutes = floor($totalSeconds / 60);
+        $seconds = $totalSeconds % 60;
+
+        $readingTime = sprintf('%d phút %d giây', $minutes, $seconds);
 
         return [
-            'id' => (Lang::getLocale() == 'vi') ? $this->slug : ($this->slug_en ?? $this->slug),
+            'id' => $this->id ,
             'title' =>(Lang::getLocale() == 'vi') ? $this->title : ($this->title_en ?? $this->title),
             'slug' => (Lang::getLocale() == 'vi') ? $this->slug : ($this->slug_en ?? $this->slug),
+            'sub_title' => (Lang::getLocale() == 'vi') ? $this->sub_title : ($this->sub_title_en ?? $this->sub_title),
             'publish_date' => $this->published_at->diffForHumans(),
+            'created_date' => $this->created_at->format('d/m/Y'),
+            'reading_time' => $readingTime,
             'thumbnail_url' =>'storage/'. $this->cover_photo_path,
+            'thumbnail_alt' => $this->photo_alt_text,
             'author' => [
                 'name' => $this->user->name,
                 'avatar' => null,
             ],
+            'tags' => $this->tags->pluck('name'),
             'categories' => $this->categories->pluck('slug'),
+            'category' => $this->categories->pluck('name'),
             'type' => $this->type,
             'versions' => $this->versions,
             'canonical_url' => $this->canonical_url,

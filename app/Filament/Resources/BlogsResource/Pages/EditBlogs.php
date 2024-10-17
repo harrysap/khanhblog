@@ -16,10 +16,15 @@ class EditBlogs extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-    protected function beforeSave()
+    protected function mutateFormDataBeforeSave(array $data): array
     {
+        unset($data['category_id']);
+
         if ($this->data['status'] === PostStatus::PUBLISHED->value) {
-            $this->record->published_at = $this->record->published_at ?? date('Y-m-d H:i:s');
+            $data['is_published']=true;
+            $data['published_at'] = date('Y-m-d H:i:s');
+            return $data;
         }
+        return $data;
     }
 }

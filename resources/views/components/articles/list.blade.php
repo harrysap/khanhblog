@@ -1,48 +1,48 @@
-<section class="mx-auto w-full max-w-7xl px-4 sm:px-2 xl:px-0" x-cloak x-ref="section" x-init="() => {
-    // Reset the page number on search input change
-    $watch('search', (newValue, oldValue) => {
-        if (newValue !== oldValue) {
+<section class="max-w-default mx-auto px-4 sm:px-6 flex flex-col justify-between gap-6 md:pt-" x-cloak x-ref="section"
+    x-init="() => {
+        // Reset the page number on search input change
+        $watch('search', (newValue, oldValue) => {
+            if (newValue !== oldValue) {
+                currentPage = 1
+            }
+        })
+    
+        // Reset the page number on category, type or version change
+        $watch('[selectedCategories.size, selectedType, selectedVersion]', () => {
             currentPage = 1
-        }
-    })
-
-    // Reset the page number on category, type or version change
-    $watch('[selectedCategories.size, selectedType, selectedVersion]', () => {
-        currentPage = 1
-    })
-
-    // Initialize the minisearch instance
-    searchEngine = new MiniSearch({
-        fields: ['title', 'author.name'],
-        searchOptions: {
-            fuzzy: 0.1,
-            prefix: true,
-        },
-        extractField: (document, fieldName) => {
-            // Enabled access to nested fields
-            return fieldName
-                .split('.')
-                .reduce((doc, key) => doc && doc[key], document)
-        },
-    })
-
-    // Index the articles
-    searchEngine.addAll(articles)
-
-    if (reducedMotion) return
-    gsap.fromTo(
-        $refs.section, {
-            autoAlpha: 0,
-            y: 50,
-        }, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'circ.out',
-        },
-    )
-}"
-    x-data="{
+        })
+    
+        // Initialize the minisearch instance
+        searchEngine = new MiniSearch({
+            fields: ['title', 'author.name'],
+            searchOptions: {
+                fuzzy: 0.1,
+                prefix: true,
+            },
+            extractField: (document, fieldName) => {
+                // Enabled access to nested fields
+                return fieldName
+                    .split('.')
+                    .reduce((doc, key) => doc && doc[key], document)
+            },
+        })
+    
+        // Index the articles
+        searchEngine.addAll(articles)
+    
+        if (reducedMotion) return
+        gsap.fromTo(
+            $refs.section, {
+                autoAlpha: 0,
+                y: 50,
+            }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.7,
+                ease: 'circ.out',
+            },
+        )
+    }" x-data="{
         searchEngine: null,
         search: $queryString('').usePush().as('search'),
         selectedCategories: new Set(),
@@ -61,7 +61,7 @@
             this._currentPage = value
         },
     
-        perPage: 24,
+        perPage: 1,
         totalItems: 0,
         get totalPages() {
             return Math.ceil(this.totalItems / this.perPage)
@@ -122,108 +122,18 @@
             return filterResult
         },
     }">
-    <div class="flex flex-col gap-3 pt-5 min-[900px]:flex-row min-[900px]:items-center">
-        {{-- Type Toggle --}}
-        {{--        <div --}}
-        {{--            class="relative z-10 flex h-11 select-none items-center justify-start gap-5 rounded-full bg-white px-[.55rem] text-sm font-medium shadow-lg shadow-black/[0.01]"> --}}
-        {{--            <div x-on:click="selectedType = 'all'" class="relative z-20 w-16 text-center transition duration-300" --}}
-        {{--                 :class="{ --}}
-        {{--                    'cursor-pointer text-evening/70 hover:text-evening': selectedType !== 'all', --}}
-        {{--                    'text-salmon': selectedType === 'all', --}}
-        {{--                }"> --}}
-        {{--                All --}}
-        {{--            </div> --}}
-        {{--            @foreach ($types as $type) --}}
-        {{--                <div x-on:click="selectedType = @js($type['slug'])" --}}
-        {{--                     class="relative z-20 flex w-20 items-center gap-2 text-center transition duration-300" --}}
-        {{--                     :class="{ --}}
-        {{--                        'cursor-pointer text-evening/70 hover:text-evening': selectedType !== @js($type['slug']), --}}
-        {{--                        @js( --}}
-        {{--                            match ($type['color']) { --}}
-        {{--                                'amber' => 'text-amber-600', --}}
-        {{--                                'blue' => 'text-blue-600', --}}
-        {{--                                'violet' => 'text-violet-600', --}}
-        {{--                            } --}}
-        {{--                        ): selectedType === @js($type['slug']), --}}
-        {{--                    }"> --}}
-        {{--                    {!! $type['icon'] !!} --}}
-
-        {{--                    <div> --}}
-        {{--                        {{ $type['name'] }} --}}
-        {{--                    </div> --}}
-        {{--                </div> --}}
-        {{--            @endforeach --}}
-
-        {{--            @php --}}
-        {{--                $typeConditionalColorClasses = $types --}}
-        {{--                    ->map( --}}
-        {{--                        fn(array $type): string => \Illuminate\Support\Js::from( --}}
-        {{--                            match ($type['color']) { --}}
-        {{--                                'amber' => 'bg-amber-100/60', --}}
-        {{--                                'blue' => 'bg-blue-100/60', --}}
-        {{--                                'violet' => 'bg-violet-100/60', --}}
-        {{--                            }, --}}
-        {{--                        ) . --}}
-        {{--                            ': selectedType === ' . --}}
-        {{--                            \Illuminate\Support\Js::from($type['slug']), --}}
-        {{--                    ) --}}
-        {{--                    ->implode(','); --}}
-        {{--            @endphp --}}
-
-        {{--            <div class="absolute left-[.35rem] top-[.35rem] -z-10 h-[2.1rem] rounded-full transition duration-300 ease-out will-change-transform" --}}
-        {{--                 :class="{ --}}
-        {{--                    'bg-fair-pink w-[4.5rem]': selectedType === 'all', --}}
-        {{--                    'translate-x-[4.5rem] w-[6.5rem]': selectedType === 'article', --}}
-        {{--                    'translate-x-[10.7rem] w-[6rem]': selectedType === 'news', --}}
-        {{--                    'translate-x-[17rem] w-[6rem]': selectedType === 'trick', --}}
-        {{--                    {{ $typeConditionalColorClasses }}, --}}
-        {{--                }"> --}}
-        {{--            </div> --}}
-        {{--        </div> --}}
-
+    <div class="flex flex-col gap-3 min-[900px]:flex-row min-[900px]:items-center">
         <div
             class="flex w-full flex-1 flex-wrap items-center gap-3 min-[900px]:w-auto min-[900px]:flex-nowrap min-[900px]:justify-end">
-            {{-- Version Switch --}}
-            {{-- <div
-                class="relative z-10 inline-flex select-none items-center gap-2.5 rounded-full bg-white p-[.55rem] font-medium shadow-lg shadow-black/[0.01]">
-                <div x-on:click="selectedVersion = '1'" class="relative z-20 w-14 text-center transition duration-300"
-                    :class="{
-                        'cursor-pointer opacity-50 hover:opacity-100': selectedVersion !== '1',
-                        'text-salmon': selectedVersion === '1',
-                    }">
-                    v1.x
-                </div>
-                <div class="relative z-20 w-14 text-center transition duration-300" x-on:click="selectedVersion = '2'"
-                    :class="{
-                        'cursor-pointer opacity-50 hover:opacity-100': selectedVersion !== '2',
-                        'text-salmon': selectedVersion === '2',
-                    }">
-                    v2.x
-                </div>
-                <div class="relative z-20 w-14 text-center transition duration-300" x-on:click="selectedVersion = '3'"
-                    :class="{
-                        'cursor-pointer opacity-50 hover:opacity-100': selectedVersion !== '3',
-                        'text-salmon': selectedVersion === '3',
-                    }">
-                    v3.x
-                </div>
-                <div class="absolute left-[.31rem] top-[.31rem] -z-10 h-8 w-16 rounded-full bg-fair-pink transition duration-300 ease-out will-change-transform"
-                    :class="{
-                        'translate-x-[4.1rem]': selectedVersion === '2',
-                        'translate-x-[8.2rem]': selectedVersion === '3',
-                    }">
-                </div>
-            </div> --}}
         </div>
 
         <div
             class="flex w-full flex-wrap items-center gap-3 min-[900px]:w-auto min-[900px]:flex-nowrap min-[900px]:justify-end">
             {{-- Search Bar --}}
             <div
-                class="group/search-bar relative w-full overflow-hidden rounded-full bg-white shadow-lg shadow-black/[0.01] border border-[#0000003e] transition duration-200 focus-within:shadow-xl focus-within:shadow-black/[0.02] sm:max-w-xs">
+                class="group/search-bar relative w-full overflow-hidden rounded-lg bg-white text-sm border border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)] sm:max-w-xs">
                 {{-- Magnify Icon --}}
-                <div
-                    class="absolute left-1.5 top-1.5 grid h-8 w-8 place-items-center rounded-full bg-fair-pink text-salmon">
+                <div class="absolute left-1.5 top-1.5 grid h-8 w-8 place-items-center rounded-full bg-btn-bg text-white">
                     <svg class="transition duration-200 will-change-transform" xmlns="http://www.w3.org/2000/svg"
                         width="20" height="20" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -245,24 +155,42 @@
                     </svg>
                 </div>
                 {{-- Search Input --}}
-                <input type="text" x-model="search" placeholder="{{ __('Tìm kiếm') }} ..."
+                <input type="text" x-model="search" placeholder="Tìm kiếm ..."
                     class="w-full appearance-none border-none bg-transparent py-3 pl-12 pr-10 text-sm outline-none placeholder:transition placeholder:duration-200 focus:ring-0 group-focus-within/search-bar:placeholder:translate-x-1 group-focus-within/search-bar:placeholder:opacity-0" />
             </div>
         </div>
     </div>
 
     {{-- Categories --}}
-    <div class="pt-5">
-        <div class="font-semibold">{{ __('Bài viết') }}</div>
+    <div class="">
+        <div class="flex gap-4 items-center">
+            <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
+                        fill="#6A4EE9" />
+                    <path
+                        d="M175.985 1.65187C176.905 -0.440486 179.743 -0.545128 180.855 1.33801L181.015 1.65187L183.855 8.10842C186.338 13.7532 190.465 18.4885 195.675 21.6894L196.553 22.2085L201.597 25.0756C203.364 26.0802 203.462 28.5637 201.891 29.7323L201.597 29.9243L196.553 32.7915C191.225 35.8199 186.948 40.4176 184.284 45.9593L183.855 46.8916L181.015 53.3481C180.095 55.4405 177.257 55.5451 176.145 53.662L175.985 53.3481L173.145 46.8916C170.662 41.247 166.535 36.5116 161.325 33.3106L160.447 32.7915L155.403 29.9243C153.636 28.9201 153.538 26.4366 155.109 25.2676L155.403 25.0756L160.447 22.2085C165.775 19.1801 170.052 14.5825 172.716 9.04067L173.145 8.10842L175.985 1.65187Z"
+                        fill="#FF2AAC" />
+                    <path
+                        d="M95.0792 11.7576C98.8924 3.19801 110.648 2.76993 115.255 10.4737L115.921 11.7576L127.686 38.1708C137.972 61.2632 155.07 80.6346 176.652 93.7295L180.289 95.8531L201.186 107.582C208.507 111.692 208.914 121.852 202.406 126.632L201.186 127.418L180.289 139.147C158.217 151.536 140.498 170.345 129.462 193.015L127.686 196.829L115.921 223.242C112.109 231.802 100.352 232.23 95.7443 224.526L95.0792 223.242L83.3146 196.829C73.0292 173.738 55.9299 154.365 34.3481 141.271L30.71 139.147L9.81289 127.418C2.49301 123.31 2.08625 113.15 8.5929 108.367L9.81289 107.582L30.71 95.8531C52.7827 83.4638 70.5023 64.6557 81.5376 41.9846L83.3146 38.1708L95.0792 11.7576Z"
+                        fill="#6A4EE9" />
+                    <path
+                        d="M91.0792 8.75792C94.8924 0.197554 106.648 -0.229829 111.255 7.47396L111.921 8.75792L123.686 35.1712C133.972 58.2627 151.07 77.6349 172.652 90.7297L176.289 92.8531L197.186 104.582C204.507 108.692 204.914 118.852 198.406 123.632L197.186 124.418L176.289 136.147C154.217 148.536 136.498 167.345 125.462 190.015L123.686 193.829L111.921 220.242C108.109 228.802 96.3518 229.23 91.7443 221.526L91.0792 220.242L79.3142 193.829C69.0294 170.738 51.9304 151.365 30.3482 138.271L26.71 136.147L5.81293 124.418C-1.50702 120.31 -1.91373 110.15 4.59288 105.367L5.81293 104.582L26.71 92.8531C48.7831 80.4643 66.502 61.6556 77.5377 38.9843L79.3142 35.1712L91.0792 8.75792Z"
+                        fill="#FF2AAC" />
+                </svg></span>
+
+            <h2 class="font-semibold text-lg">Thể Loại</h2>
+        </div>
 
         {{-- List Of Categories --}}
         <div class="flex flex-wrap gap-x-2.5 gap-y-3 pt-5">
             <template x-for="(category, index) in categories" :key="index">
-                <div class="cursor-pointer select-none rounded-full px-5 py-2.5 text-sm transition duration-200"
+                <div class="cursor-pointer select-none py-2.5 text-sm transition duration-200 px-4 rounded ease text-[#4D6385] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
                     x-text="category.name"
                     :class="{
-                        'bg-salmon text-white': selectedCategories.has(category.slug),
-                        'bg-stone-100 hover:bg-stone-200/70': !selectedCategories.has(category.slug),
+                        'bg-btn-bg text-white': selectedCategories.has(category.slug),
+                        'bg-white hover:bg-stone-200/70': !selectedCategories.has(category.slug),
                     }"
                     x-on:click="
                         selectedCategories.has(category.slug)
@@ -276,28 +204,27 @@
 
     <div class="flex items-start gap-5 pt-5">
         <div class="w-full">
-            {{-- Pagination --}}
-            <div class="flex items-center justify-between px-1 py-3">
-                <div class="flex flex-1 items-center justify-between">
-                    <div x-show="filteredArticles.length" class="text-sm text-gray-700">
-                        {{ __('Showing') }}
-                        <span class="font-extrabold" x-text="(currentPage - 1) * perPage + 1"></span>
-                        {{ __('to') }}
-                        <span class="font-extrabold" x-text="Math.min(currentPage * perPage, totalItems)"></span>
-                        {{ __('of') }}
-                        <span class="font-extrabold" x-text="totalItems"></span>
-                        {{ __('results') }}
-                    </div>
-                    <div x-show="!filteredArticles.length">
-                        <div class="text-sm text-gray-700">
-                            {{ __('Không tìm thấy bài viết') }}
-                        </div>
-                    </div>
-                    <x-ui.pagination />
-                </div>
+            <div class="flex gap-4 items-center">
+                <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
+                            fill="#6A4EE9" />
+                        <path
+                            d="M175.985 1.65187C176.905 -0.440486 179.743 -0.545128 180.855 1.33801L181.015 1.65187L183.855 8.10842C186.338 13.7532 190.465 18.4885 195.675 21.6894L196.553 22.2085L201.597 25.0756C203.364 26.0802 203.462 28.5637 201.891 29.7323L201.597 29.9243L196.553 32.7915C191.225 35.8199 186.948 40.4176 184.284 45.9593L183.855 46.8916L181.015 53.3481C180.095 55.4405 177.257 55.5451 176.145 53.662L175.985 53.3481L173.145 46.8916C170.662 41.247 166.535 36.5116 161.325 33.3106L160.447 32.7915L155.403 29.9243C153.636 28.9201 153.538 26.4366 155.109 25.2676L155.403 25.0756L160.447 22.2085C165.775 19.1801 170.052 14.5825 172.716 9.04067L173.145 8.10842L175.985 1.65187Z"
+                            fill="#FF2AAC" />
+                        <path
+                            d="M95.0792 11.7576C98.8924 3.19801 110.648 2.76993 115.255 10.4737L115.921 11.7576L127.686 38.1708C137.972 61.2632 155.07 80.6346 176.652 93.7295L180.289 95.8531L201.186 107.582C208.507 111.692 208.914 121.852 202.406 126.632L201.186 127.418L180.289 139.147C158.217 151.536 140.498 170.345 129.462 193.015L127.686 196.829L115.921 223.242C112.109 231.802 100.352 232.23 95.7443 224.526L95.0792 223.242L83.3146 196.829C73.0292 173.738 55.9299 154.365 34.3481 141.271L30.71 139.147L9.81289 127.418C2.49301 123.31 2.08625 113.15 8.5929 108.367L9.81289 107.582L30.71 95.8531C52.7827 83.4638 70.5023 64.6557 81.5376 41.9846L83.3146 38.1708L95.0792 11.7576Z"
+                            fill="#6A4EE9" />
+                        <path
+                            d="M91.0792 8.75792C94.8924 0.197554 106.648 -0.229829 111.255 7.47396L111.921 8.75792L123.686 35.1712C133.972 58.2627 151.07 77.6349 172.652 90.7297L176.289 92.8531L197.186 104.582C204.507 108.692 204.914 118.852 198.406 123.632L197.186 124.418L176.289 136.147C154.217 148.536 136.498 167.345 125.462 190.015L123.686 193.829L111.921 220.242C108.109 228.802 96.3518 229.23 91.7443 221.526L91.0792 220.242L79.3142 193.829C69.0294 170.738 51.9304 151.365 30.3482 138.271L26.71 136.147L5.81293 124.418C-1.50702 120.31 -1.91373 110.15 4.59288 105.367L5.81293 104.582L26.71 92.8531C48.7831 80.4643 66.502 61.6556 77.5377 38.9843L79.3142 35.1712L91.0792 8.75792Z"
+                            fill="#FF2AAC" />
+                    </svg></span>
+    
+                <h2 class="font-semibold text-lg">Bài Viết</h2>
             </div>
-
-            <div class="relative min-h-[16rem]">
+            
+            <div class="relative min-h-[16rem] mt-6">
                 {{-- Articles --}}
                 <div x-ref="article_cards_wrapper" x-init="() => {
                     autoAnimate($refs.article_cards_wrapper)
@@ -329,8 +256,24 @@
             </div>
 
             {{-- Pagination --}}
-            <div class="flex items-center justify-end px-1 pt-7">
-                <x-ui.pagination />
+            <div class="flex items-center justify-between px-1 py-3">
+                <div class="flex flex-1 items-center justify-between">
+                    <div x-show="filteredArticles.length" class="text-sm text-gray-700">
+                        Hiển thị
+                        <span class="font-extrabold" x-text="(currentPage - 1) * perPage + 1"></span>
+                        đến
+                        <span class="font-extrabold" x-text="Math.min(currentPage * perPage, totalItems)"></span>
+                        trên tổng cộng
+                        <span class="font-extrabold" x-text="totalItems"></span>
+                        kết quả
+                    </div>
+                    <div x-show="!filteredArticles.length">
+                        <div class="text-sm text-gray-700">
+                            Không tìm thấy bài đăng
+                        </div>
+                    </div>
+                    <x-ui.pagination />
+                </div>
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@ $nextTick(() => {
 });">
 
     <nav class="relative z-20">
-        <div :class="scrolled ? 'max-w-full px-4 lg:px-6 py-2.5 default:py-5 translate-y-0 w-full rounded-none !top-0' :
+        <div :class="scrolled ? 'max-w-full px-4 lg:px-6 py-2.5 default:py-4 translate-y-0 w-full rounded-none !top-0' :
             'max-w-default mx-auto py-2.5 default:py-5 px-6 lg:px-8 rounded-full w-auto md:translate-y-[20px]'"
             class="fixed top-2 left-1/2 transform -translate-x-1/2 w-full z-50 bg-white shadow-md transition-all duration-300 ease-in-out border border-border-main flex justify-between items-center font-manrope">
             <div class="max-w-default mx-auto flex justify-between items-center w-full">
@@ -35,13 +35,14 @@ $nextTick(() => {
                 </a>
 
                 <!-- Logo -->
-                <div>
-                    <img class="w-40 rounded-3xl transition-all duration-500" :class="scrolled ? 'w-32' : 'w-40'"
-                        src="{{ asset('storage/assets/site_logo.png') }}" alt="khanh-nguyen-blog-logo">
-                </div>
+                <a href="/">
+                    <img class="w-36 sm:w-40 rounded-3xl transition-all duration-500"
+                        :class="scrolled ? 'w-32' : 'w-40'" src="{{ asset('storage/assets/site_logo.png') }}"
+                        alt="khanh-nguyen-blog-logo">
+                </a>
 
                 <div class="flex gap-6 items-center">
-                    <button
+                    <button onclick="scrollAndFocus()"
                         class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
                         ký</button>
                     <button class="hover:scale-105 ease-linear duration-300" @click="open = true">
@@ -81,7 +82,7 @@ $nextTick(() => {
             x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100"
             x-transition:leave="transform transition ease-out duration-500 transition-full"
             x-transition:leave-start="opacity-100" x-transition:leave-end="translate-x-full" aria-label="Sidebar">
-            <div class="h-full px-6 py-4 overflow-y-auto mt-6 relative">
+            <div class="h-full px-6 py-4 overflow-y-auto mt-6 relative overflow-x-hidden">
                 <div class="overflow-x-hidden">
                     <div class="w-24 h-10 absolute rounded-full bg-btn-bg flex items-center pl-3 text-white text-2xl font-bold ease-linear duration-200 -right-14 hover:-translate-x-2 cursor-pointer"
                         @click="open = false">
@@ -92,7 +93,7 @@ $nextTick(() => {
                     </div>
                 </div>
                 <div class="shrink-0 flex flex-col justify-center items-center pt-12 pb-8 gap-3">
-                    <a href="">
+                    <a href="/">
                         <div>
                             <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
                                 alt="khanh-nguyen-blog-logo">
@@ -102,12 +103,12 @@ $nextTick(() => {
                 </div>
                 <ul class="space-y-2">
                     <li>
-                        <a href=""
+                        <a href="/"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Home') }}</span>
+                            <span class="ms-3 text-text-primary">Trang Chủ</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <button @click="openService = !openService"
                             class="flex text-primary-500 focus:bg-primary-100 items-center w-full p-2 text-base transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="ecommerce-menu">
@@ -176,29 +177,28 @@ $nextTick(() => {
                                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('Travel & Expense Management') }}</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li>
-                        <a href=""
+                        <a href="/blog"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Blog') }}</span>
+                            <span class="ms-3 text-text-primary">Bài Viết</span>
                         </a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/blog/category"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Document') }}</span>
+                            <span class="ms-3 text-text-primary">Danh Mục Thể Loại</span>
                         </a>
                     </li>
                     <li>
-                        <a href=""
+                        <a href="/contact"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">{{ __('Contact Us') }}</span>
+                            <span class="ms-3 text-text-primary">Liên Hệ</span>
                         </a>
                     </li>
                 </ul>
-                <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4">
-                    <button
-                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
+                <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4 mb-8">
+                    <button class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
                         ký</button>
                 </div>
             </div>
@@ -206,14 +206,15 @@ $nextTick(() => {
     </div>
 
     <div x-init="$watch('searchShow', value => {
-        if (value) $refs.searchSectionInput.focus();
-        document.body.classList.toggle('overflow-hidden', value)
+        if (value) {
+            $nextTick(() => $refs.searchSectionInput.focus());
+            document.body.classList.toggle('overflow-hidden', value);
+        }
     })"
         @keydown.escape.window="closing = true; setTimeout(() => {searchShow = false; closing = false; console.log('Test: ', closing)}, 400)"
         x-show="searchShow" x-transition.opacity.duration.400ms
         class="fixed inset-0 bg-bg-overlay bg-opacity-70 flex justify-center items-center z-50 hidden"
-        id="search-section"
-        @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 250)">
+        id="search-section" @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 250)">
         <!-- Container chính của overlay -->
         <div x-show="searchShow" :class="closing ? 'zoom-out' : 'zoom-in'"
             class="relative p-6 text-center max-w-lg w-full">
@@ -223,7 +224,7 @@ $nextTick(() => {
                 <div
                     class="w-full flex justify-between px-3 py-1.5 pl-3.5 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                     <input type="search-section-input" id="search-section-input" name="search-section"
-                        x-ref="search-section" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText"
+                        x-ref="searchSectionInput" placeholder="Nhập tên bài viết tìm kiếm" x-model="searchText"
                         @keydown.enter="handleEnter"
                         class="focus:outline-none font-manrope w-full placeholder-[#707070]">
                     <div>
@@ -233,7 +234,6 @@ $nextTick(() => {
                     </div>
                 </div>
             </div>
-
         </div>
         <button class="absolute top-3 right-2 text-white"
             @click="closing = true; setTimeout(() => {searchShow = false; closing = true}, 250)">
@@ -248,6 +248,7 @@ $nextTick(() => {
         </button>
     </div>
 
+
     @push('scripts')
         <script>
             function handleEnter() {
@@ -255,6 +256,18 @@ $nextTick(() => {
                     const searchSlug = this.searchText.trim().toLowerCase().replace(/\s+/g, '-');
                     window.location.href = `/blog/search?query=${searchSlug}`;
                 }
+            }
+
+            function scrollAndFocus() {
+                const targetId = window.location.pathname === '/' ? 'register-form-home' : 'register-form';
+                const inputId = window.location.pathname === '/' ? 'email-subcribe-input-home' : 'email-subcribe-input';
+
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+                document.getElementById(inputId).focus();
             }
         </script>
     @endpush

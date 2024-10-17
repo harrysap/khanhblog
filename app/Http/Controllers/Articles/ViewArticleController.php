@@ -11,6 +11,18 @@ class ViewArticleController extends Controller
     public function __invoke(blogs $blogs)
     {
         $title=(Lang::getLocale() == 'vi') ? $blogs->title : ($blogs->title_en ?? $blogs->title);
+        // Tính thời gian đọc
+        $averageReadingSpeed = 200;
+        $bodyContent = (Lang::getLocale() == 'vi') ? $blogs->body : $blogs->body_en;
+
+        $wordCount = str_word_count(strip_tags($bodyContent));
+        $totalSeconds = ceil(($wordCount / $averageReadingSpeed) * 60);
+
+        $minutes = floor($totalSeconds / 60);
+        $seconds = $totalSeconds % 60;
+
+        $readingTime = sprintf('%d phút %d giây', $minutes, $seconds);
+
         seo()
             ->title("{$title} by {$blogs->user->name}")
             ->description($title)
@@ -53,8 +65,38 @@ class ViewArticleController extends Controller
                 'color' => 'violet',
             ],
         ]);
+        $blogs->load('categories');
+        $blogs->load('tags');
         $type=showBadgeType($blogs->type);
-        $mostBlog= blogs::query()->orderBy('id','desc')->limit(10)->get();
-        return view('blogdetail', ['article' => $blogs,'mostBlogs'=>$mostBlog,'type'=>  $type]);
+        $categoryBlogs = collect(); 
+
+        if ($blogs->categories->isNotEmpty()) { 
+            $firstCategory = $blogs->categories->first();
+            $categoryBlogs = blogs::query()
+                ->select('id', 'title', 'title_en', 'slug', 'slug_en', 'sub_title', 'sub_title_en')
+                ->whereHas('categories', function($query) use ($firstCategory) {
+                    $query->where('categories.id', $firstCategory->id); 
+                })
+                ->where('id', '!=', $blogs->id)
+                ->orderBy('updated_at', 'desc') 
+                ->limit(3) 
+                ->get();
+        }
+
+        $previousBlog = blogs::query()
+        ->select('id', 'title', 'title_en', 'slug', 'slug_en', 'sub_title', 'sub_title_en')
+        ->where('id', '<', $blogs->id)
+        ->where('is_published', true)
+        ->orderBy('id', 'desc')
+        ->first();
+
+        $nextBlog = blogs::query()
+            ->select('id', 'title', 'title_en', 'slug', 'slug_en', 'sub_title', 'sub_title_en')
+            ->where('id', '>', $blogs->id)
+            ->where('is_published', true)
+            ->orderBy('id', 'asc')
+            ->first();
+
+        return view('blog', ['article' => $blogs, 'category_blogs' => $categoryBlogs, 'previous_blog' => $previousBlog, 'next_blog' => $nextBlog, 'type'=>  $type, 'reading_time' => $readingTime]);
     }
 }

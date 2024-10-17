@@ -25,7 +25,7 @@
                         <ul class="list-none ml-8 mt-6">
                             <li class="py-4 border-b border-border-main"><a href="#"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Theo dõi tôi trên <b> LinkedIn</b></span>
+                                    <span class="text-sm">Theo dõi tôi trên <b> LinkedIn</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/linkedin.png') }}"
                                             alt="linkedin-logo">
@@ -33,7 +33,7 @@
                                 </a></li>
                             <li class="py-4 border-b border-border-main"><a href="#"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Theo dõi tôi trên <b> Facebook</b></span>
+                                    <span class="text-sm">Theo dõi tôi trên <b> Facebook</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/facebook.webp') }}"
                                             alt="linkedin-logo">
@@ -41,7 +41,7 @@
                                 </a></li>
                             <li class="py-4 border-b border-border-main"><a href="#"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Theo dõi tôi trên <b> Youtube</b></span>
+                                    <span class="text-sm">Theo dõi tôi trên <b> Youtube</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/youtube.png') }}"
                                             alt="linkedin-logo">
@@ -69,49 +69,92 @@
                             <h3 class="text-lg font-bold leading-normal">Điều hướng</h3>
                         </div>
                         <ul class="list-none ml-8 mt-6">
-                            <li class="py-4 border-b border-border-main"><a href="#"
+                            <li class="py-4 border-b border-border-main"><a href="/"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Trang chủ</span>
+                                    <span class="text-sm">Trang chủ</span>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="#"
+                            <li class="py-4 border-b border-border-main"><a href="/blog/category"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Danh mục thể loại</span>
+                                    <span class="text-sm">Danh mục thể loại</span>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="#"
+                            <li class="py-4 border-b border-border-main"><a href="/blog"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Cửa hàng</span>
+                                    <span class="text-sm">Danh sách bài viết</span>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="#"
+                            <li class="py-4 border-b border-border-main"><a href="/contact"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span>Liên hệ tôi</span>
+                                    <span class="text-sm">Liên hệ tôi</span>
                                 </a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="flex flex-col gap-8">
+                <div x-data="{ isLoading: false }" class="flex flex-col gap-8">
                     <div>
                         <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
-                    <p>Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức nổi bật</p>
+                    <p class="">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức
+                        nổi bật</p>
                     <div>
-                        <form
-                            class="flex gap-4 bg-white rounded justify-between py-2 px-3 border-border-main shadow-sm">
-                            <input type="email"
-                                class="px-4 py-2 bg-transparent !outline-none !border-none focus:!border-none w-fit focus-within:!border-none focus-within:!outline-none"
-                                placeholder="Nhập email của bạn">
+                        <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form"
+                            onsubmit="handleSubmitRegister(event)"
+                            class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
+                            @csrf <!-- Token để bảo vệ chống CSRF -->
+                            <input type="email-subcribe-input" id="email-subcribe-input" name="email" x-ref="email"
+                                placeholder="Nhập địa chỉ email"
+                                class="focus:outline-none font-manrope w-full placeholder-[#707070]">
                             <div>
-                                <button
-                                    class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap">Đăng
-                                    ký</button>
+                                <button type="submit"
+                                    class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap"
+                                    x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }"
+                                    x-bind:disabled="isLoading">
+                                    <span x-show="!isLoading">Đăng ký</span>
+                                    <span x-show="isLoading" class="animate-spin">⏳</span>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mx-auto">
-            <span class="text-icon-main mr-4">•</span> Nguyen blog <span class="text-icon-main ml-4">•</span>
+        <div class="mx-auto flex gap-1 text-sm">
+            <p>Blog của </p> <b>Khanh</b> <span class="text-icon-main ml-4">•</span>
+            <p>Vận hành bởi 🐼</p>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            function handleSubmitRegister(event) {
+                event.preventDefault();
+
+                const form = document.getElementById('register-form');
+                const formData = new FormData(form);
+
+                this.isLoading = true;
+
+                fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        form.reset();
+                    })
+                    .catch(error => {
+                        alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                        console.error('Error:', error);
+                    })
+                    .finally(() => {
+                        // Reset trạng thái loading
+                        this.isLoading = false;
+                    });
+            }
+        </script>
+    @endpush
 </footer>
