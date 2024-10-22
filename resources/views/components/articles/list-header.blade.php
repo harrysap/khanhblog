@@ -7,10 +7,9 @@
         <div class="relative flex items-start gap-10 md:gap-20 min-[840px]:justify-between">
             <div class="flex flex-col gap-0 md:gap-4 lg:w-11/12 items-center mx-auto">
                 <h1 class="font-bold text-3xl md:text-4xl text-center mb-4 md:mb-8">Danh sách bài đăng 📑</h1>
-                <p class="text-center my-4">Danh sách toàn bộ bài đăng và tìm kiếm những bài đăng của tôi. Danh sách hiển
-                    thị tất cả các bài viết hiện có, cùng thông tin cơ bản như tiêu đề, tác giả, ngày đăng và danh mục.
-                    Người dùng có thể dễ dàng tìm kiếm hoặc lọc bài viết theo nhu cầu, với tính năng phân trang để quản
-                    lý số lượng bài đăng lớn</p>
+                <p class="text-center my-4">Danh sách toàn bộ bài đăng và tìm kiếm những bài đăng của mình. Danh sách hiển
+                    thị tất cả các bài viết hiện có, cùng thông tin cơ bản như tiêu đề, ngày đăng và danh mục.
+                    Người dùng có thể dễ dàng tìm kiếm hoặc lọc bài viết theo nhu cầu.</p>
             </div>
         </div>
     </section>

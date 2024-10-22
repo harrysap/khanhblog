@@ -14,8 +14,11 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('topic')->nullable(); 
+            $table->unsignedBigInteger('contact_reason_id')->nullable();
             $table->text('message'); 
             $table->timestamps();
+
+            $table->foreign('contact_reason_id')->references('id')->on('contact_reasons')->onDelete('set null');
         });
     }
 

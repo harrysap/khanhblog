@@ -52,7 +52,7 @@
                         <p class="text-xs text-[#4D6385]" x-text="article.author.name"></p>
                     </div>
                 </div>
-                <div class="flex gap-2 items-center">
+                {{-- <div class="flex gap-2 items-center">
                     <div class="flex w-5 justify-center">
                         <div class="text-sm font-light text-btn-bg">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@
                     <div class="flex flex-col gap-2">
                         <p class="text-xs text-[#4D6385]" x-text="article.reading_time"></p>
                     </div>
-                </div>
+                </div> --}}
                 <div class="flex gap-2 items-center">
                     <div class="flex w-5 justify-center">
                         <div class="text-sm font-light text-btn-bg">

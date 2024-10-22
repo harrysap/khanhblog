@@ -1,14 +1,13 @@
-{{-- <x-app-layout> --}}
 <x-layouts.appclient>
-    <div class="mt-8" x-data="{ isLoading: false }">
+    <div class="mt-8" x-data="page()">
         <div class="px-4 lg:px-6 default:px-0 max-w-default mx-auto flex justify-center md:pt-8">
             <div class="lg:w-2/3">
                 <h1 class="font-bold text-4xl text-center mb-8">Liên hệ</h1>
-                <p class="text-center my-4">Hãy thoải mái gửi tin nhắn, chỉ cần điền vào mẫu dưới đây và tôi sẽ trả lời
+                <p class="text-center my-4">Hãy thoải mái gửi tin nhắn, chỉ cần điền vào mẫu dưới đây và mình sẽ trả lời
                     sớm nhất! 👍</p>
-                <form action="{{ route('contact.store') }}" method="POST" id="contact-form" onsubmit="handleSubmit(event)"
+                <form action="{{ route('contact.store') }}" method="POST" id="contact-form" @submit="handleSubmit(event)"
                     class="flex flex-col gap-4">
-                    @csrf <!-- Token để bảo vệ chống CSRF -->
+                    @csrf
                     <div class="flex flex-col gap-3">
                         <label for="fullname-input" class="font-semibold">Tên của bạn <span
                                 class="text-red-500">*</span></label>
@@ -41,10 +40,22 @@
                             class="block py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark"
                             x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }" x-bind:disabled="isLoading">
                             <span x-show="!isLoading">Nộp tin</span>
-                            <span x-show="isLoading" class="loader">Đang tải...</span>
+                            <div x-show="isLoading" class="flex">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10"
+                                        stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <span class="loader">Đang tải...</span>
+                            </div>
                         </button>
                     </div>
                 </form>
+                <div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5">
+                </div>
             </div>
         </div>
 
@@ -57,7 +68,7 @@
                             <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Đăng ký
                                 nhận bảng tin 🙌</h3>
                             <p class="text-base default:text-lg text-center md:text-left md:w-9/12 leading-loose">
-                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ tôi qua email.</p>
+                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ mình qua email.</p>
                         </div>
                         <div class="flex flex-col items-center justify-center gap-4 md:gap-8">
                             <p class="text-center md:text-left">Đăng ký ngay bây giờ, huỷ bất cứ khi nào.</p>
@@ -96,41 +107,79 @@
 
     @push('scripts')
         <script>
-            function handleSubmit(event) {
-                event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+            function page() {
+                return {
+                    isLoading: false,
+                    handleSubmit(event) {
+                        event.preventDefault();
 
-                const form = document.getElementById('contact-form');
-                const formData = new FormData(form);
+                        const form = document.getElementById('contact-form');
+                        const formData = new FormData(form);
 
-                this.isLoading = true;
+                        this.isLoading = true;
 
-                fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'Accept': 'application/json',
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ trả lời bạn sớm nhất có thể.');
-                            form.reset(); // Reset form nếu cần
-                        } else {
-                            alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
-                        }
-                    })
-                    .catch(error => {
-                        alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
-                        console.error('Error:', error);
-                    })
-                    .finally(() => {
-                        // Reset trạng thái loading
-                        this.isLoading = false;
-                    });
+                        fetch(form.action, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'Accept': 'application/json',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Cảm ơn bạn đã liên hệ! Mình sẽ trả lời bạn sớm nhất có thể.');
+                                    form.reset();
+                                } else {
+                                    alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                }
+                            })
+                            .catch(error => {
+                                alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                console.error('Error:', error);
+                            })
+                            .finally(() => {
+                                console.log("bị gì ta: ", this.isLoading)
+                                this.isLoading = false;
+                            });
+                    }
+                }
             }
+            // function handleSubmit(event) {
+            //     event.preventDefault();
+
+            //     const form = document.getElementById('contact-form');
+            //     const formData = new FormData(form);
+
+            //     this.isLoading = true;
+
+            //     fetch(form.action, {
+            //             method: 'POST',
+            //             body: formData,
+            //             headers: {
+            //                 'X-Requested-With': 'XMLHttpRequest',
+            //                 'Accept': 'application/json',
+            //             }
+            //         })
+            //         .then(response => response.json())
+            //         .then(data => {
+            //             if (data.success) {
+            //                 alert('Cảm ơn bạn đã liên hệ! Mình sẽ trả lời bạn sớm nhất có thể.');
+            //                 form.reset(); 
+            //             } else {
+            //                 alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+            //             }
+            //         })
+            //         .catch(error => {
+            //             alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+            //             console.error('Error:', error);
+            //         })
+            //         .finally(() => {
+            //             console.log("bị gì ta: ", this.isLoading)
+            //             this.isLoading = false;
+            //         });
+            // }
         </script>
     @endpush
 </x-layouts.appclient>
-{{-- </x-app-layout> --}}

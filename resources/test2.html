@@ -127,7 +127,9 @@
                             <!-- Set text color to background color -->
                             <div style="display: none; visibility: hidden; overflow: hidden; opacity: 0; font-size: 1px; line-height: 1px; height: 0; max-height: 0; max-width: 0;
 			color: #F0F0F0;" class="preheader">
-                                Cảm ơn anh/chị đã liên hệ tại trang Khanh Blog. Mình sẽ liên hệ bạn trong thời gian sớm nhất có thể. </div>
+                                Available on&nbsp;GitHub and&nbsp;CodePen. Highly compatible. Designer friendly. More
+                                than 50%&nbsp;of&nbsp;total email opens occurred on&nbsp;a&nbsp;mobile device&nbsp;—
+                                a&nbsp;mobile-friendly design is&nbsp;a&nbsp;must for&nbsp;email campaigns.</div>
 
                             <!-- LOGO -->
                             <a target="_blank" style="text-decoration: none;"
@@ -155,7 +157,6 @@
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%;
 			padding-top: 25px;
 			color: #000000;
-            font-family: 'Manrope', sans-serif;
 			" class="header">
                             Cảm ơn vì anh/chị đã liên hệ
                         </td>
@@ -167,9 +168,8 @@
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%;
 			padding-top: 5px;
 			color: #000000;
-            font-family: 'Manrope', sans-serif;
 			" class="subheader">
-                            Mình sẽ trả lời sớm nhất có thể về tin nhắn anh/chị {{ $data['full_name'] }} đã gửi
+                            Mình sẽ trả lời sớm nhất có thể về tin nhắn anh/chị {{ $fullname }}                            đã gửi
                         </td>
                     </tr>
 
@@ -179,7 +179,7 @@
 			padding-top: 20px;" class="hero"><a target="_blank" style="text-decoration: none;"
                                 href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
                                     src="https://img.freepik.com/free-photo/hot-line-contact-us-call-center-search-interface_53876-124009.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1729382400&semt=ais_hybrid"
-                                    alt="" title="Hero Image" width="560"
+                                    alt="Please enable images to view this content" title="Hero Image" width="560"
                                     style="
 			width: 100%;
 			max-width: 560px;
@@ -191,13 +191,13 @@
                     <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
                     <tr>
                         <td valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; padding-top: 15px; color: #000000;" class="paragraph">
-                            <span style="text-decoration: underline; font-weight: 500; font-family: 'Manrope', sans-serif;">
+                            <span style="text-decoration: underline; font-weight: 500;">
                                 Nội dung tin nhắn
                             </span>
-                            <div style="padding: 10px 15px; margin: 10px 0; font-style: italic; position: relative; margin-top: 20px; font-family: 'Manrope', sans-serif;">
-                                {{-- <span style="position: absolute; left: -20px; top: 0px; font-size: 45px;">“</span> --}}
-                                {{-- <span style="position: absolute; right: -20px; bottom: -5px; font-size: 45px;">”</span> --}}
-                                {{ $data['message'] }}
+                            <div style="padding: 10px 15px; margin: 10px 0; font-style: italic; position: relative; margin-top: 20px">
+                                <span style="position: absolute; left: -20px; top: 0px; font-size: 45px;">“</span>
+                                <span style="position: absolute; right: -20px; bottom: -5px; font-size: 45px;">”</span>
+                                {{ $message }}
                             </div>
                         </td>
                     </tr>
@@ -212,7 +212,7 @@
                                     <tr>
                                         <td align="center" valign="middle"
                                             style="padding: 12px 24px; margin: 0; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; background-color: #6a4ee9;"
-                                            bgcolor="#E9703E"><a target="_blank" style="color: #FFFFFF;  font-size: 17px; font-weight: 400; line-height: 120%; text-decoration: none; font-family: 'Manrope', sans-serif;"
+                                            bgcolor="#E9703E"><a target="_blank" style="color: #FFFFFF;  font-size: 17px; font-weight: 400; line-height: 120%; text-decoration: none;"
                                                 href="https://github.com/konsav/email-templates/">
                                                 Đi đến trang liên hệ
                                             </a>
@@ -242,11 +242,9 @@
                                 style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
 
                                 <!-- LIST ITEM -->
-                                <tr>
-                                    <td colspan="2" style="padding: 20px 0; text-align: center;">
-                                        <h3 style="margin-bottom: 0; font-family: 'Manrope', sans-serif;">Bảo mật & Quyền hạn</h3>
-                                    </td>
-                                </tr>
+                                 <tr aria-colspan="2">
+                                       <h3 style="margin-bottom: 0">Bảo mật & Quyền hạn</h3>
+                                 </tr>
                                 <tr>
                                     <!-- LIST ITEM IMAGE -->
                                     <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
@@ -263,9 +261,8 @@
                                     <td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
 					padding-top: 25px;
 					color: #000000;
-                    font-family: 'Manrope', sans-serif;
 					" class="paragraph">
-                                        <b style="color: #333333; font-family: 'Manrope', sans-serif;">Không chia sẻ thông tin</b><br />
+                                        <b style="color: #333333;">Không chia sẻ thông tin</b><br />
                                         Thông tin của bạn sẽ được bảo mật và không chia sẻ với bên thứ 3.
                                     </td>
 
@@ -289,9 +286,8 @@
                                     <td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
 					padding-top: 25px;
 					color: #000000;
-                    font-family: 'Manrope', sans-serif;
 					" class="paragraph">
-                                        <b style="color: #333333; font-family: 'Manrope', sans-serif;">Sử dụng cho mục đích liên hệ</b><br />
+                                        <b style="color: #333333;">Sử dụng cho mục đích liên hệ</b><br />
                                         Thông tin liên lạc sẽ được mình dùng cho mục đích liên hệ về sản phẩm và bài đăng.
                                     </td>
 
@@ -318,10 +314,9 @@
 			padding-top: 20px;
 			padding-bottom: 25px;
 			color: #000000;
-            font-family: 'Manrope', sans-serif;
 			" class="paragraph">
                             Nếu có thắc mắc thêm, vui lòng liên hệ đến <a href="mailto:support@ourteam.com" target="_blank"
-                                style="color: #127DB3;  font-size: 17px; font-weight: 400; line-height: 160%; font-family: 'Manrope', sans-serif;">support@ourteam.com</a>
+                                style="color: #127DB3;  font-size: 17px; font-weight: 400; line-height: 160%;">support@ourteam.com</a>
                         </td>
                     </tr>
 
@@ -395,7 +390,6 @@
 			padding-top: 20px;
 			padding-bottom: 20px;
 			color: #999999;
-            font-family: 'Manrope', sans-serif;
 			" class="footer">
 
                             Bạn nhận được email này do trước đó đã để lại thông tin tại trang <a

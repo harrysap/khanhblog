@@ -1,872 +1,511 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
-    xmlns:o="urn:schemas-microsoft-com:office:office">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    <meta name="format-detection" content="telephone=no" />
     <title>Bài viết mới vừa được xuất bản</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manrope:300,400,500,600,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
-    <!-- CSS Reset : BEGIN -->
+    <!-- Responsive Mobile-First Email Template by Konstantin Savchenko, 2015.
+ https://github.com/konsav/email-templates/  -->
+
     <style>
-        html,
+        /* Reset styles */
         body {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            min-width: 100%;
             width: 100% !important;
-            background: #f1f1f1;
+            height: 100% !important;
         }
 
-        /* What it does: Stops email clients resizing small text. */
-        * {
+        body,
+        table,
+        td,
+        div,
+        p,
+        a {
+            -webkit-font-smoothing: antialiased;
+            text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
+            line-height: 100%;
         }
 
-        /* What it does: Centers email on Android 4.4 */
-        div[style*="margin: 16px 0"] {
-            margin: 0 !important;
-        }
-
-        /* What it does: Stops Outlook from adding extra spacing to tables. */
         table,
         td {
-            mso-table-lspace: 0pt !important;
-            mso-table-rspace: 0pt !important;
-        }
-
-        /* What it does: Fixes webkit padding issue. */
-        table {
-            border-spacing: 0 !important;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
             border-collapse: collapse !important;
-            table-layout: fixed !important;
-            margin: 0 auto !important;
+            border-spacing: 0;
         }
 
-        /* What it does: Uses a better rendering method when resizing images in IE. */
         img {
+            border: 0;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
             -ms-interpolation-mode: bicubic;
         }
 
-        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
-        a {
-            text-decoration: none;
+        #outlook a {
+            padding: 0;
         }
 
-        /* What it does: A work-around for email clients meddling in triggered links. */
-        *[x-apple-data-detectors],
-        /* iOS */
-        .unstyle-auto-detected-links *,
-        .aBn {
-            border-bottom: 0 !important;
-            cursor: default !important;
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
+        .ReadMsgBody {
+            width: 100%;
         }
 
-        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
-        .a6S {
-            display: none !important;
-            opacity: 0.01 !important;
+        .ExternalClass {
+            width: 100%;
         }
 
-        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
-        .im {
-            color: inherit !important;
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
         }
 
-        /* If the above doesn't work, add a .g-img class to any image in question. */
-        img.g-img+div {
-            display: none !important;
-        }
-
-        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-        /* Create one of these media queries for each additional viewport size you'd like to fix */
-
-        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
-        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
-            u~div .email-container {
-                min-width: 320px !important;
+        /* Extra floater space for advanced mail clients only */
+        @media all and (max-width: 600px) {
+            .floater {
+                width: 320px;
             }
         }
 
-        /* iPhone 6, 6S, 7, 8, and X */
-        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
-            u~div .email-container {
-                min-width: 375px !important;
-            }
+        /* Set color for auto links (addresses, dates, etc.) */
+        a,
+        a:hover {
+            color: #127DB3;
         }
 
-        /* iPhone 6+, 7+, and 8+ */
-        @media only screen and (min-device-width: 414px) {
-            u~div .email-container {
-                min-width: 414px !important;
-            }
+        .footer a,
+        .footer a:hover {
+            color: #999999;
         }
     </style>
 
-    <!-- CSS Reset : END -->
-
-    <!-- Progressive Enhancements : BEGIN -->
-    <style>
-        .primary {
-            background: #0d0cb5;
-        }
-
-        .bg_white {
-            background: #ffffff;
-        }
-
-        .bg_light {
-            background: #fafafa;
-        }
-
-        .bg_black {
-            background: #000000;
-        }
-
-        .bg_dark {
-            background: rgba(0, 0, 0, .8);
-        }
-
-        .email-section {
-            padding: 2.5em;
-        }
-
-        /*BUTTON*/
-        .btn {
-            padding: 5px 15px;
-            display: inline-block;
-        }
-
-        .btn.btn-primary {
-            border-radius: 5px;
-            background: #0d0cb5;
-            color: #ffffff;
-        }
-
-        .btn.btn-white {
-            border-radius: 5px;
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .btn.btn-white-outline {
-            border-radius: 5px;
-            background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Poppins', sans-serif;
-            color: #000000;
-            margin-top: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 1.8;
-            color: rgba(0, 0, 0, .4);
-        }
-
-        a {
-            color: #0d0cb5;
-        }
-
-        table {}
-
-        /*LOGO*/
-
-        .logo h1 {
-            margin: 0;
-        }
-
-        .logo h1 a {
-            color: #000000;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .navigation {
-            padding: 0;
-        }
-
-        .navigation li {
-            list-style: none;
-            display: inline-block;
-            ;
-            margin-left: 5px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .navigation li a {
-            color: rgba(0, 0, 0, .4);
-        }
-
-        /*HERO*/
-        .hero {
-            position: relative;
-            z-index: 0;
-        }
-
-        .hero .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            content: '';
-            width: 100%;
-            background: #000000;
-            z-index: -1;
-            opacity: .3;
-        }
-
-        .hero .icon {}
-
-        .hero .icon a {
-            display: block;
-            width: 60px;
-            margin: 0 auto;
-        }
-
-        .hero .text {
-            color: rgba(255, 255, 255, .8);
-        }
-
-        .hero .text h2 {
-            color: #ffffff;
-            font-size: 30px;
-            margin-bottom: 0;
-        }
-
-
-        /*HEADING SECTION*/
-        .heading-section {}
-
-        .heading-section h2 {
-            color: #000000;
-            font-size: 20px;
-            margin-top: 0;
-            line-height: 1.4;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .heading-section .subheading {
-            margin-bottom: 20px !important;
-            display: inline-block;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(0, 0, 0, .4);
-            position: relative;
-        }
-
-        .heading-section .subheading::after {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -10px;
-            content: '';
-            width: 100%;
-            height: 2px;
-            background: #0d0cb5;
-            margin: 0 auto;
-        }
-
-        .heading-section-white {
-            color: rgba(255, 255, 255, .8);
-        }
-
-        .heading-section-white h2 {
-            font-family:
-                line-height: 1;
-            padding-bottom: 0;
-        }
-
-        .heading-section-white h2 {
-            color: #ffffff;
-        }
-
-        .heading-section-white .subheading {
-            margin-bottom: 0;
-            display: inline-block;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, .4);
-        }
-
-
-        .icon {
-            text-align: center;
-        }
-
-        .icon img {}
-
-
-        /*SERVICES*/
-        .services {
-            background: rgba(0, 0, 0, .03);
-        }
-
-        .text-services {
-            padding: 10px 10px 0;
-            text-align: center;
-        }
-
-        .text-services h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .services-list {
-            padding: 0;
-            margin: 0 0 20px 0;
-            width: 100%;
-            float: left;
-        }
-
-        .services-list img {
-            float: left;
-        }
-
-        .services-list .text {
-            width: calc(100% - 60px);
-            float: right;
-        }
-
-        .services-list h3 {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        .services-list p {
-            margin: 0;
-        }
-
-        /*BLOG*/
-        .text-services .meta {
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-
-        /*TESTIMONY*/
-        .text-testimony .name {
-            margin: 0;
-        }
-
-        .text-testimony .position {
-            color: rgba(0, 0, 0, .3);
-
-        }
-
-
-        /*VIDEO*/
-        .img {
-            width: 100%;
-            height: auto;
-            position: relative;
-        }
-
-        .img .icon {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin-top: -25px;
-        }
-
-        .img .icon a {
-            display: block;
-            width: 60px;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            margin-left: -25px;
-        }
-
-
-
-        /*COUNTER*/
-        .counter {
-            width: 100%;
-            position: relative;
-            z-index: 0;
-        }
-
-        .counter .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            content: '';
-            width: 100%;
-            background: #000000;
-            z-index: -1;
-            opacity: .3;
-        }
-
-        .counter-text {
-            text-align: center;
-        }
-
-        .counter-text .num {
-            display: block;
-            color: #ffffff;
-            font-size: 34px;
-            font-weight: 700;
-        }
-
-        .counter-text .name {
-            display: block;
-            color: rgba(255, 255, 255, .9);
-            font-size: 13px;
-        }
-
-
-        /*FOOTER*/
-
-        .footer {
-            color: rgba(255, 255, 255, .5);
-
-        }
-
-        .footer .heading {
-            color: #ffffff;
-            font-size: 20px;
-        }
-
-        .footer ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .footer ul li {
-            list-style: none;
-            margin-bottom: 10px;
-        }
-
-        .footer ul li a {
-            color: rgba(255, 255, 255, 1);
-        }
-
-
-        @media screen and (max-width: 500px) {
-
-            .icon {
-                text-align: left;
-            }
-
-            .text-services {
-                padding-left: 0;
-                padding-right: 20px;
-                text-align: left;
-            }
-
-        }
-    </style>
-
+    <!-- MESSAGE SUBJECT -->
+    <title>Get this responsive email template</title>
 
 </head>
 
-<body width="100%"
-    style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;">
-    <center style="width: 100%; background-color: #f1f1f1;">
-        <div
-            style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
-            &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
-        </div>
-        <div style="max-width: 600px; margin: 0 auto;" class="email-container">
-            <!-- BEGIN BODY -->
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
-                style="margin: auto;">
-                <tr>
-                    <td valign="top" class="bg_white" style="padding: 1em 2.5em;">
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <tr>
-                                <td width="40%" class="logo" style="text-align: left;">
-                                    <h1><a href="#">Corporate</a></h1>
-                                </td>
-                                <td width="60%" class="logo" style="text-align: right;">
-                                    <ul class="navigation">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Works</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr><!-- end tr -->
-                <tr>
-                    <td valign="middle" class="hero bg_white"
-                        style="background-image: url(images/bg_1.jpg); background-size: cover; height: 400px;">
-                        <div class="overlay"></div>
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="text" style="padding: 0 3em; text-align: center;">
-                                        <h2>Bài viết "{{ $post->title }}" đã được xuất bản!</h2>
-                                        <p>A small river named Duden flows by their place and supplies it with the
-                                            necessary regelialia. It is a paradisematic country, in which roasted parts
-                                            of sentences fly into your mouth.</p>
-                                        <div class="icon">
-                                            <a href="#">
-                                                <img src="images/002-play-button.png" alt=""
-                                                    style="width: 60px; max-width: 600px; height: auto; margin: auto; display: block;">
+<!-- BODY -->
+<!-- Set message background color (twice) and text color (twice) -->
+
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%"
+    style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
+	background-color: #FFFFFF;
+	color: #000000;"
+    bgcolor="#FFFFFF" text="#000000">
+
+    <!-- SECTION / BACKGROUND -->
+    <!-- Set section background color -->
+    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0"
+        style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background">
+        <tr>
+            <td align="center" valign="top"
+                style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;" bgcolor="#127DB3">
+
+                <!-- WRAPPER -->
+                <!-- Set wrapper width (twice) -->
+                <table border="0" cellpadding="0" cellspacing="0" align="center" width="600"
+                    style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
+	max-width: 600px;"
+                    class="wrapper">
+
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
+			padding-top: 20px;">
+
+                            <!-- PREHEADER -->
+                            <!-- Set text color to background color -->
+                            <div style="display: none; visibility: hidden; overflow: hidden; opacity: 0; font-size: 1px; line-height: 1px; height: 0; max-height: 0; max-width: 0;
+			color: #FFFFFF;"
+                                class="preheader">
+                                Xin chào, email này được gửi để thông báo một bài viết mới vừa được đăng tại trang blog
+                                Khanh Nguyen.</div>
+
+                            <!-- LOGO -->
+                            <a target="_blank" style="text-decoration: none;"
+                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0"
+                                    hspace="0"
+                                    src="https://blogger.googleusercontent.com/img/a/AVvXsEgq6w3Mdlm5UuEa1gtZunB10xtc9QqdNOyeKi0ljPa6d3t0AuJfTCkZncYMpysUWZMs0UJIXd3dFCLGQIZzOGcQfw7salzcGMuRrJxE-dGNJxgnklzmTuBFMcVliMfPyOoK_evMvL7tgCKE5JIZy4BM7k15PcSL3E3Dfn1JeECU24y5zoeIlm7_u9O2=s369"
+                                    width="200" height="50" alt="Logo" title="Logo"
+                                    style="
+				color: #000000;
+				font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
+
+                        </td>
+                    </tr>
+
+                    <!-- HEADER -->
+                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif") -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%;
+			padding-top: 20px;
+			color: #FFFFFF;
+			font-family: 'Manrope', sans-serif;"
+                            class="header">
+                            {{ $post->title }}
+                        </td>
+                    </tr>
+
+                    <!-- SUBHEADER -->
+                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif") -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%;
+			padding-top: 5px;
+			color: #FFFFFF;
+			font-family: 'Manrope', sans-serif;"
+                            class="subheader">
+                            Đăng ngày {{ $post->created_at }}
+                        </td>
+                    </tr>
+
+                    <!-- HERO IMAGE -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
+			padding-top: 20px;"
+                            class="hero"><a target="_blank" style="text-decoration: none;"
+                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0"
+                                    hspace="0"
+                                    src="{{ $post->cover_photo_path && Storage::exists($post->cover_photo_path) ? Storage::url($post->cover_photo_path) : 'https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-grid.png' }}"
+                                    alt="Please enable images to view this content" title="Hero Image" width="530"
+                                    style="
+			width: 88.33%;
+			max-width: 530px;
+			color: #FFFFFF; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
+                        </td>
+                    </tr>
+
+                    <!-- PARAGRAPH -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;
+			padding-top: 25px; 
+			color: #FFFFFF;
+			font-family: 'Manrope', sans-serif;"
+                            class="paragraph">
+                            {{ $post->sub_title }}
+                        </td>
+                    </tr>
+
+                    <!-- BUTTON -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
+			padding-top: 25px;
+			padding-bottom: 35px;"
+                            class="button"><a href="{{ url('/blog/' . $post->slug) }}" target="_blank"
+                                style="text-decoration: none;">
+                                <table border="0" cellpadding="0" cellspacing="0" align="center"
+                                    style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
+                                    <tr>
+                                        <td align="center" valign="middle"
+                                            style="padding: 12px 24px; margin: 0; text-decoration: none; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; background-color: #6a4ee9;"
+                                            bgcolor="#0B5073"><a target="_blank"
+                                                style="text-decoration: none;
+					color: #FFFFFF; font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
+                                                href="{{ url('/blog/' . $post->slug) }}">
+                                                Xem Tiếp
                                             </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr><!-- end tr -->
-                <tr>
-                    <td class="bg_white">
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                                <td class="bg_white email-section">
-                                    <div class="heading-section" style="text-align: center; padding: 0 30px;">
-                                        <h2>Our Services</h2>
-                                        <p>A small river named Duden flows by their place and supplies it with the
-                                            necessary regelialia.</p>
-                                    </div>
-                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                        width="100%">
-                                        <tr>
-                                            <td valign="top" width="33.333%" style="padding-top: 20px;"
-                                                class="services">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td class="icon">
-                                                            <img src="images/001-diet.png" alt=""
-                                                                style="width: 60px; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-services">
-                                                            <h3>Branding</h3>
-                                                            <p>Far far away, behind the word mountains, far from the
-                                                                countries</p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td valign="top" width="33.333%"
-                                                style="padding-top: 20px; background: rgba(0,0,0,.08);"
-                                                class="services">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td class="icon">
-                                                            <img src="images/001-diet.png" alt=""
-                                                                style="width: 60px; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-services">
-                                                            <h3>Design</h3>
-                                                            <p>Far far away, behind the word mountains, far from the
-                                                                countries</p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td valign="top" width="33.333%" style="padding-top: 20px;"
-                                                class="services">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td class="icon">
-                                                            <img src="images/003-recipe-book.png" alt=""
-                                                                style="width: 60px; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-services">
-                                                            <h3>Development</h3>
-                                                            <p>Far far away, behind the word mountains, far from the
-                                                                countries</p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr><!-- end: tr -->
-                            <tr>
-                                <td class="bg_light email-section" style="width: 100%;">
-                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                        width="100%">
-                                        <tr>
-                                            <td valign="middle" width="50%">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td>
-                                                            <img src="images/about.jpg" alt=""
-                                                                style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td valign="middle" width="50%">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td class="text-services"
-                                                            style="text-align: left; padding-left:25px;">
-                                                            <div class="heading-section">
-                                                                <h2>Business Strategy</h2>
-                                                                <p>A small river named Duden flows by their place and
-                                                                    supplies it with the necessary regelialia.</p>
-                                                                <p><a href="#" class="btn btn-primary">Read
-                                                                        more</a></p>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr><!-- end: tr -->
-                            <tr>
-                                <td class="bg_white email-section">
-                                    <div class="heading-section" style="text-align: center; padding: 0 30px;">
-                                        <h2>Our Blog</h2>
-                                        <p>A small river named Duden flows by their place and supplies it with the
-                                            necessary regelialia.</p>
-                                    </div>
-                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                        width="100%">
-                                        <tr>
-                                            <td valign="top" width="50%" style="padding-top: 20px;">
-                                                <table role="presentation" cellspacing="0" cellpadding="10"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td>
-                                                            <img src="images/blog-1.jpg" alt=""
-                                                                style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-services" style="text-align: left;">
-                                                            <p class="meta"><span>Posted on Feb 18, 2019</span>
-                                                                <span>Food</span></p>
-                                                            <h3>Business Key to Success</h3>
-                                                            <p>Far far away, behind the word mountains, far from the
-                                                                countries</p>
-                                                            <p><a href="#" class="btn btn-primary">Read more</a>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td valign="top" width="50%" style="padding-top: 20px;">
-                                                <table role="presentation" cellspacing="0" cellpadding="10"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td>
-                                                            <img src="images/blog-2.jpg" alt=""
-                                                                style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-services" style="text-align: left;">
-                                                            <p class="meta"><span>Posted on Feb 18, 2019</span>
-                                                                <span>Food</span></p>
-                                                            <h3>Web Design Technique</h3>
-                                                            <p>Far far away, behind the word mountains, far from the
-                                                                countries</p>
-                                                            <p><a href="#" class="btn btn-primary">Read more</a>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr><!-- end: tr -->
-                            <tr>
-                                <td class="bg_white email-section" style="width: 100%;">
-                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                        width="100%">
-                                        <tr>
-                                            <td valign="middle" width="50%">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td>
-                                                            <img src="images/bg_2.jpg" alt=""
-                                                                style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td valign="middle" width="50%">
-                                                <table role="presentation" cellspacing="0" cellpadding="0"
-                                                    border="0" width="100%">
-                                                    <tr>
-                                                        <td class="text-services"
-                                                            style="text-align: left; padding-left:25px;">
-                                                            <div class="heading-section">
-                                                                <h2>Our Features</h2>
-                                                            </div>
-                                                            <div class="services-list">
-                                                                <img src="images/checked.png" alt=""
-                                                                    style="width: 50px; max-width: 600px; height: auto; display: block;">
-                                                                <div class="text">
-                                                                    <h3>Responsive</h3>
-                                                                    <p>A small river named Duden flows by their</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="services-list">
-                                                                <img src="images/checked.png" alt=""
-                                                                    style="width: 50px; max-width: 600px; height: auto; display: block;">
-                                                                <div class="text">
-                                                                    <h3>Responsive</h3>
-                                                                    <p>A small river named Duden flows by their</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="services-list">
-                                                                <img src="images/checked.png" alt=""
-                                                                    style="width: 50px; max-width: 600px; height: auto; display: block;">
-                                                                <div class="text">
-                                                                    <h3>Responsive</h3>
-                                                                    <p>A small river named Duden flows by their</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr><!-- end: tr -->
-                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </a>
+                        </td>
+                    </tr>
 
-                    </td>
-                </tr><!-- end:tr -->
-                <!-- 1 Column Text + Button : END -->
-            </table>
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
-                width="100%" style="margin: auto;">
-                <tr>
-                    <td valign="middle" class="bg_black footer email-section">
-                        <table>
-                            <tr>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                        width="100%">
-                                        <tr>
-                                            <td style="text-align: left; padding-right: 10px;">
-                                                <h3 class="heading">About</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with
-                                                    the necessary regelialia.</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                        width="100%">
-                                        <tr>
-                                            <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
-                                                <h3 class="heading">Contact Info</h3>
-                                                <ul>
-                                                    <li><span class="text">203 Fake St. Mountain View, San Francisco,
-                                                            California, USA</span></li>
-                                                    <li><span class="text">+2 392 3929 210</span></a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                        width="100%">
-                                        <tr>
-                                            <td style="text-align: left; padding-left: 10px;">
-                                                <h3 class="heading">Useful Links</h3>
-                                                <ul>
-                                                    <li><a href="#">Home</a></li>
-                                                    <li><a href="#">About</a></li>
-                                                    <li><a href="#">Services</a></li>
-                                                    <li><a href="#">Work</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr><!-- end: tr -->
-                <tr>
-                    <td valign="middle" class="bg_black footer email-section">
-                        <table>
-                            <tr>
-                                <td valign="top" width="33.333%">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                        width="100%">
-                                        <tr>
-                                            <td style="text-align: left; padding-right: 10px;">
-                                                <p>&copy; 2018 Corporate. All Rights Reserved</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td valign="top" width="33.333%">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                        width="100%">
-                                        <tr>
-                                            <td style="text-align: right; padding-left: 5px; padding-right: 5px;">
-                                                <p><a href="#"
-                                                        style="color: rgba(255,255,255,.4);">Unsubcribe</a></p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+                    <!-- End of WRAPPER -->
+                </table>
 
-        </div>
-    </center>
+                <!-- SECTION / BACKGROUND -->
+                <!-- Set section background color -->
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top"
+                style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
+	padding-top: 5px;"
+                bgcolor="#FFFFFF">
+
+                <!-- WRAPPER -->
+                <!-- Set conteiner background color -->
+                <table border="0" cellpadding="0" cellspacing="0" align="center" width="600"
+                    style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
+	max-width: 600px;">
+
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 10px; padding-right: 10px;"
+                            class="floaters">
+                            <h2>Bài Viết Nổi Bật</h2>
+                            <p>Tổng hợp một số bài viết nổi bật hiện đã được phát hành trên trang blog của mình.</p>
+                        </td>
+                    </tr>
+
+                    <!-- FLOATERS -->
+
+                    @foreach ($groupedPosts as $group)
+                        <tr>
+                            <td align="center" valign="top"
+                                style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 10px; padding-right: 10px;"
+                                class="floaters">
+
+                                @foreach ($group as $item)
+                                    <table width="280" border="0" cellpadding="0" cellspacing="0"
+                                        align="{{ $loop->first ? 'left' : 'right' }}" valign="top"
+                                        style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;"
+                                        class="floater">
+                                        <tr>
+                                            <td align="center" valign="top"
+                                                style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;
+                            padding-top: 30px; 
+                            font-family: 'Manrope', sans-serif;
+                            color: #000000;">
+                                                <a target="_blank"
+                                                    style="text-decoration: none;
+                            font-size: 17px; line-height: 160%;"
+                                                    href="{{ url('/blog/' . $item->slug) }}">
+                                                    <img border="0" vspace="0" hspace="0"
+                                                        src="{{ $post->cover_photo_path && Storage::exists($post->cover_photo_path) ? Storage::url($post->cover_photo_path) : 'https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-grid.png' }}"
+                                                        width="250" height="142" alt="{{ $item->title }}"
+                                                        title="{{ $item->title }}"
+                                                        style="
+                            color: #000000; font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block; margin-bottom: 8px;" />
+                                                    <b
+                                                        style="color:#0B5073; text-decoration: underline;">{{ $item->title }}</b></a><br />
+                                                {{ Str::limit($item->sub_title, 80) }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                @endforeach
+
+                            </td>
+                        </tr>
+                    @endforeach
+
+
+
+                    {{-- <!-- FLOATERS -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 10px; padding-right: 10px;"
+                            class="floaters">
+                            <table width="280" border="0" cellpadding="0" cellspacing="0" align="right"
+                                valign="top"
+                                style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;"
+                                class="floater">
+                                <tr>
+                                    <td align="center" valign="top"
+                                        style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;
+			padding-top: 30px;
+			font-family: 'Manrope', sans-serif;
+			color: #000000;">
+                                        <a target="_blank"
+                                            style="text-decoration: none;
+			font-size: 17px; line-height: 160%;"
+                                            href="https://github.com/konsav/email-templates"><img border="0"
+                                                vspace="0" hspace="0"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-grid.png"
+                                                width="250" height="142" alt="Grid Item" title="Grid Item"
+                                                style="
+			color: #000000; font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block; margin-bottom: 8px;" />
+                                            <b style="color:#0B5073; text-decoration: underline;">Promotional
+                                                template</b></a><br />
+                                        The&nbsp;best for introducing a&nbsp;feature or&nbsp;inviting to an&nbsp;action.
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="280" border="0" cellpadding="0" cellspacing="0" align="left"
+                                valign="top"
+                                style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;"
+                                class="floater">
+                                <tr>
+                                    <td align="center" valign="top"
+                                        style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;
+			padding-top: 30px;
+			font-family: 'Manrope', sans-serif;
+			color: #000000;">
+                                        <a target="_blank"
+                                            style="text-decoration: none;
+			font-size: 17px; line-height: 160%;"
+                                            href="https://github.com/konsav/email-templates"><img border="0"
+                                                vspace="0" hspace="0"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-grid.png"
+                                                width="250" height="142" alt="Grid Item" title="Grid Item"
+                                                style="
+			color: #000000; font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block; margin-bottom: 8px;" />
+                                            <b style="color:#0B5073; text-decoration: underline;">Explorational
+                                                template</b></a><br />
+                                        Great&nbsp;one for offering a&nbsp;variety of&nbsp;options to&nbsp;explore.
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr> --}}
+
+                    <!-- BUTTON -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
+			padding-top: 30px;
+			padding-bottom: 35px;"
+                            class="button"><a href="https://github.com/konsav/email-templates/" target="_blank"
+                                style="text-decoration: underline;">
+                                <table border="0" cellpadding="0" cellspacing="0" align="center"
+                                    style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
+                                    <tr>
+                                        <td align="center" valign="middle"
+                                            style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
+                                            bgcolor="#127DB3"><a target="_blank"
+                                                style="text-decoration: underline;
+					color: #FFFFFF; font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
+                                                href="https://github.com/konsav/email-templates/">
+                                                Get more templates
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <!-- End of WRAPPER -->
+                </table>
+
+                <!-- SECTION / BACKGROUND -->
+                <!-- Set section background color -->
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top"
+                style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;" bgcolor="#F0F0F0">
+
+                <!-- WRAPPER -->
+                <!-- Set wrapper width (twice) -->
+                <table border="0" cellpadding="0" cellspacing="0" align="center" width="600"
+                    style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
+	max-width: 600px;"
+                    class="wrapper">
+
+                    <!-- SOCIAL NETWORKS -->
+                    <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
+			padding-top: 25px;"
+                            class="social-icons">
+                            <table width="256" border="0" cellpadding="0" cellspacing="0" align="center"
+                                style="border-collapse: collapse; border-spacing: 0; padding: 0;">
+                                <tr>
+
+                                    <!-- ICON 1 -->
+                                    <td align="center" valign="middle"
+                                        style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;">
+                                        <a target="_blank"
+                                            href="https://raw.githubusercontent.com/konsav/email-templates/"
+                                            style="text-decoration: none;"><img border="0" vspace="0"
+                                                hspace="0"
+                                                style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+					color: #000000;"
+                                                alt="F" title="Facebook" width="44" height="44"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/facebook.png"></a>
+                                    </td>
+
+                                    <!-- ICON 2 -->
+                                    <td align="center" valign="middle"
+                                        style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;">
+                                        <a target="_blank"
+                                            href="https://raw.githubusercontent.com/konsav/email-templates/"
+                                            style="text-decoration: none;"><img border="0" vspace="0"
+                                                hspace="0"
+                                                style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+					color: #000000;"
+                                                alt="T" title="Twitter" width="44" height="44"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/twitter.png"></a>
+                                    </td>
+
+                                    <!-- ICON 3 -->
+                                    <td align="center" valign="middle"
+                                        style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;">
+                                        <a target="_blank"
+                                            href="https://raw.githubusercontent.com/konsav/email-templates/"
+                                            style="text-decoration: none;"><img border="0" vspace="0"
+                                                hspace="0"
+                                                style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+					color: #000000;"
+                                                alt="G" title="Google Plus" width="44" height="44"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/googleplus.png"></a>
+                                    </td>
+
+                                    <!-- ICON 4 -->
+                                    <td align="center" valign="middle"
+                                        style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;">
+                                        <a target="_blank"
+                                            href="https://raw.githubusercontent.com/konsav/email-templates/"
+                                            style="text-decoration: none;"><img border="0" vspace="0"
+                                                hspace="0"
+                                                style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+					color: #000000;"
+                                                alt="I" title="Instagram" width="44" height="44"
+                                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/instagram.png"></a>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- FOOTER -->
+                    <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
+                    <tr>
+                        <td align="center" valign="top"
+                            style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 13px; font-weight: 400; line-height: 150%;
+			padding-top: 10px;
+			padding-bottom: 20px;
+			color: #828999;
+			font-family: 'Manrope', sans-serif;"
+                            class="footer">
+
+                            Bạn nhận được email này do trước đó đã để lại thông tin tại trang <a
+                                href="https://github.com/konsav/email-templates/" target="_blank"
+                                style="text-decoration: underline; color: #828999; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 400; line-height: 150%;">shttps://github.com/konsav/email-templates</a>.
+                            <div style="">
+                                <a href="https://yourdomain.com/unsubscribe?email=" target="_blank"
+                                    style="color: #828999; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
+                                    Hủy Đăng Ký
+                                </a>
+                            </div>
+                            <!-- ANALYTICS -->
+                            <img width="1" height="1" border="0" vspace="0" hspace="0"
+                                style="margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;"
+                                src="https://raw.githubusercontent.com/konsav/email-templates/master/images/tracker.png" />
+
+                        </td>
+                    </tr>
+
+                    <!-- End of WRAPPER -->
+                </table>
+
+                <!-- End of SECTION / BACKGROUND -->
+            </td>
+        </tr>
+    </table>
+
 </body>
 
 </html>

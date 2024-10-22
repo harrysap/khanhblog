@@ -1,17 +1,25 @@
-<div x-data="{ open: false, openService: false, openSolution: false, showNotification: true, navTop: '80px', scrolled: false, searchShow: false, closing: false, searchText: '' }" x-init="open = window.innerWidth < 768 ? false : open;
+<div x-data="contactPage()" x-init="open = window.innerWidth < 768 ? false : open;
 const mediaQuery = window.matchMedia('(min-width: 768px)');
 mediaQuery.addEventListener('change', (e) => {
     if (e.matches) {
         open = false;
     }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
-    scrolled = window.scrollY > 50;
+    scrolled = window.scrollY > 30;
 });
 
 window.addEventListener('scroll', () => {
-    scrolled = window.scrollY > 50;
+    scrolled = window.scrollY > 30;
 });
+
+(async () => {
+    const response = await fetch('{{ route('contact.reasons') }}');
+    const data = await response.json();
+    this.contactReasons = data;
+    console.log('Test ', data);
+})();
 
 $nextTick(() => {
     document.getElementById('sidebar').classList.remove('hidden');
@@ -20,8 +28,8 @@ $nextTick(() => {
 
     <nav class="relative z-20">
         <div :class="scrolled ? 'max-w-full px-4 lg:px-6 py-2.5 default:py-4 translate-y-0 w-full rounded-none !top-0' :
-            'max-w-default mx-auto py-2.5 default:py-5 px-6 lg:px-8 rounded-full w-auto md:translate-y-[20px]'"
-            class="fixed top-2 left-1/2 transform -translate-x-1/2 w-full z-50 bg-white shadow-md transition-all duration-300 ease-in-out border border-border-main flex justify-between items-center font-manrope">
+            'max-w-default mx-auto py-2.5 default:py-5 px-6 lg:px-8 sm:rounded-full w-auto md:translate-y-[20px]'"
+            class="fixed top-0 sm:top-2 left-1/2 transform -translate-x-1/2 w-full z-50 bg-white shadow-md transition-all duration-300 ease-in-out border border-border-main flex justify-between items-center font-manrope">
             <div class="max-w-default mx-auto flex justify-between items-center w-full">
                 <!-- Tìm kiếm -->
                 <a class="flex gap-4 items-center cursor-pointer" @click="searchShow = true; closing = false">
@@ -42,9 +50,9 @@ $nextTick(() => {
                 </a>
 
                 <div class="flex gap-6 items-center">
-                    <button onclick="scrollAndFocus()"
-                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Đăng
-                        ký</button>
+                    <button @click="showModal = true; document.body.classList.add('overflow-hidden');"
+                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark hidden lg:block">Tư
+                        vấn</button>
                     <button class="hover:scale-105 ease-linear duration-300" @click="open = true">
                         <svg width="25px" height="25px" viewBox="0 -0.5 21 21" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -198,8 +206,9 @@ $nextTick(() => {
                     </li>
                 </ul>
                 <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4 mb-8">
-                    <button class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng
-                        ký</button>
+                    <button @click="showModal = true; document.body.classList.add('overflow-hidden');"
+                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Tư
+                        vấn</button>
                 </div>
             </div>
         </aside>
@@ -208,13 +217,14 @@ $nextTick(() => {
     <div x-init="$watch('searchShow', value => {
         if (value) {
             $nextTick(() => $refs.searchSectionInput.focus());
-            document.body.classList.toggle('overflow-hidden', value);
         }
+        document.body.classList.toggle('overflow-hidden', value);
     })"
         @keydown.escape.window="closing = true; setTimeout(() => {searchShow = false; closing = false; console.log('Test: ', closing)}, 400)"
         x-show="searchShow" x-transition.opacity.duration.400ms
-        class="fixed inset-0 bg-bg-overlay bg-opacity-70 flex justify-center items-center z-50 hidden"
-        id="search-section" @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 250)">
+        class="fixed inset-0 bg-bg-overlay bg-opacity-70 flex justify-center items-center z-[1001] hidden"
+        id="search-section"
+        @click.self="closing = true; setTimeout(() => {searchShow = false; closing = false}, 400)">
         <!-- Container chính của overlay -->
         <div x-show="searchShow" :class="closing ? 'zoom-out' : 'zoom-in'"
             class="relative p-6 text-center max-w-lg w-full">
@@ -248,9 +258,168 @@ $nextTick(() => {
         </button>
     </div>
 
+    <div x-show="showModal" @keydown.escape.window="showModal = false" x-cloak
+        class="fixed inset-0 flex items-center justify-center bg-bg-overlay bg-opacity-30 z-[10003]">
+        <div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-300 transform"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+            @click.away="showModal = false; document.body.classList.remove('overflow-hidden');"
+            class="bg-white p-2 sm:p-6 rounded shadow-lg w-screen h-screen md:h-auto default:w-[80vw] relative">
+            <div class="flex flex-col md:flex-row gap-4 overflow-scroll pb-1.5 max-h-[95vh] overflow-scroll md:max-h-auto md:overflow-auto">
+                <form action="{{ route('contact.storeWithReason') }}" method="POST" x-ref="contactForm"
+                    @submit.prevent="submitForm(e)" id="request-form"
+                    class="w-full default:w-2/3 px-1 pb-4 md:max-h-[85vh] md:overflow-scroll">
+                    @csrf
+                    <h2 class="text-xl font-bold pb-4  w-full">Nhận tư vấn nhiều hơn</h2>
+                    <div class="flex flex-col gap-3 mb-4">
+                        <label class="block font-semibold">Họ và tên <span class="text-red-500">*</span></label>
+                        <input type="text" x-model="name"
+                            class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"
+                            required />
+                    </div>
+                    <div class="flex flex-col gap-3 mb-4">
+                        <label class="block font-semibold">Email <span class="text-red-500">*</span></label>
+                        <input type="email" x-model="email"
+                            class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"
+                            required />
+                    </div>
+                    <div class="flex flex-col gap-3 mb-4">
+                        <label class="block font-semibold">Số điện thoại</label>
+                        <input type="text" x-model="phone"
+                            class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]" />
+                    </div>
+                    <div class="flex flex-col gap-3 mb-4">
+                        <label class="block font-semibold">Thông tin cần tư vấn</label>
+                        <select x-model="option" id="contact-reasons"
+                            class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
+                            <option value="" disabled selected>Chọn lý do liên hệ</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 flex flex-col gap-3">
+                        <label for="message-input" class="font-semibold">Tin nhắn <span
+                                class="text-red-500">*</span></label>
+                        <textarea id="message-input" rows="5" x-model="message" required
+                            class="w-full px-3 py-2 border rounded-md focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"></textarea>
+                    </div>
+                </form>
+                <div class="rounded-lg md:overflow-hidden pb-8">
+                    <img class="w-full h-full object-cover opacity-90 rounded-lg"
+                        src="{{ asset('assets/images/contact-bg.png') }}" alt="contact-us-form-bg">
+                </div>
+            </div>
+            <div class="absolute bottom-0 flex justify-end py-2 right-0 px-3 sm:px-8 w-full bg-white rounded-lg">
+                <button type="button"
+                    @click="showModal = false; document.body.classList.remove('overflow-hidden');"
+                    class="px-4 py-2 bg-gray-300 rounded mr-2">Hủy</button>
+                <button type="button" @click="submitForm"
+                    class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark lg:block"
+                    x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }" x-bind:disabled="isLoading">
+                    <span x-show="!isLoading">Nộp tin</span>
+                    <div x-show="isLoading" class="flex">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <span class="loader">Đang tải...</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
 
     @push('scripts')
         <script>
+            function contactPage() {
+                return {
+                    open: false,
+                    openService: false,
+                    openSolution: false,
+                    showNotification: true,
+                    navTop: '80px',
+                    scrolled: false,
+                    searchShow: false,
+                    closing: false,
+                    searchText: '',
+                    showModal: false,
+                    name: '',
+                    email: '',
+                    phone: '',
+                    option: '1',
+                    message: '',
+                    isLoading: false,
+                    contactReasons: [],
+                    submitForm() {
+                        const form = document.getElementById('request-form');
+                        const formData = new FormData(form);
+
+                        // Thêm các trường cần thiết vào FormData
+                        formData.append('full_name', this.name);
+                        formData.append('email', this.email);
+                        formData.append('phone_number', this.phone);
+                        formData.append('contact_reason_id', this.option);
+                        formData.append('message', this.message);;
+
+                        console.log("Tst:", formData);
+
+                        if (this.name && this.email && this.message) {
+                            this.isLoading = true;
+                            fetch(form.action, {
+                                    method: 'POST',
+                                    body: formData,
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                        'Accept': 'application/json'
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Đã gửi yêu cầu thành công, cảm ơn bạn!");
+                                        form.reset();
+                                        this.showModal = false;
+                                    } else {
+                                        alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                    }
+                                })
+                                .catch(error => {
+                                    alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                    console.error('Error:', error);
+                                })
+                                .finally(() => {
+                                    console.log("bị gì ta: ", this.isLoading)
+                                    this.isLoading = false;
+                                });
+                        } else {
+                            alert("Hãy điền vào những trường bắt buộc có dấu *");
+                        }
+                    }
+                }
+            }
+
+            (async () => {
+                try {
+                    const response = await fetch('{{ route('contact.reasons') }}');
+                    const data = await response.json();
+                    console.log('Test ', data);
+
+                    const selectElement = document.getElementById('contact-reasons');
+
+                    data.forEach(reason => {
+                        const option = document.createElement('option');
+                        option.value = reason.id;
+                        option.textContent = reason.name;
+                        selectElement.appendChild(option);
+                    });
+                } catch (error) {
+                    console.error('Error fetching contact reasons:', error);
+                }
+            })();
+
             function handleEnter() {
                 if (this.searchText.trim()) {
                     const searchSlug = this.searchText.trim().toLowerCase().replace(/\s+/g, '-');

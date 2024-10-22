@@ -155,7 +155,8 @@
                             <div class="flex flex-col gap-4">
                                 <div class="relative overflow-hidden">
                                     <div
-                                        class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
+                                        class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer"
+                                        style="background-color: {{ $category->background }}">
                                         <a href="/blog/category/{{ $category->slug }}">
                                             <span>{{ $category->name }}</span>
                                         </a>
@@ -206,7 +207,7 @@
                                                     <p class="text-xs text-[#4D6385]" x-text="article.user.name"></p>
                                                 </div>
                                             </div>
-                                            <div class="flex gap-2 items-center">
+                                            {{-- <div class="flex gap-2 items-center">
                                                 <div class="flex w-5 justify-center">
                                                     <div class="text-sm font-light text-btn-bg">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
@@ -224,28 +225,28 @@
                                                     <p class="text-xs text-[#4D6385]"
                                                         x-text="`${article.reading_time} đọc`"></p>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-2 items-center">
-                                            <div class="flex w-5 justify-center">
-                                                <div class="text-sm font-light text-btn-bg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                        height="1.2em" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2">
-                                                            <path d="M8 2v4m8-4v4" />
-                                                            <rect width="18" height="18" x="3" y="4"
-                                                                rx="2" />
-                                                            <path
-                                                                d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
-                                                        </g>
-                                                    </svg>
+                                            </div> --}}
+                                            <div class="flex gap-2 items-center">
+                                                <div class="flex w-5 justify-center">
+                                                    <div class="text-sm font-light text-btn-bg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
+                                                            height="1.2em" viewBox="0 0 24 24">
+                                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2">
+                                                                <path d="M8 2v4m8-4v4" />
+                                                                <rect width="18" height="18" x="3" y="4"
+                                                                    rx="2" />
+                                                                <path
+                                                                    d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                                                            </g>
+                                                        </svg>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex flex-col gap-2">
-                                                <p class="text-xs text-[#4D6385]"
-                                                    x-text="new Date(article.created_at).toLocaleDateString('en-GB')">
-                                                </p>
+                                                <div class="flex flex-col gap-2">
+                                                    <p class="text-xs text-[#4D6385]"
+                                                        x-text="new Date(article.created_at).toLocaleDateString('en-GB')">
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
