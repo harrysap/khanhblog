@@ -31,7 +31,7 @@
                 class="md:absolute md:top-0 md:right-8 shrink-0 flex flex-col justify-center items-center pt-12 pb-8 gap-3">
                 <a href="/">
                     <div>
-                        <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
+                        <img class="w-40" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
                 </a>

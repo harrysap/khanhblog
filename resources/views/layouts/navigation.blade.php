@@ -44,7 +44,7 @@ $nextTick(() => {
 
                 <!-- Logo -->
                 <a href="/">
-                    <img class="w-36 sm:w-40 rounded-3xl transition-all duration-500"
+                    <img class="w-36 sm:w-40 transition-all duration-500"
                         :class="scrolled ? 'w-32' : 'w-40'" src="{{ asset('storage/assets/site_logo.png') }}"
                         alt="khanh-nguyen-blog-logo">
                 </a>
@@ -103,7 +103,7 @@ $nextTick(() => {
                 <div class="shrink-0 flex flex-col justify-center items-center pt-12 pb-8 gap-3">
                     <a href="/">
                         <div>
-                            <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
+                            <img class="w-40" src="{{ asset('storage/assets/site_logo.png') }}"
                                 alt="khanh-nguyen-blog-logo">
                         </div>
                     </a>
