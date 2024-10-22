@@ -26,9 +26,7 @@ class ContactThankYou extends Mailable
     {
         return $this->subject('Cảm ơn bạn đã liên hệ!')
                     ->view('emails.contact_thankyou')
-                    ->with([
-                        'fullname' => $this->contact->full_name,
-                    ]);
+                    ->with('data', $this->contact);
     }
 
     /**

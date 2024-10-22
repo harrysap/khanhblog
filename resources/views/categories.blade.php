@@ -3,11 +3,8 @@
     <div class="">
         <section class="max-w-default mx-auto px-4 sm:px-6 flex flex-col justify-between gap-6 md:pt-8">
             <div class="flex flex-col gap-0 md:gap-4 lg:w-2/3 items-center mx-auto">
-                <h1 class="font-bold text-3xl md:text-4xl text-center mb-4 md:mb-8">Danh mục thể loại ✨</h1>
-                <p class="text-center my-4">Danh mục này tổng hợp các chủ đề và thể loại bài viết được xuất bản trên
-                    blog, nhằm phân loại nội dung một cách hệ thống và dễ tìm kiếm. Mỗi thể loại đại diện cho một nhóm
-                    bài viết có nội dung tương tự, giúp người đọc nhanh chóng tiếp cận các bài viết phù hợp với sở thích
-                    hoặc nhu cầu của mình.</p>
+                <h1 class="font-bold text-3xl md:text-4xl text-center mb-4 md:mb-8">Chủ đề mình viết ✨</h1>
+                <p class="text-center my-4">Đây là danh mục các chủ đề chính mà mình viết trên blog liên quan về SAP. Bạn có thể xem các nội dung từ cơ bản đến nâng cao hơn.</p>
             </div>
             <div
                 class="mt-8 bg-white rounded-xl relative border border-border-main py-10 md:py-12 px-8 md:px-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 default:grid-cols-4 gap-y-12">
@@ -50,7 +47,7 @@
                             <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Đăng ký
                                 nhận bảng tin 🙌</h3>
                             <p class="text-base default:text-lg text-center md:text-left md:w-9/12 leading-loose">
-                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ tôi qua email..</p>
+                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ mình qua email..</p>
                         </div>
                         <div class="flex flex-col items-center justify-center gap-4 md:gap-8">
                             <p class="text-center md:text-left">Đăng ký ngay bây giờ, huỷ bất cứ khi nào.</p>

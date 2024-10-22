@@ -256,7 +256,7 @@
             </div>
 
             {{-- Pagination --}}
-            <div class="flex items-center justify-between px-1 py-3">
+            <div class="flex items-center justify-between px-1 py-3 mt-6">
                 <div class="flex flex-1 items-center justify-between">
                     <div x-show="filteredArticles.length" class="text-sm text-gray-700">
                         Hiển thị

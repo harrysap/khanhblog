@@ -32,6 +32,7 @@
     <meta name="msapplication-TileColor" content="#ffc40d" />
     <meta name="msapplication-config" content="/favicon/browserconfig.xml?v=w1dBNxT7Wg" />
     <meta name="theme-color" content="#ffffff" />
+</script>
 
     <!-- Fonts -->
     @googlefonts
@@ -43,12 +44,11 @@
         }
     </style>
     @livewireStyles
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
 
     <!-- Scripts -->
     @livewireScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('scripts')
 </head>
 
 <body class="relative min-h-screen overflow-x-clip text-midnight antialiased dark:bg-black dark:text-white/50"
@@ -57,7 +57,7 @@
     <div class="bg-gray-100 dark:bg-gray-900">
         <!-- Page Navigation -->
         @include('layouts.navigation')
-        <main class="mt-[130px]">
+        <main class="mt-[100px] md:mt-[130px]">
             {{ $slot }}
         </main>
         @include('layouts.top')

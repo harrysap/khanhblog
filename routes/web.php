@@ -83,6 +83,8 @@ Route::get('/', function () {
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/request-contact', [ContactController::class, 'storeWithReason'])->name('contact.storeWithReason');
+Route::get('/contact-reasons', [ContactController::class, 'getContactReasons'])->name('contact.reasons');
 
 Route::get('/404', function () {
     return view('errors.notfound');

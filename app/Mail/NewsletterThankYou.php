@@ -25,8 +25,7 @@ class NewsletterThankYou extends Mailable
     {
         return $this->subject('Cảm ơn bạn đã đăng ký nhận bản tin!')
                     ->view('emails.newsletter_thankyou')
-                    ->with([
-                        'email' => $this->newsletter->email,
-                    ]);
+                    ->with('data', $this->newsletter);
+
     }
 }

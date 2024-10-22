@@ -14,20 +14,20 @@ class NewsletterController extends Controller
     {
         $key = 'subscribe:' . $request->ip();
 
-        if (RateLimiter::tooManyAttempts($key, 5)) {
-            $seconds = RateLimiter::availableIn($key);
+        // if (RateLimiter::tooManyAttempts($key, 5)) {
+        //     $seconds = RateLimiter::availableIn($key);
 
-            $minutes = floor($seconds / 60);
-            $remainingSeconds = $seconds % 60;
+        //     $minutes = floor($seconds / 60);
+        //     $remainingSeconds = $seconds % 60;
 
-            $timeMessage = $minutes > 0 
-                ? "{$minutes} phút và {$remainingSeconds} giây" 
-                : "{$remainingSeconds} giây";
+        //     $timeMessage = $minutes > 0 
+        //         ? "{$minutes} phút và {$remainingSeconds} giây" 
+        //         : "{$remainingSeconds} giây";
 
-            return response()->json([
-                'message' => "Bạn đã đăng ký quá nhiều lần. Vui lòng thử lại sau {$timeMessage}."
-            ], 429);
-        }
+        //     return response()->json([
+        //         'message' => "Bạn đã đăng ký quá nhiều lần. Vui lòng thử lại sau {$timeMessage}."
+        //     ], 429);
+        // }
 
         RateLimiter::hit($key, 3600);
 

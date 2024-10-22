@@ -1,11 +1,11 @@
 @push('scripts')
     <div
-        class="progress-wrap fixed right-8 bottom-8 h-12 w-12 cursor-pointer rounded-full shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] z-[10000] opacity-0 invisible translate-y-4 transition-all duration-200 ease-linear">
+        class="progress-wrap fixed right-8 bottom-8 h-12 w-12 cursor-pointer rounded-full shadow-[inset_0_0_0_2px_rgba(0,0,0,0.1)] z-[1000] opacity-0 invisible translate-y-4 transition-all duration-200 ease-linear">
         <svg class="progress-circle w-full h-full" viewBox="-1 -1 102 102">
-            <path fill="#fff" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            <path fill="#6A4EE9" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
         <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24">
-            <path fill="#d0a9f8" d="M12 4a1 1 0 0 1 .707.293l6 6a1 1 0 0 1-1.414 1.414L13 7.414V19a1 1 0 1 1-2 0V7.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l6-6A1 1 0 0 1 12 4" />
+            <path fill="#fff" d="M12 4a1 1 0 0 1 .707.293l6 6a1 1 0 0 1-1.414 1.414L13 7.414V19a1 1 0 1 1-2 0V7.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l6-6A1 1 0 0 1 12 4" />
         </svg>
     </div>
     <script>

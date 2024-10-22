@@ -1,40 +1,14 @@
-<x-app-layout>
-    <div class="">
+{{-- <x-app-layout> --}}
+<x-layouts.appclient>
+    <div class="mt-[-24px] md:mt-0">
         <section class="max-w-default mx-auto flex px-4 flex-col justify-between gap-6 ">
-            <div class="breadcrumb flex gap-2 font-manrope text-sm">
-                <a href="/" class="font-semibold hidden md:block">Trang chủ</a>
-                <a href="/" class="md:hidden font-extralight pt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2">
-                            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
-                            <path
-                                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                        </g>
-                    </svg>
-                </a>
-                <span class="cursor-default">»</span>
-                <a href="/blog" class="text-nowrap">Bài viết</a>
-                <span class="cursor-default">»</span>
-                @if ($article->categories->isNotEmpty())
-                    <a href="/blog/category/{{ $article->categories->first()->slug }}">
-                        {{ $article->categories->first()->name }}
-                    </a>
-                @endif
-                <span class="cursor-default">»</span>
-                <p class="cursor-default">
-                    {{ App::getLocale() === 'vi' ? $article->title : $article->title_en ?? $article->title }}</p>
-            </div>
-            <div class="rounded-2xl aspect-w-16 aspect-h-9 md:aspect-h-6 overflow-hidden">
-                <img class="object-cover" src="{{ $article->featurePhoto }}" alt="{{ $article->photo_alt_text }}">
-            </div>
-            <div class="flex justify-center flex-col default:flex-row gap-8">
+            <div class="flex justify-center flex-col default:flex-row gap-8 mt-6 lg:mt-14 default:mt-20">
                 <!-- Cột trái -->
                 <div x-data="{ openSections: { 1: true, 2: false, 3: false } }" class="hidden default:block default:w-1/4 sticky top-16 h-fit pt-10">
                     <!-- Title -->
                     <div class="flex gap-4 items-center">
-                        <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
                                     fill="#6A4EE9" />
@@ -168,9 +142,9 @@
                 <div
                     class="w-full md:w-[96%] md:mx-auto default:mx-0 default:-mr-[15px] default:w-3/4 mr-2 z-10 overflow-visible">
                     <div
-                        class="h-fit rounded-xl mt-0 md:-mt-[80px] default:-mt-[70px] bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] px-4 md:p-6">
+                        class="h-fit rounded-xl mt-0 md:-mt-[80px] default:-mt-[70px] bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] px-4 py-6 md:p-6">
                         <div id="blog-title" class="flex flex-col gap-4 items-center">
-                            <h1 class="font-bold text-4xl leading-normal text-center">
+                            <h1 class="font-bold text-xl text-3xl default:text-4xl leading-normal text-center">
                                 {{ App::getLocale() === 'vi' ? $article->title : $article->title_en ?? $article->title }}
                             </h1>
                             <div class="flex gap-2 text-sm font-light text-btn-bg">
@@ -184,17 +158,19 @@
                                     </g>
                                 </svg>
                                 <p class="text-xs text-[#4D6385] font-semibold">Ngày đăng:</p>
-                                <span
-                                    class="text-xs text-[#4D6385]">{{ $article->created_at->format('d/m/Y') }}</span>
+                                <span class="text-xs text-[#4D6385]">{{ $article->created_at->format('d/m/Y') }}</span>
                             </div>
                         </div>
 
+                        <div class="rounded-2xl aspect-w-16 aspect-h-9 md:aspect-h-6 overflow-hidden my-4">
+                            <img class="object-cover" src="{{ $article->featurePhoto }}"
+                                alt="{{ $article->photo_alt_text }}">
+                        </div>
+
                         @if (App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title)
-                            <div class="mt-4">
-                                <p class="text-sm font-semibold">
-                                    <i>
-                                        {{ App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title }}
-                                    </i>
+                            <div class="mb-3">
+                                <p class="text-sm font-semibold leading-loose">
+                                    {{ App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title }}
                                 </p>
                             </div>
                         @endif
@@ -368,7 +344,7 @@
                                         <span class="font-semibold text-text-primary">&larr;</span>
                                     </div>
                                     <div class="w-full col-span-6">
-                                        <p class="text-sm font-manrope">Bài Viết Trước</p>
+                                        <p class="text-sm font-manrope">Bài Viết Trước Đó</p>
                                         <p class="font-semibold line-clamp-2">
                                             {{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}
                                             {{-- Displaying Images in HTML: The img tag a masterclass dài thêm nha dài thêm nha dài thêm nha dài thêm --}}
@@ -447,7 +423,7 @@
                             @else
                                 <a href="/blog"
                                     class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
-                                    Xem Toàn Bộ Bài Viết
+                                    Bài Viết Cùng Chủ Đề
                                 </a>
                             @endif
 
@@ -521,17 +497,20 @@
                             class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap">
                             Đăng bài
                         </button> --}}
-                        <div class="fb-comments w-full" data-href="{{ url()->current() }}" data-width="900"
-                            data-numposts="5"></div>
+                        {{-- <div class="fb-comments w-full" data-href="{{ url()->current() }}" data-width=""
+                            data-numposts="5"></div> --}}
+                        <div class="fb-comments" data-href="{{ url()->current() }}" data-width="100%"
+                            data-numposts="5">
+                        </div>
                     </div>
 
                 </div>
             </div>
         </section>
-        <section class="pt-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center">
+        {{-- <section class="pt-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center">
             <img class="w-full min-h-32 h-full object-cover rounded-sm shadow-md"
                 src="{{ asset('assets/images/banner-ads-home.png') }}" alt="ads-banner-1">
-        </section>
+        </section> --}}
         <section>
             <div class="relative bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] overflow-hidden my-8 md:my-14">
                 <div
@@ -541,7 +520,7 @@
                             <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Đăng ký
                                 nhận bảng tin 🙌</h3>
                             <p class="text-base default:text-lg text-center md:text-left md:w-9/12 leading-loose">
-                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ tôi qua email.</p>
+                                Luôn được cập nhật với những bài viết chia sẻ mới nhất từ mình qua email.</p>
                         </div>
                         <div class="flex flex-col items-center justify-center gap-4 md:gap-8">
                             <p class="text-center md:text-left">Đăng ký ngay bây giờ, huỷ bất cứ khi nào.</p>
@@ -630,64 +609,6 @@
                 }
             }
 
-            // document.addEventListener('DOMContentLoaded', () => {
-            //     const blogContainer = document.querySelector('.blog-container');
-            //     const tocList = document.getElementById('toc-list');
-            //     const tocHighlight = document.getElementById('toc-highlight');
-
-            //     // Get all headers in the blog content
-            //     const headers = blogContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            //     const tocItems = [];
-
-            //     headers.forEach((header, index) => {
-            //         const id = `header-${index}`;
-            //         header.setAttribute('id', id);
-
-            //         // Create list item for each header
-            //         const li = document.createElement('li');
-            //         li.innerHTML =
-            //             `<a class="toc-item text-sm block pl-${header.tagName.replace('H', '') * 2}" data-id="${id}">${header.innerText}</a>`;
-            //         tocList.appendChild(li);
-
-            //         // Store header position for scroll tracking
-            //         tocItems.push({
-            //             id,
-            //             offsetTop: header.offsetTop
-            //         });
-            //     });
-
-            //     // Handle clicking on a TOC item
-            //     document.querySelectorAll('.toc-item').forEach(item => {
-            //         item.addEventListener('click', (e) => {
-            //             const id = e.target.getAttribute('data-id');
-            //             document.getElementById(id).scrollIntoView({
-            //                 behavior: 'smooth',
-            //                 block: 'start'
-            //             });
-            //         });
-            //     });
-
-            //     // Handle scroll to highlight active item
-            //     window.addEventListener('scroll', () => {
-            //         const scrollPosition = window.scrollY;
-
-            //         tocItems.forEach((item, index) => {
-            //             if (scrollPosition >= item.offsetTop - 10) {
-            //                 // Highlight the active toc item
-            //                 document.querySelectorAll('.toc-item').forEach(el => el.classList.remove(
-            //                     'toc-active'));
-            //                 document.querySelector(`[data-id="${item.id}"]`).classList.add(
-            //                     'toc-active');
-
-            //                 // Move highlight bar
-            //                 const activeElement = document.querySelector(`[data-id="${item.id}"]`);
-            //                 tocHighlight.style.top = `${activeElement.offsetTop}px`;
-            //                 tocHighlight.style.height = `${activeElement.offsetHeight}px`;
-            //             }
-            //         });
-            //     });
-            // });
-
             document.addEventListener('DOMContentLoaded', () => {
                 const blogContainer = document.querySelector('.blog-container');
                 const tocList = document.getElementById('toc-list');
@@ -698,6 +619,7 @@
                     document.querySelector("#toc-container").innerHTML = "<span>Bài viết không đánh chỉ mục</span>";
                     return;
                 }
+                headers.forEach(_ => console.log(_.innerText))
                 const tocItems = [];
                 let lowestLevel = Infinity;
 
@@ -708,6 +630,7 @@
                         lowestLevel = level;
                     }
                 });
+
 
                 headers.forEach((header, index) => {
                     const id = `header-${index}`;
@@ -736,6 +659,7 @@
                         element: a,
                     });
                 });
+
 
                 tocItems.forEach(item => {
                     if (item.level === lowestLevel) {
@@ -819,13 +743,15 @@
                             tocHighlight.style.height = `${item.element.offsetHeight}px`;
 
                             const tocContainer = document.getElementById('toc-container');
-            const tocItemPosition = item.element.offsetTop - tocContainer.offsetTop + tocContainer.scrollTop;
-            const tocContainerHeight = tocContainer.clientHeight;
-            
-            // Adjust scroll position if the item is out of view
-            if (tocItemPosition < tocContainer.scrollTop || tocItemPosition >= tocContainer.scrollTop + tocContainerHeight) {
-                tocContainer.scrollTop = tocItemPosition - tocContainerHeight / 2;
-            }
+                            const tocItemPosition = item.element.offsetTop - tocContainer.offsetTop +
+                                tocContainer.scrollTop;
+                            const tocContainerHeight = tocContainer.clientHeight;
+
+                            // Adjust scroll position if the item is out of view
+                            if (tocItemPosition < tocContainer.scrollTop || tocItemPosition >=
+                                tocContainer.scrollTop + tocContainerHeight) {
+                                tocContainer.scrollTop = tocItemPosition - tocContainerHeight / 2;
+                            }
                         }
                     });
                 });
@@ -833,4 +759,5 @@
             });
         </script>
     @endpush
-</x-app-layout>
+</x-layouts.appclient>
+{{-- </x-app-layout> --}}

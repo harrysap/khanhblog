@@ -4,16 +4,17 @@
         <section
             class="max-w-default mx-auto px-4 sm:px-6 default:px-12 flex flex-col-reverse md:flex-row justify-between gap-14 md:pt-6">
             <div class="self-center">
-                <h3 class="font-semibold font-manrope text-4xl mb-6 leading-snug">Xin chào, tôi là <span
+                <h3 class="font-semibold font-manrope text-4xl mb-6 leading-snug">Hi, mình là <span
                         class="text-btn-bg">Khanh Nguyen</span> 👋</h3>
-                <p class="font-manrope leading-relaxed text-base mb-8">Tôi là một <b>chuyên gia công nghệ thiết kế</b> ở
-                    Atlanta. Tôi thích làm việc ở
-                    front-end của web. Đây là trang web của tôi, <b>Zento</b>, nơi tôi viết blog, chia sẻ và viết hướng
-                    dẫn…</p>
+                <p class="font-manrope leading-relaxed text-base mb-8">Mình là một <b>Tư vấn viên hệ thống SAP</b> ở
+                    Việt Nam. Đôi khi mình viết hơi lan man, dài dòng và khó hiểunhưng hi vọng cũng cung cấp thông tin
+                    có ích cho mọi người. Cám ơn mọi người!!!
+                </p>
                 <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form-home"
                     onsubmit="handleSubmitRegister(event)" class="flex flex-col gap-2 font-medium">
-                    <label for="email-subcribe-input-home" class="font-manrope text-sm">Kết nối với email của
-                        bạn</label>
+                    @csrf
+                    <label for="email-subcribe-input-home" class="font-manrope text-sm">Đăng ký nhận thông tin bài viết
+                        mới của mình qua email nhé </label>
                     <div
                         class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                         <input type="email-subcribe-input" id="email-subcribe-input-home" name="email" x-ref="email"
@@ -46,7 +47,7 @@
                         d="m5.67 7.914 3.062-4.143C10.71 1.093 11.7-.246 12.624.037c.923.283.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363 2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734-.923-.283-.923-1.925-.923-5.21v-.31c0-1.184 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363-2.22 0-3.329 0-3.704-.673a1.084 1.084 0 0 1-.018-.034c-.354-.683.289-1.552 1.574-3.29Z" />
                 </svg>
             </div>
-            <h2 class="font-bold text-lg">Danh Mục Chủ Đề</h2>
+            <h2 class="font-bold text-lg">Các Chủ Đề Mình Viết</h2>
         </div>
         @php
             $categoryList = getCategory(6);
@@ -54,7 +55,7 @@
         <div class="mx-auto w-full lg:w-11/12 mt-6">
             <div
                 class="lg:rounded-full py-8 px-6 md:px-12 flex flex-col lg:flex-row md:flex-wrap justify-between bg-white gap-10">
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-8 md:grid-cols-6 md:justify-between flex-1">
+                <div class="grid grid-cols-3 gap-x-10 gap-y-8 md:grid-cols-6 md:justify-between flex-1">
                     @foreach ($categoryList as $index => $category)
                         <a href="/blog/category/{{ $category->slug }}">
                             <div class="w-fit flex flex-col mx-auto md:mx-0 items-center cursor-pointer group">
@@ -80,7 +81,7 @@
                         </a>
                     @endforeach
                 </div>
-                <div class="flex items-center justify-center gap-6">
+                <div class="hidden sm:flex items-center justify-center gap-6">
                     <span class="font-semibold text-nowrap">hoặc ...</span>
                     <a href="/blog/category">
                         <button
@@ -105,66 +106,6 @@
         </div>
         <div class="testimonial-swiper-container mx-auto w-full mt-6 overflow-hidden">
             <div class="swiper-wrapper">
-                @php
-                    $featurePosts = [
-                        [
-                            'rate' => 4.5,
-                            'title' => 'Việt - Pháp nâng cấp quan hệ lên Đối tác Chiến lược Toàn diện',
-                            'name' => 'John D.',
-                            'platform' => 'LinkedIn',
-                            'color' => '#E32525',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
-                        [
-                            'rate' => 4.2,
-                            'title' => 'Great experience overall, will come back again.',
-                            'name' => 'Alice W.',
-                            'platform' => 'Facebook',
-                            'color' => '#000000',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1527980965255-d3b416303d12?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww',
-                        ],
-                        [
-                            'rate' => 5.0,
-                            'title' => 'Amazing! I am very satisfied with the quality.',
-                            'name' => 'Michael S.',
-                            'platform' => 'Twitter',
-                            'color' => '#E9A500',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1544005313-94ddf0286df2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA',
-                        ],
-                        [
-                            'rate' => 4.9,
-                            'title' => 'Absolutely loved it, highly recommended!',
-                            'name' => 'Jessica M.',
-                            'platform' => 'Google',
-                            'color' => '#6A4EE9',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1552058544-f2b08422138a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGF2YXRhcnxlbnwwfHwwfHx8MA',
-                        ],
-                        [
-                            'rate' => 4.0,
-                            'title' => 'Very satisfied, will recommend to others.',
-                            'name' => 'David P.',
-                            'platform' => 'YouTube',
-                            'color' => '#5751ff',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGF2YXRhcnxlbnwwfHwwfHx8MA',
-                        ],
-                        [
-                            'rate' => 3.5,
-                            'title' =>
-                                'Good experience, but there is room for improvement. Good experience, but there is room for improvement. Good experience test tiếp nè ghasdd asd',
-                            'name' => 'Emily R.',
-                            'platform' => 'LinkedIn',
-                            'color' => '#E9C310',
-                            'img' =>
-                                'https://images.unsplash.com/photo-1517841905240-472988babdf9?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGF2YXRhcnxlbnwwfHwwfHx8MA',
-                        ],
-                    ];
-                @endphp
-
                 @foreach ($blogs as $index => $featurePost)
                     @php
                         $backgrounds = ['bg-bg-secondary', 'bg-border-main', 'bg-bg-gray'];
@@ -172,13 +113,13 @@
                     @endphp
                     <div class="swiper-slide flex-shrink-0 w-full !h-auto overflow-x-hidden">
                         <div {{-- class="group w-full h-full rounded-3xl p-4 flex flex-col gap-4 justify-end cursor-default duration-300 ease-in" style="background-color: {{$featurePost['color']}}"> --}}
-                            class="group w-full h-full rounded-xl p-4 flex flex-col gap-4 justify-end cursor-default duration-300 ease-in bg-white border-[0.5px] border-border-main">
+                            class="group w-full h-full rounded-xl p-4 flex flex-col gap-4 justify-end cursor-default duration-300 ease-in border-[0.5px] text-white border-border-main"
+                            style="background-color: {{ $featurePost['categories'][0]['background'] }}">
                             <div class="flex justify-between gap-6 h-full">
                                 <div class="flex flex-col gap-4">
                                     <div class="w-fit h-8">
                                         <a href="/blog/category/{{ $featurePost['categories'][0]['slug'] }}"
-                                            class="w-fit h-8 absolute rounded-full bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 hover:translate-x-2 cursor-pointer"
-                                            style="background-color: {{ $featurePost['categories'][0]['background'] }}">
+                                            class="w-fit h-8 absolute rounded-full bg-[#ffffff24] text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 hover:translate-x-2 cursor-pointer">
                                             <span>{{ $featurePost['categories'][0]['name'] }}</span>
                                         </a>
                                     </div>
@@ -193,7 +134,7 @@
                                                             alt="{{ $featurePost['user']['name'] }}">
                                                     @else
                                                         <div
-                                                            class="grid aspect-1 w-full h-full rounded-full p-1 place-items-center bg-black text-white">
+                                                            class="grid aspect-1 w-full h-full rounded-full p-1 place-items-center bg-white text-black">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                 height="16" viewBox="0 0 24 24">
                                                                 <g fill="currentColor">
@@ -213,7 +154,7 @@
                                     </div>
                                     <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center -mt-1.5">
-                                            <div class="text-lg font-light text-btn-bg">
+                                            <div class="text-lg font-light text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
                                                     viewBox="0 0 24 24">
                                                     <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -230,7 +171,7 @@
                                     </div>
                                     <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center">
-                                            <div class="text-base font-light text-btn-bg">
+                                            <div class="text-base font-light text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
                                                     viewBox="0 0 24 24">
                                                     <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -377,17 +318,15 @@
 
             <div>
                 <template x-for="(category, index) in categories" :key="category.id">
-                    {{-- <p x-text="categories.length"></p> --}}
                     <div x-show="openSections[index]" class="space-y-8 mt-4">
                         <template x-for="post in category.posts" :key="post.id">
                             <article
                                 class="bg-white md:p-4 rounded-xl shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
                                 <div class="justify-between gap-6 h-full hidden md:flex">
                                     <div class="relative overflow-hidden">
-                                        {{-- <div class="w-fit h-8"> --}}
-                                        <div
-                                            class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
-                                            <a href="/blog/category/">
+                                        <div class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer"
+                                            style="background-color: {{ $category['background'] }}">
+                                            <a href="/blog/category/{{ $category['slug'] }}">
                                                 <span>{{ $category['name'] }}</span>
                                             </a>
                                         </div>
@@ -483,10 +422,12 @@
                                         </div>
                                         <div class="flex gap-4">
                                             <template x-if="post.tags && post.tags.length > 0">
-                                                <div x-for="(tag, index) in post.tags" :key="index"
-                                                    class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
-                                                    <span x-text="tag"></span>
-                                                </div>
+                                                <template x-for="(tag, index) in post.tags" :key="index">
+                                                    <div
+                                                        class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+                                                        <span x-text="tag.name"></span>
+                                                    </div>
+                                                </template>
                                             </template>
                                             <template x-if="!(post.tags && post.tags.length > 0)">
                                                 <div class="h-[24px]"></div>
@@ -494,43 +435,58 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="flex flex-col gap-4 p-4 sm:p-0 md:hidden">
+                                <div class="flex flex-col gap-4 p-4 sm:p-0 md:hidden">
                                     <div class="relative overflow-hidden md:hidden">
                                         <div
                                             class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
-                                            <a
-                                                href="/blog/category/{{ \Illuminate\Support\Str::slug($post['category']) }}">
-                                                <span>{{ $post['category'] }}</span>
+                                            <a href="/blog/category/{{ $category['slug'] }}">
+                                                <span>{{ $category['name'] }}</span>
                                             </a>
                                         </div>
-                                        <a href="/blog/{{ \Illuminate\Support\Str::slug($post['title']) }}">
-                                            <img class="w-full h-[250px] object-cover rounded-xl sm:rounded-t-xl sm:rounded-b-none opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
-                                                src="{{ $post['thumbnail'] }}" alt="blog-thumbnail-{{ $index }}">
+                                        <a x-bind:href="'/blog/' + post.slug">
+                                            <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
+                                                :alt="post.photo_alt_text">
                                         </a>
                                     </div>
                                     <div class="flex flex-col gap-2 sm:gap-4 px-4">
                                         <div class="relative group/title">
-                                            <a href="#"
+                                            <a x-bind:href="'/blog/' + post.slug"
                                                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"
-                                                title="{{ $post['title'] }}">{{ $post['title'] }}</a>
+                                                x-text="post.title" x-title="post.title"></a>
                                         </div>
                                         <span
                                             class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"
-                                            title="{{ $post['content'] }}">{{ $post['content'] }}</span>
-    
+                                            x-title="post.sub_title" x-text="post.sub_title"></span>
+
                                     </div>
                                     <div class="flex gap-4 justify-center px-4 sm:pb-4">
                                         <div class="flex gap-4">
                                             <div class="flex gap-2 items-center">
                                                 <div class="flex">
                                                     <div>
-                                                        <img class="w-5 aspect-1 rounded-full !object-cover"
-                                                            style="aspect-ratio: 1/1" src="{{ $post['img'] }}"
-                                                            alt="{{ $post['name'] }}">
+                                                        <template x-if="post.user.profile_photo_path">
+                                                            <img class="w-5 aspect-1 rounded-full !object-cover"
+                                                                style="aspect-ratio: 1/1"
+                                                                x-bind:src="`/storage/${post.user.profile_photo_path}`"
+                                                                x-alt="post.author.name">
+                                                        </template>
+                                                        <template x-if="! post.user.profile_photo_path">
+                                                            <div
+                                                                class="grid aspect-1 w-full h-full rounded-full p-1 place-items-center bg-black text-white">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" viewBox="0 0 24 24">
+                                                                    <g fill="currentColor">
+                                                                        <circle cx="12" cy="6" r="4" />
+                                                                        <path
+                                                                            d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z" />
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+                                                        </template>
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-2">
-                                                    <p class="text-xs text-[#4D6385]">{{ $post['name'] }}</p>
+                                                    <p class="text-xs text-[#4D6385]" x-text="post.user.name"></p>
                                                 </div>
                                             </div>
                                             <div class="flex gap-2 items-center">
@@ -548,7 +504,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-2">
-                                                    <p class="text-xs text-[#4D6385]">{{ $post['duration'] }} phút đọc</p>
+                                                    <p class="text-xs text-[#4D6385]"
+                                                        x-text="`${post.reading_time} đọc`"></p>
                                                 </div>
                                             </div>
                                             <div class="flex gap-2 items-center">
@@ -569,16 +526,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-col gap-2">
-                                                    <p class="text-xs text-[#4D6385]">{{ $post['date'] }}</p>
+                                                    <p class="text-xs text-[#4D6385]"
+                                                        x-text="new Date(post.created_at).toLocaleDateString('en-GB')">
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             </article>
                         </template>
                     </div>
                 </template>
+
+
             </div>
 
             {{-- <div class="flex justify-center mt-14">
@@ -608,7 +569,7 @@
                         <h3 class="font-bold text-xl text-center md:text-left md:text-2xl default:text-4xl">Đăng ký
                             nhận bảng tin 🙌</h3>
                         <p class="text-base default:text-lg text-center md:text-left md:w-9/12 leading-loose">
-                            Luôn được cập nhật với những bài viết chia sẻ mới nhất từ tôi qua email.</p>
+                            Luôn được cập nhật với những bài viết chia sẻ mới nhất từ mình qua email.</p>
                     </div>
                     <div class="flex flex-col items-center justify-center gap-4 md:gap-8">
                         <p class="text-center md:text-left">Đăng ký ngay bây giờ, huỷ bất cứ khi nào.</p>
