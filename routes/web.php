@@ -47,8 +47,10 @@ Route::get('/', function () {
             return $blog;
         });
 
-    $categories = Category::inRandomOrder()
-        ->limit(3)
+    $categories = Category::withCount('posts')
+        ->having('posts_count', '>', 0) 
+        ->inRandomOrder()
+        ->limit(4)
         ->with(['posts' => function ($query) {
             $query->inRandomOrder()
                 ->published()
@@ -59,7 +61,6 @@ Route::get('/', function () {
         ->map(function ($category) {
             $averageReadingSpeed = 200;
     
-            // Duyệt qua từng bài viết trong category
             foreach ($category->posts as $blog) {
                 $bodyContent = (Lang::getLocale() == 'vi') ? $blog->body : $blog->body_en;
     

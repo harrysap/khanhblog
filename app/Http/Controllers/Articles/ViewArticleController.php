@@ -65,6 +65,7 @@ class ViewArticleController extends Controller
                 'color' => 'violet',
             ],
         ]);
+
         $blogs->load('categories');
         $blogs->load('tags');
         $type=showBadgeType($blogs->type);
@@ -97,6 +98,26 @@ class ViewArticleController extends Controller
             ->orderBy('id', 'asc')
             ->first();
 
-        return view('blog', ['article' => $blogs, 'category_blogs' => $categoryBlogs, 'previous_blog' => $previousBlog, 'next_blog' => $nextBlog, 'type'=>  $type, 'reading_time' => $readingTime]);
+        $recentCategoryBlogs = blogs::query()
+            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.created_at', 'posts.cover_photo_path', 'posts.photo_alt_text', 'categories.slug as category_slug') // Change 'blogs' to 'posts'
+            ->join('category_post', 'posts.id', '=', 'category_post.post_id') 
+            ->join('categories', 'category_post.category_id', '=', 'categories.id')
+            ->where('categories.id', $firstCategory->id)
+            ->where('posts.id', '!=', $blogs->id) 
+            ->published()
+            ->with('categories')
+            ->orderBy('posts.updated_at', 'desc')
+            ->limit(3)
+            ->get();
+            
+        return view('blog', [
+            'article' => $blogs, 
+            'category_blogs' => $categoryBlogs, 
+            'previous_blog' => $previousBlog, 
+            'next_blog' => $nextBlog, 
+            'type' => $type, 
+            'reading_time' => $readingTime,
+            'recent_category_blogs' => $recentCategoryBlogs
+        ]);
     }
 }

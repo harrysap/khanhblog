@@ -25,7 +25,7 @@
                         <ul class="list-none ml-8 mt-6">
                             <li class="py-4 border-b border-border-main"><a href="https://www.linkedin.com/in/khanhnph/" target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span class="text-sm">Theo dõi trên <b> LinkedIn</b></span>
+                                    <span class="text-sm">Kết nối trên <b> LinkedIn</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/linkedin.png') }}"
                                             alt="linkedin-logo">
@@ -33,7 +33,7 @@
                                 </a></li>
                             <li class="py-4 border-b border-border-main"><a href="https://www.facebook.com/khanhnph" target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span class="text-sm">Theo dõi tôi trên <b> Facebook</b></span>
+                                    <span class="text-sm">Kết nối trên <b> Facebook</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/facebook.webp') }}"
                                             alt="linkedin-logo">
@@ -41,7 +41,7 @@
                                 </a></li>
                             <li class="py-4 border-b border-border-main"><a href="https://www.youtube.com/khanhnph" target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span class="text-sm">Theo dõi trên <b> Youtube</b></span>
+                                    <span class="text-sm">Xem trên <b> Youtube</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/youtube.png') }}"
                                             alt="linkedin-logo">
@@ -49,7 +49,7 @@
                                 </a></li>
                             <li class="py-4 border-b border-border-main"><a href="https://www.instagram.com/khanhnphh" target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
-                                    <span class="text-sm">Theo dõi trên <b> Instagram</b></span>
+                                    <span class="text-sm">Hình ảnh trên <b> Instagram</b></span>
                                     <div>
                                         <img class="w-5" src="{{ asset('assets/images/instagram.png') }}"
                                             alt="linkedin-logo">
@@ -98,10 +98,10 @@
                 </div>
                 <div x-data="{ isLoading: false }" class="flex flex-col gap-8">
                     <div>
-                        <img class="w-40 rounded-3xl" src="{{ asset('storage/assets/site_logo.png') }}"
+                        <img class="w-40" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
-                    <p class="">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức
+                    <p class="leading-relaxed">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức
                         nổi bật</p>
                     <div>
                         <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form"

@@ -6,9 +6,12 @@
             <div class="self-center">
                 <h3 class="font-semibold font-manrope text-4xl mb-6 leading-snug">Hi, mình là <span
                         class="text-btn-bg">Khanh Nguyen</span> 👋</h3>
-                <p class="font-manrope leading-relaxed text-base mb-8">Mình là một <b>Tư vấn viên hệ thống SAP</b> ở
-                    Việt Nam. Đôi khi mình viết hơi lan man, dài dòng và khó hiểunhưng hi vọng cũng cung cấp thông tin
-                    có ích cho mọi người. Cám ơn mọi người!!!
+                <p class="font-manrope leading-relaxed text-base mb-8">
+                    Mình hiện làm việc trong ngành SAP ở Việt Nam với vị trí <b>Tư vấn triển khai SAP</b> cho ngành sản
+                    xuất, bán lẻ và thương mại.
+                    Blog này mình chia sẻ các thông tin xung quanh hệ thống SAP mà mình tìm hiểu được. Đôi khi bài viết
+                    dài dòng, lan man và khó hiểu nhưng hi vọng cũng cung cấp thông tin có ích cho mọi người.
+                    Cám ơn mọi người!!!
                 </p>
                 <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form-home"
                     onsubmit="handleSubmitRegister(event)" class="flex flex-col gap-2 font-medium">
@@ -275,7 +278,7 @@
                                     class="ml-4 mt-3 space-y-3 text-sm leading-normal border-l border-l-[#E9E8FF] pl-4"
                                     x-transition>
                                     @foreach ($category['posts'] as $index => $post)
-                                        <li class="leading-slug"><span
+                                        <li class="leading-loose cursor-default"><span
                                                 class="font-semibold mr-1">{{ $index + 1 }}.
                                             </span>{{ $post['title'] }}</li>
                                     @endforeach

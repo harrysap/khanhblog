@@ -14,6 +14,7 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('topic')->nullable(); 
+            $table->string('company', 255)->nullable();
             $table->unsignedBigInteger('contact_reason_id')->nullable();
             $table->text('message'); 
             $table->timestamps();
