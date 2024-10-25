@@ -408,7 +408,6 @@ $nextTick(() => {
                 try {
                     const response = await fetch('{{ route('contact.reasons') }}');
                     const data = await response.json();
-                    console.log('Test ', data);
 
                     const selectElement = document.getElementById('contact-reasons');
 

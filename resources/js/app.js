@@ -2,12 +2,17 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import Alpine from 'alpinejs';
 import { CountUp } from 'countup.js';
-
-// Alpine.start()
+import autoAnimate from '@formkit/auto-animate'
+import MiniSearch from 'minisearch'
+import { gsap } from 'gsap'
 
 // Instances to be available globally
-// window.Alpine = Alpine
 window.Swiper = Swiper;
 window.CountUp = CountUp;
+window.autoAnimate = autoAnimate;
+window.MiniSearch = MiniSearch;
+window.reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+).matches;
+window.gsap = gsap;

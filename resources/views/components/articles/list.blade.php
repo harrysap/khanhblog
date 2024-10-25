@@ -42,6 +42,7 @@
                 ease: 'circ.out',
             },
         )
+        console.log('Tests', articles);
     }" x-data="{
         searchEngine: null,
         search: $queryString('').usePush().as('search'),
@@ -61,7 +62,7 @@
             this._currentPage = value
         },
     
-        perPage: 1,
+        perPage: 6,
         totalItems: 0,
         get totalPages() {
             return Math.ceil(this.totalItems / this.perPage)

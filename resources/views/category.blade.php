@@ -61,7 +61,7 @@
             this._currentPage = value
         },
     
-        perPage: 1,
+        perPage: 6,
         totalItems: 0,
         get totalPages() {
             return Math.ceil(this.totalItems / this.perPage)
@@ -138,7 +138,7 @@
                             class="mt-2 font-bold w-full line-clamp-2 leading-relaxed text-wrap truncate font-manrope sm:mt-0">
                             {{ $category->name }}
                         </p>
-                        <span class="text-nowrap">{{ $category->posts_count }} Bài Viết</span>
+                        <span class="text-nowrap">{{ $category->blogs_count }} Bài Viết</span>
 
                     </div>
                 </div>
@@ -150,64 +150,64 @@
             }"
                 class="grid w-full grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] items-start justify-center gap-6">
                 <template x-for="article in filteredArticles" :key="article.id">
-                    <article @click="window.location.href = `/blog/${article.slug}`"
+                    <article @click="window.location.href = `/blog/${article.category_slug}/${article.slug}`"
                         class="bg-white md:p-4 rounded-xl shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
-                            <div class="flex flex-col gap-4">
-                                <div class="relative overflow-hidden">
-                                    <div
-                                        class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer"
-                                        style="background-color: {{ $category->background }}">
-                                        <a href="/blog/category/{{ $category->slug }}">
-                                            <span>{{ $category->name }}</span>
-                                        </a>
-                                    </div>
-                                    <a :href="`/blog/${article.slug}`">
-                                        <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
-                                            x-bind:src="`/storage/${article.cover_photo_path}`"
-                                            :alt="article.photo_alt_text">
+                        <div class="flex flex-col gap-4">
+                            <div class="relative overflow-hidden">
+                                <div class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer"
+                                    style="background-color: {{ $category->background }}">
+                                    <a href="/blog/category/{{ $category->slug }}">
+                                        <span>{{ $category->name }}</span>
                                     </a>
                                 </div>
-                                <div class="flex flex-col gap-2 sm:gap-4 px-4">
-                                    <div class="relative group/title">
-                                        <a x-bind:href="'/blog/' + article.slug" x-text="article.title"
-                                            class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
-                                    </div>
-                                    <span
-                                        class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"
-                                        x-text="article.sub_title"></span>
+                                <a :href="`/blog/${article.category_slug}/${article.slug}`">
+                                    <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
+                                        x-bind:src="`/storage/${article.cover_photo_path}`"
+                                        :alt="article.photo_alt_text">
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-2 sm:gap-4 px-4">
+                                <div class="relative group/title">
+                                    <a x-bind:href="'/blog/' + article.category_slug + '/' + article.slug"
+                                        x-text="article.title"
+                                        class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
                                 </div>
-                                <div class="flex gap-4 justify-center px-4 pb-4">
-                                    <div class="flex flex-col gap-4 items-center">
-                                        <div class="flex gap-4">
-                                            <div class="flex gap-2 items-center">
-                                                <div class="flex">
-                                                    <div>
-                                                        <template x-if="article.user.profile_photo_path">
-                                                            <img class="w-5 aspect-1 rounded-full !object-cover"
-                                                                style="aspect-ratio: 1/1"
-                                                                x-bind:src="`/storage/${article.user.profile_photo_path}`"
-                                                                x-alt="article.author.name">
-                                                        </template>
-                                                        <template x-if="! article.user.profile_photo_path">
-                                                            <div
-                                                                class="grid aspect-1 w-full h-full rounded-full p-1 place-items-center bg-black text-white">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                    height="16" viewBox="0 0 24 24">
-                                                                    <g fill="currentColor">
-                                                                        <circle cx="12" cy="6" r="4" />
-                                                                        <path
-                                                                            d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z" />
-                                                                    </g>
-                                                                </svg>
-                                                            </div>
-                                                        </template>
-                                                    </div>
-                                                </div>
-                                                <div class="flex flex-col gap-2">
-                                                    <p class="text-xs text-[#4D6385]" x-text="article.user.name"></p>
+                                <span
+                                    class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"
+                                    x-text="article.sub_title"></span>
+                            </div>
+                            <div class="flex gap-4 justify-center px-4 pb-4">
+                                <div class="flex flex-col gap-4 items-center">
+                                    <div class="flex gap-4">
+                                        <div class="flex gap-2 items-center">
+                                            <div class="flex">
+                                                <div>
+                                                    <template x-if="article.user.profile_photo_path">
+                                                        <img class="w-5 aspect-1 rounded-full !object-cover"
+                                                            style="aspect-ratio: 1/1"
+                                                            x-bind:src="`/storage/${article.user.profile_photo_path}`"
+                                                            x-alt="article.author.name">
+                                                    </template>
+                                                    <template x-if="! article.user.profile_photo_path">
+                                                        <div
+                                                            class="grid aspect-1 w-full h-full rounded-full p-1 place-items-center bg-black text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" viewBox="0 0 24 24">
+                                                                <g fill="currentColor">
+                                                                    <circle cx="12" cy="6" r="4" />
+                                                                    <path
+                                                                        d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5Z" />
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                    </template>
                                                 </div>
                                             </div>
-                                            {{-- <div class="flex gap-2 items-center">
+                                            <div class="flex flex-col gap-2">
+                                                <p class="text-xs text-[#4D6385]" x-text="article.user.name"></p>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="flex gap-2 items-center">
                                                 <div class="flex w-5 justify-center">
                                                     <div class="text-sm font-light text-btn-bg">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
@@ -226,32 +226,32 @@
                                                         x-text="`${article.reading_time} đọc`"></p>
                                                 </div>
                                             </div> --}}
-                                            <div class="flex gap-2 items-center">
-                                                <div class="flex w-5 justify-center">
-                                                    <div class="text-sm font-light text-btn-bg">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                            height="1.2em" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                                                stroke-linejoin="round" stroke-width="2">
-                                                                <path d="M8 2v4m8-4v4" />
-                                                                <rect width="18" height="18" x="3" y="4"
-                                                                    rx="2" />
-                                                                <path
-                                                                    d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
-                                                            </g>
-                                                        </svg>
-                                                    </div>
+                                        <div class="flex gap-2 items-center">
+                                            <div class="flex w-5 justify-center">
+                                                <div class="text-sm font-light text-btn-bg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
+                                                        height="1.2em" viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2">
+                                                            <path d="M8 2v4m8-4v4" />
+                                                            <rect width="18" height="18" x="3" y="4"
+                                                                rx="2" />
+                                                            <path
+                                                                d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                                                        </g>
+                                                    </svg>
                                                 </div>
-                                                <div class="flex flex-col gap-2">
-                                                    <p class="text-xs text-[#4D6385]"
-                                                        x-text="new Date(article.created_at).toLocaleDateString('en-GB')">
-                                                    </p>
-                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <p class="text-xs text-[#4D6385]"
+                                                    x-text="new Date(article.created_at).toLocaleDateString('en-GB')">
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </article>
                 </template>
             </div>

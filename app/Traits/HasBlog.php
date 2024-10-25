@@ -19,7 +19,7 @@ trait HasBlog
             ? asset('storage/'.$this->{'profile_photo_path'}) : 'https://ui-avatars.com/api/?&background=random&name='.$this->{'name'};
     }
 
-    public function posts()
+    public function blogs()
     {
         return $this->hasMany(Post::class, 'user_id');
     }

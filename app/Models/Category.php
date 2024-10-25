@@ -18,7 +18,7 @@ class Category extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function posts(): BelongsToMany
+    public function blogs(): BelongsToMany
     {
         return $this->belongsToMany(blogs::class,'category_post','category_id','post_id');
     }

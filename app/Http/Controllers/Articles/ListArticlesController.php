@@ -12,7 +12,6 @@ class ListArticlesController extends Controller
 {
     public function __invoke()
     {
-        // clear cache
         cache()->forget('articles');
 
         seo()
@@ -36,7 +35,7 @@ class ListArticlesController extends Controller
                     ->get()
                     ->map(fn (blogs $blogs): array => [
                         ...$blogs->getDataArray(),
-                        'stars_count' =>  0,
+                        'stars_count' =>  0
                     ])
                     ->all();
             }

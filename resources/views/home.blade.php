@@ -69,7 +69,7 @@
                                         alt="post-img-small-{{ $index }}">
                                     <div
                                         class="absolute z-10 -top-2 -right-0.5 rounded-full w-6 aspect-1 bg-text-main text-xs text-white font-bold flex justify-center items-center">
-                                        {{ $category->posts_count }}
+                                        {{ $category->blogs_count }}
                                     </div>
                                     {{-- <div
                                         class="absolute z-0 inset-0 rounded-full ring-4 ring-bg-category-3-secondary opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="flex flex-1 pt-10">
                                     <div class="relative group/title">
-                                        <a href="/blog/{{ $featurePost['slug'] }}"
+                                        <a href="/blog/{{ $featurePost['category_slug'] }}/{{ $featurePost['slug'] }}"
                                             class="relative font-medium font-manrope leading-relaxed group/title line-clamp-3">
                                             {{ $featurePost['title'] }}
                                         </a>
@@ -211,7 +211,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/blog/{{ $featurePost['slug'] }}">
+                            <a href="/blog/{{ $featurePost['category_slug'] }}/{{ $featurePost['slug'] }}">
                                 <button
                                     class="py-2 px-[22px] bg-black rounded text-white ease duration-200 float-end text-sm">Xem
                                     Tiếp</button>
@@ -277,7 +277,7 @@
                                 <ul x-show="openSections[{{ $index }}]"
                                     class="ml-4 mt-3 space-y-3 text-sm leading-normal border-l border-l-[#E9E8FF] pl-4"
                                     x-transition>
-                                    @foreach ($category['posts'] as $index => $post)
+                                    @foreach ($category['blogs'] as $index => $post)
                                         <li class="leading-loose cursor-default"><span
                                                 class="font-semibold mr-1">{{ $index + 1 }}.
                                             </span>{{ $post['title'] }}</li>
@@ -322,7 +322,7 @@
             <div>
                 <template x-for="(category, index) in categories" :key="category.id">
                     <div x-show="openSections[index]" class="space-y-8 mt-4">
-                        <template x-for="post in category.posts" :key="post.id">
+                        <template x-for="post in category.blogs" :key="post.id">
                             <article
                                 class="bg-white md:p-4 rounded-xl shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
                                 <div class="justify-between gap-6 h-full hidden md:flex">
@@ -333,7 +333,7 @@
                                                 <span>{{ $category['name'] }}</span>
                                             </a>
                                         </div>
-                                        <a href="/blog/{{ $post['title'] }}">
+                                        <a href="/blog/{{ $post['category_slug'] }}/{{ $post['slug'] }}">
                                             <img class="aspect-1 h-[250px] rounded-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear object-cover"
                                                 :src="`/storage/${post.cover_photo_path}`" :alt="post.photo_alt_text">
                                         </a>
@@ -412,7 +412,7 @@
                                             </div>
                                         </div>
                                         <div class="relative group/title">
-                                            <a x-bind:href="'/blog/' + post.slug"
+                                            <a x-bind:href="'/blog/' + post.category_slug + '/' + post.slug"
                                                 class="relative cursor-pointer font-manrope font-semibold text-xl leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200 h-[65px]"
                                                 x-text="post.title" x-title="post.title">
                                             </a>
@@ -453,7 +453,7 @@
                                     </div>
                                     <div class="flex flex-col gap-2 sm:gap-4 px-4">
                                         <div class="relative group/title">
-                                            <a x-bind:href="'/blog/' + post.slug"
+                                            <a x-bind:href="'/blog/' + post.category_slug + '/' + post.slug"
                                                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"
                                                 x-text="post.title" x-title="post.title"></a>
                                         </div>

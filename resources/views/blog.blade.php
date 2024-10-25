@@ -31,18 +31,10 @@
                             </div>
                         </div>
 
-                        <div class="rounded-2xl aspect-w-16 aspect-h-9 overflow-hidden my-4">
-                            <img class="object-cover" src="{{ $article->featurePhoto }}"
+                        <div class="rounded-xl w-full h-auto overflow-hidden my-4">
+                            <img class="object-cover w-full h-auto" src="{{ $article->featurePhoto }}"
                                 alt="{{ $article->photo_alt_text }}">
                         </div>
-
-                        @if (App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title)
-                            <div class="mb-3">
-                                <p class="text-sm font-semibold leading-loose">
-                                    {{ App::getLocale() === 'vi' ? $article->sub_title : $article->sub_title_en ?? $article->sub_title }}
-                                </p>
-                            </div>
-                        @endif
 
                         <div
                             class="font-manrope sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto
@@ -192,10 +184,18 @@
                                             x-ref="blog-link" placeholder="Nhập địa chỉ email" x-model="currentLink"
                                             x-ref="blogLinkInput"
                                             class="focus:outline-none font-manrope w-full placeholder-[#707070]">
-                                        <div>
-                                            <button @click="navigator.clipboard.writeText(currentLink)"
-                                                class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap">Sao
-                                                chép link</button>
+                                        <div x-data="{ copied: false }">
+                                            <button
+                                                @click="navigator.clipboard.writeText(currentLink).then(() => { 
+                                                        copied = true; 
+                                                        setTimeout(() => copied = false, 4000); 
+                                                    })"
+                                                :disabled="copied"
+                                                :class="copied ? 'bg-black cursor-not-allowed' :
+                                                    'bg-btn-bg hover:bg-btn-dark cursor-pointer'"
+                                                class="py-2 px-[22px] text-nowrap rounded text-white ease duration-200 transition-all">
+                                                <span x-text="copied ? 'Đã lưu!' : 'Sao chép link'"></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@
                     <div class="flex flex-col md:flex-row items-center justify-between w-full mx-auto my-8 gap-10">
                         <!-- Previous Article -->
                         @if ($previous_blog)
-                            <a href="/blog/{{ $previous_blog->slug }}"
+                            <a href="/blog/{{ $previous_blog->category_slug }}/{{ $previous_blog->slug }}"
                                 title="{{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}"
                                 class="flex items-center justify-between bg-btn-lg text-white p-6 pl-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/previousBtn">
                                 <div class="grid grid-cols-7 items-center gap-4">
@@ -218,7 +218,7 @@
                                     </div>
                                     <div class="w-full col-span-6">
                                         <p class="text-sm font-manrope">Bài Viết Trước Đó</p>
-                                        <p class="font-semibold line-clamp-2">
+                                        <p class="font-semibold line-clamp-2 h-[48px]">
                                             {{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}
                                             {{-- Displaying Images in HTML: The img tag a masterclass dài thêm nha dài thêm nha dài thêm nha dài thêm --}}
                                         </p>
@@ -233,13 +233,13 @@
 
                         <!-- Next Article -->
                         @if ($next_blog)
-                            <a href="/blog/{{ $next_blog->slug }}"
+                            <a href="/blog/{{ $next_blog->category_slug }}/{{ $next_blog->slug }}"
                                 title="{{ App::getLocale() === 'vi' ? $next_blog->title : $next_blog->title_en ?? $next_blog->title }}"
                                 class="flex items-center justify-between bg-btn-lg text-white p-6 pr-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/nextBtn">
                                 <div class="grid grid-cols-7 items-center gap-4">
                                     <div class="text-right col-span-6">
                                         <p class="text-sm font-manrope">Bài Viết Tiếp Theo</p>
-                                        <p class="font-semibold line-clamp-2">
+                                        <p class="font-semibold line-clamp-2 h-[48px]">
                                             {{ App::getLocale() === 'vi' ? $next_blog->title : $next_blog->title_en ?? $next_blog->title }}
                                             {{-- Displaying Images in HTML: The img tag a masterclass dài thêm nha dài thêm nha dài thêm nha dài thêm nha --}}
                                         </p>
@@ -291,12 +291,12 @@
                             @if ($article->categories->isNotEmpty())
                                 <a href="/blog/category/{{ $article->categories->first()->slug }}"
                                     class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
-                                    Xem Toàn Bộ Bài Viết
+                                    Bài Viết Cùng Chủ Đề
                                 </a>
                             @else
                                 <a href="/blog"
                                     class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
-                                    Bài Viết Cùng Chủ Đề
+                                    Xem Toàn Bộ Bài Viết
                                 </a>
                             @endif
 
@@ -315,7 +315,7 @@
                                             {{ $index + 1 }}
                                         </span>
                                     </div>
-                                    <a href="/blog/{{ $blog->slug }}"
+                                    <a href="/blog/{{ $blog->category_slug }}/{{ $blog->slug }}"
                                         class="font-semibold text-start hover:underline line-clamp-1">
                                         {{ $blog->title ?? $blog->title_en }}
                                     </a>
@@ -336,7 +336,7 @@
                     </div>
 
                     <!-- Comment Form Component -->
-                    <div x-data="replyForm()" class="">
+                    <div class="">
                         <h3 class="text-lg font-bold mb-4">Để lại Lời nhắn</h3>
                         {{-- <div class="mb-4">
                             <textarea x-model="comment" placeholder="Bình luận" rows="6"
@@ -519,9 +519,9 @@
                                 <img class="w-24 aspect-1 rounded-lg object-cover hover:transform hover:translate-y-[-5px] transition ease duration-300 cursor-pointer"
                                     src="/storage/{{ $recentBlog->cover_photo_path }}"
                                     alt="{{ $recentBlog->photo_alt_text }}"
-                                    onclick="window.location.href = '/blog/{{ $recentBlog->slug }}'">
+                                    onclick="window.location.href = '/blog/{{ $recentBlog->category_slug }}/{{ $recentBlog->slug }}'">
                                 <div class="flex flex-col gap-2 py-2.5">
-                                    <a href=""
+                                    <a href="/blog/{{ $recentBlog->category_slug }}/{{ $recentBlog->slug }}"
                                         class="relative cursor-pointer font-manrope font-semibold text-sm leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200 h-[48px]"
                                         title="{{ $recentBlog->title }}">{{ $recentBlog->title }}</a>
                                     <div class="flex gap-2 items-center">
@@ -610,44 +610,6 @@
         </script>
 
         <script>
-            function replyForm() {
-                return {
-                    comment: '',
-                    name: '',
-                    email: '',
-                    phone: '',
-                    gender: '',
-                    saveInfo: false,
-                    submitComment() {
-                        // Validate các trường đầu vào
-                        if (!this.name || !this.comment || !this.email || !this.phone || !this.gender) {
-                            alert("Vui lòng điền đầy đủ các trường bắt buộc.");
-                            return;
-                        }
-
-                        // Tạo đối tượng chứa dữ liệu
-                        const formData = {
-                            comment: this.comment,
-                            name: this.name,
-                            email: this.email,
-                            phone: this.phone,
-                            gender: this.gender,
-                            saveInfo: this.saveInfo,
-                        };
-
-                        // Gọi API hoặc xử lý logic khi gửi dữ liệu
-                        console.log("Sending comment:", formData);
-
-                        // Có thể sử dụng axios hoặc fetch để gửi API:
-                        // axios.post('/api/comments', formData).then(response => {
-                        //     console.log('Comment submitted:', response.data);
-                        // }).catch(error => {
-                        //     console.error('Error submitting comment:', error);
-                        // });
-                    }
-                };
-            }
-
             function handleNavigateBlogCategory(categoryTitle) {
                 if (categoryTitle.trim()) {
                     const slug = categoryTitle.trim().toLowerCase().replace(/\s+/g, '-');
@@ -656,6 +618,17 @@
             }
 
             document.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+
+                document.addEventListener('copy', function(e) {
+                    e.preventDefault();
+                });
                 const blogContainer = document.querySelector('.blog-container');
                 const tocList = document.getElementById('toc-list');
                 const tocHighlight = document.getElementById('toc-highlight');

@@ -25,14 +25,19 @@ Route::get('/', function () {
         ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
         ->tag('previewlinks:repository', 'harrydev/sap');
 
-    $blogs = blogs::select(['id', 'title', 'slug', 'sub_title', 'cover_photo_path', 'photo_alt_text', 'published_at', 'created_at', 'user_id'])
+    $blogs = blogs::select([
+            'posts.id', 'posts.title', 'posts.slug', 'posts.sub_title', 'posts.cover_photo_path', 
+            'posts.photo_alt_text', 'posts.published_at', 'posts.created_at', 'posts.user_id', 
+            'categories.slug as category_slug'
+        ])
         ->published()
+        ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+        ->join('categories', 'category_post.category_id', '=', 'categories.id') 
         ->with(['user', 'categories'])
         ->inRandomOrder()
         ->take(6)
         ->get()
         ->map(function ($blog) {
-            // Calculate reading time
             $averageReadingSpeed = 200;
             $bodyContent = (Lang::getLocale() == 'vi') ? $blog->body : $blog->body_en;
 
@@ -47,11 +52,11 @@ Route::get('/', function () {
             return $blog;
         });
 
-    $categories = Category::withCount('posts')
-        ->having('posts_count', '>', 0) 
+    $categories = Category::withCount('blogs')
+        ->having('blogs_count', '>', 0) 
         ->inRandomOrder()
         ->limit(4)
-        ->with(['posts' => function ($query) {
+        ->with(['blogs' => function ($query) {
             $query->inRandomOrder()
                 ->published()
                 ->with(['user', 'tags'])
@@ -61,7 +66,7 @@ Route::get('/', function () {
         ->map(function ($category) {
             $averageReadingSpeed = 200;
     
-            foreach ($category->posts as $blog) {
+            foreach ($category->blogs as $blog) {
                 $bodyContent = (Lang::getLocale() == 'vi') ? $blog->body : $blog->body_en;
     
                 $wordCount = str_word_count(strip_tags($bodyContent));
@@ -71,6 +76,8 @@ Route::get('/', function () {
                 $seconds = $totalSeconds % 60;
     
                 $blog->reading_time = sprintf('%d phút %d giây', $minutes, $seconds);
+
+                $blog->category_slug = $category->slug;
             }
     
             return $category;
@@ -81,16 +88,13 @@ Route::get('/', function () {
         'blogs' => $blogs
     ]);
 })->name('home');
-
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/request-contact', [ContactController::class, 'storeWithReason'])->name('contact.storeWithReason');
 Route::get('/contact-reasons', [ContactController::class, 'getContactReasons'])->name('contact.reasons');
-
 Route::get('/404', function () {
     return view('errors.notfound');
 })->name('notfound');
-
 Route::prefix('/blog')->group(function () {
     Route::get('/', ListArticlesController::class)->name('blogs');
     Route::get('/search', [SearchArticleController::class, 'search'])->name('search');
@@ -108,8 +112,8 @@ Route::prefix('/blog')->group(function () {
         return view('categories');
     })->name('categories');
     Route::get('/category/{categoryName}', function ($categoryName) {
-        $category = Category::withCount('posts')->where('slug', $categoryName)->firstOrFail();
-        $blogs = $category->posts()->published()->with('user')->get();
+        $category = Category::withCount('blogs')->where('slug', $categoryName)->firstOrFail();
+        $blogs = $category->blogs()->published()->with('user')->get();
 
         seo()
             ->title($category['name'] . ' | Khanh Nguyen')
@@ -131,6 +135,7 @@ Route::prefix('/blog')->group(function () {
             $seconds = $totalSeconds % 60;
     
             $blog->reading_time = sprintf('%d phút %d giây', $minutes, $seconds);
+            $blog->category_slug = $category->slug;
         }
     
         return view('category', [
@@ -143,14 +148,26 @@ Route::prefix('/blog')->group(function () {
         return view('blog', ['blogName' => $blogName]);
     })->name('blog');
 });
-
 Route::post('/subscribe-newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::post('/unsubscribe-newsletter/{email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
-
 Route::fallback(function () {
     return response()->view('errors.notfound', [], 404);
 });
+Route::name('admin.')->group(function () {
+    Route::get('blog/{category:slug}/{blogs:slug}', ViewArticleController::class)->name('post.show');
+    
+    Route::get('{year}/{month}/{blogs:slug}', function ($year, $month, $slug) {
+        $blog = blogs::where('slug', $slug)
+            ->whereYear('published_at', $year)
+            ->whereMonth('published_at', $month)
+            ->orderBy('published_at', 'asc')
+            ->limit(20)
+            ->first();
 
-Route::name('admin.')->prefix('blog/{blogs:slug}')->group(function () {
-    Route::get('/', ViewArticleController::class)->name('post.show');
+        if (!$blog) {
+            abort(404);
+        }
+
+        return app(ViewArticleController::class)->show($blog);
+    })->name('post.show.byDate');
 });
