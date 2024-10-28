@@ -1,17 +1,19 @@
-{{-- <x-app-layout> --}}
 <x-layouts.appclient>
-    <div class="" x-data="{ isLoading: false }">
+    <div class="" x-data="home()">
         <section
             class="max-w-default mx-auto px-4 sm:px-6 default:px-12 flex flex-col-reverse md:flex-row justify-between gap-14 md:pt-6">
             <div class="self-center">
                 <h3 class="font-semibold font-manrope text-4xl mb-6 leading-snug">Hi, mình là <span
                         class="text-btn-bg">Khanh Nguyen</span> 👋</h3>
-                <p class="font-manrope leading-relaxed text-base mb-8">Mình là một <b>Tư vấn viên hệ thống SAP</b> ở
-                    Việt Nam. Đôi khi mình viết hơi lan man, dài dòng và khó hiểunhưng hi vọng cũng cung cấp thông tin
-                    có ích cho mọi người. Cám ơn mọi người!!!
+                <p class="font-manrope leading-relaxed text-base mb-8">
+                    Mình hiện làm việc trong ngành SAP ở Việt Nam với vị trí <b>Tư vấn triển khai SAP</b> cho ngành sản
+                    xuất, bán lẻ và thương mại.
+                    Blog này mình chia sẻ các thông tin xung quanh hệ thống SAP mà mình tìm hiểu được. Đôi khi bài viết
+                    dài dòng, lan man và khó hiểu nhưng hi vọng cũng cung cấp thông tin có ích cho mọi người.
+                    Cám ơn mọi người!!!
                 </p>
                 <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form-home"
-                    onsubmit="handleSubmitRegister(event)" class="flex flex-col gap-2 font-medium">
+                    @submit="handleSubmitRegisterHome(event)" class="flex flex-col gap-2 font-medium">
                     @csrf
                     <label for="email-subcribe-input-home" class="font-manrope text-sm">Đăng ký nhận thông tin bài viết
                         mới của mình qua email nhé </label>
@@ -26,7 +28,17 @@
                                 x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }"
                                 x-bind:disabled="isLoading">
                                 <span x-show="!isLoading">Đăng ký</span>
-                                <span x-show="isLoading" class="animate-spin">⏳</span>
+                                <div x-show="isLoading" class="flex">
+                                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                            stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                    <span class="loader">Đang tải...</span>
+                                </div>
                             </button>
                         </div>
                 </form>
@@ -66,7 +78,7 @@
                                         alt="post-img-small-{{ $index }}">
                                     <div
                                         class="absolute z-10 -top-2 -right-0.5 rounded-full w-6 aspect-1 bg-text-main text-xs text-white font-bold flex justify-center items-center">
-                                        {{ $category->posts_count }}
+                                        {{ $category->blogs_count }}
                                     </div>
                                     {{-- <div
                                         class="absolute z-0 inset-0 rounded-full ring-4 ring-bg-category-3-secondary opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">
@@ -152,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex gap-4 items-center">
+                                    {{-- <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center -mt-1.5">
                                             <div class="text-lg font-light text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
@@ -168,7 +180,7 @@
                                         <div class="flex flex-col gap-2">
                                             <p class="text-xs">{{ $featurePost['reading_time'] }} đọc</p>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center">
                                             <div class="text-base font-light text-white">
@@ -194,7 +206,7 @@
                                 </div>
                                 <div class="flex flex-1 pt-10">
                                     <div class="relative group/title">
-                                        <a href="/blog/{{ $featurePost['slug'] }}"
+                                        <a href="/blog/{{ $featurePost['category_slug'] }}/{{ $featurePost['slug'] }}"
                                             class="relative font-medium font-manrope leading-relaxed group/title line-clamp-3">
                                             {{ $featurePost['title'] }}
                                         </a>
@@ -208,7 +220,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/blog/{{ $featurePost['slug'] }}">
+                            <a href="/blog/{{ $featurePost['category_slug'] }}/{{ $featurePost['slug'] }}">
                                 <button
                                     class="py-2 px-[22px] bg-black rounded text-white ease duration-200 float-end text-sm">Xem
                                     Tiếp</button>
@@ -274,8 +286,8 @@
                                 <ul x-show="openSections[{{ $index }}]"
                                     class="ml-4 mt-3 space-y-3 text-sm leading-normal border-l border-l-[#E9E8FF] pl-4"
                                     x-transition>
-                                    @foreach ($category['posts'] as $index => $post)
-                                        <li class="leading-slug"><span
+                                    @foreach ($category['blogs'] as $index => $post)
+                                        <li class="leading-loose cursor-default"><span
                                                 class="font-semibold mr-1">{{ $index + 1 }}.
                                             </span>{{ $post['title'] }}</li>
                                     @endforeach
@@ -319,7 +331,7 @@
             <div>
                 <template x-for="(category, index) in categories" :key="category.id">
                     <div x-show="openSections[index]" class="space-y-8 mt-4">
-                        <template x-for="post in category.posts" :key="post.id">
+                        <template x-for="post in category.blogs" :key="post.id">
                             <article
                                 class="bg-white md:p-4 rounded-xl shadow hover:shadow-lg transition duration-300 relative overflow-x-hidden cursor-default">
                                 <div class="justify-between gap-6 h-full hidden md:flex">
@@ -330,7 +342,7 @@
                                                 <span>{{ $category['name'] }}</span>
                                             </a>
                                         </div>
-                                        <a href="/blog/{{ $post['title'] }}">
+                                        <a href="/blog/{{ $post['category_slug'] }}/{{ $post['slug'] }}">
                                             <img class="aspect-1 h-[250px] rounded-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear object-cover"
                                                 :src="`/storage/${post.cover_photo_path}`" :alt="post.photo_alt_text">
                                         </a>
@@ -344,7 +356,7 @@
                                                             <img class="w-5 aspect-1 rounded-full !object-cover"
                                                                 style="aspect-ratio: 1/1"
                                                                 x-bind:src="`/storage/${post.user.profile_photo_path}`"
-                                                                x-alt="post.author.name">
+                                                                x-alt="post.user.photo_alt_text">
                                                         </template>
                                                         <template x-if="! post.user.profile_photo_path">
                                                             <div
@@ -409,7 +421,7 @@
                                             </div>
                                         </div>
                                         <div class="relative group/title">
-                                            <a x-bind:href="'/blog/' + post.slug"
+                                            <a x-bind:href="'/blog/' + post.category_slug + '/' + post.slug"
                                                 class="relative cursor-pointer font-manrope font-semibold text-xl leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200 h-[65px]"
                                                 x-text="post.title" x-title="post.title">
                                             </a>
@@ -445,12 +457,12 @@
                                         </div>
                                         <a x-bind:href="'/blog/' + post.slug">
                                             <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
-                                                :alt="post.photo_alt_text">
+                                                :src="`/storage/${post.cover_photo_path}`" :alt="post.photo_alt_text">
                                         </a>
                                     </div>
                                     <div class="flex flex-col gap-2 sm:gap-4 px-4">
                                         <div class="relative group/title">
-                                            <a x-bind:href="'/blog/' + post.slug"
+                                            <a x-bind:href="'/blog/' + post.category_slug + '/' + post.slug"
                                                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"
                                                 x-text="post.title" x-title="post.title"></a>
                                         </div>
@@ -606,6 +618,42 @@
     </section>
     </div>
     @push('scripts')
+        <script>
+            function home() {
+                return {
+                    isLoading: false,
+                    handleSubmitRegisterHome(event) {
+                        event.preventDefault();
+
+                        const form = document.getElementById('register-form-home');
+                        const formData = new FormData(form);
+
+                        this.isLoading = true;
+
+                        fetch(form.action, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'Accept': 'application/json',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.message);
+                                form.reset();
+                            })
+                            .catch(error => {
+                                alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                console.error('Error:', error);
+                            })
+                            .finally(() => {
+                                this.isLoading = false;
+                            });
+                    }
+                }
+            }
+        </script>
         <!-- Import Swiper and initialize -->
         <script type="module">
             const swiper = new Swiper('.testimonial-swiper-container', {
@@ -674,11 +722,9 @@
                         console.error('Error:', error);
                     })
                     .finally(() => {
-                        // Reset trạng thái loading
                         this.isLoading = false;
                     });
             }
         </script>
     @endpush
-    {{-- </x-app-layout> --}}
 </x-layouts.appclient>

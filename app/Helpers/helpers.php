@@ -46,9 +46,9 @@ if (!function_exists('getCategory')) {
     function getCategory(int $limit = 0)
     {
         if ($limit > 0) {
-            return Category::withCount('posts')->limit($limit)->get();
+            return Category::withCount('blogs')->limit($limit)->get();
         } else {
-            return Category::withCount('posts')->get();
+            return Category::withCount('blogs')->get();
         }
     }
 }

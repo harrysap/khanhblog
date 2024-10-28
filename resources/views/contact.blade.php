@@ -146,40 +146,6 @@
                     }
                 }
             }
-            // function handleSubmit(event) {
-            //     event.preventDefault();
-
-            //     const form = document.getElementById('contact-form');
-            //     const formData = new FormData(form);
-
-            //     this.isLoading = true;
-
-            //     fetch(form.action, {
-            //             method: 'POST',
-            //             body: formData,
-            //             headers: {
-            //                 'X-Requested-With': 'XMLHttpRequest',
-            //                 'Accept': 'application/json',
-            //             }
-            //         })
-            //         .then(response => response.json())
-            //         .then(data => {
-            //             if (data.success) {
-            //                 alert('Cảm ơn bạn đã liên hệ! Mình sẽ trả lời bạn sớm nhất có thể.');
-            //                 form.reset(); 
-            //             } else {
-            //                 alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
-            //             }
-            //         })
-            //         .catch(error => {
-            //             alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
-            //             console.error('Error:', error);
-            //         })
-            //         .finally(() => {
-            //             console.log("bị gì ta: ", this.isLoading)
-            //             this.isLoading = false;
-            //         });
-            // }
         </script>
     @endpush
 </x-layouts.appclient>

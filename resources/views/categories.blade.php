@@ -32,7 +32,7 @@
                         <div class="">
                             <p class="mt-2 font-bold w-full line-clamp-2 leading-relaxed text-wrap truncate font-manrope sm:max-w-40"
                                 title={{ $category['name'] }}>{{ $category['name'] }}</p>
-                            <span><b>{{ $category['posts_count'] }}</b> bài đăng</span>
+                            <span><b>{{ $category['blogs_count'] }}</b> bài đăng</span>
                         </div>
                     </a>
                 @endforeach

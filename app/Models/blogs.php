@@ -76,11 +76,6 @@ class blogs extends Model
     {
         return $this->published_at?->format('d M Y');
     }
-//    public function isScheduled()
-//    {
-//        return $this->status === PostStatus::SCHEDULED;
-//    }
-
     public function isStatusPublished()
     {
         return $this->status === PostStatus::PUBLISHED;

@@ -7,21 +7,21 @@
     <div class="relative overflow-hidden">
         <div
             class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
-            <a x-bind:href="'/blog/' + article.slug">
+            <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug">
                 <span x-text="categories[article.categories].name"></span>
             </a>
         </div>
-        <a x-bind:href="'/blog/' + article.slug">
+        <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug">
             <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
                 x-bind:src="article.thumbnail_url" x-bind:alt="article.thumbnail_alt">
         </a>
     </div>
     <div class="px-1.5 pt-4">
         <div class="flex flex-col gap-2 sm:gap-4">
-            <a x-bind:href="'/blog/' + article.slug" x-text="article.title"
+            <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug" x-text="article.title"
                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
             <p x-text="article.sub_title"
-                class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"></p>
+                class="relative text-sm font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"></p>
         </div>
 
         <div class="flex gap-4 justify-center px-4 py-4">

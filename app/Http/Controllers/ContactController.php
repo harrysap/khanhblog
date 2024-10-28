@@ -86,7 +86,7 @@ class ContactController extends Controller
 
         try {
             // Lưu vào bảng liên hệ
-            $contact = Contact::create($request->only('full_name', 'email', 'phone_number', 'topic', 'message', 'contact_reason_id'));
+            $contact = Contact::create($request->only('full_name', 'email', 'phone_number', 'topic', 'company', 'message', 'contact_reason_id'));
 
             // Gửi email cảm ơn
             Mail::to($contact->email)->send(new \App\Mail\ContactThankYou($contact));

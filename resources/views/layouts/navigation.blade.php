@@ -18,7 +18,6 @@ window.addEventListener('scroll', () => {
     const response = await fetch('{{ route('contact.reasons') }}');
     const data = await response.json();
     this.contactReasons = data;
-    console.log('Test ', data);
 })();
 
 $nextTick(() => {
@@ -44,9 +43,8 @@ $nextTick(() => {
 
                 <!-- Logo -->
                 <a href="/">
-                    <img class="w-36 sm:w-40 transition-all duration-500"
-                        :class="scrolled ? 'w-32' : 'w-40'" src="{{ asset('storage/assets/site_logo.png') }}"
-                        alt="khanh-nguyen-blog-logo">
+                    <img class="w-36 sm:w-40 transition-all duration-500" :class="scrolled ? 'w-32' : 'w-40'"
+                        src="{{ asset('storage/assets/site_logo.png') }}" alt="khanh-nguyen-blog-logo">
                 </a>
 
                 <div class="flex gap-6 items-center">
@@ -265,11 +263,12 @@ $nextTick(() => {
             x-transition:leave="transition ease-in duration-300 transform"
             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
             @click.away="showModal = false; document.body.classList.remove('overflow-hidden');"
-            class="bg-white p-2 sm:p-6 rounded shadow-lg w-screen h-screen md:h-auto default:w-[80vw] relative">
-            <div class="flex flex-col md:flex-row gap-4 overflow-scroll pb-1.5 max-h-[95vh] overflow-scroll md:max-h-auto md:overflow-auto">
+            class="bg-white p-2 sm:p-6 rounded shadow-lg w-screen h-dvh md:h-auto md:w-[50vw] default:w-[40vw] relative flex flex-col justify-between">
+            <div
+                class="flex flex-col md:flex-row gap-4 overflow-scroll pb-1.5 max-h-[95vh] overflow-scroll md:max-h-auto md:overflow-auto">
                 <form action="{{ route('contact.storeWithReason') }}" method="POST" x-ref="contactForm"
                     @submit.prevent="submitForm(e)" id="request-form"
-                    class="w-full default:w-2/3 px-1 pb-4 md:max-h-[85vh] md:overflow-scroll">
+                    class="w-full px-1 pb-4 md:max-h-[85vh] md:overflow-scroll">
                     @csrf
                     <h2 class="text-xl font-bold pb-4  w-full">Nhận tư vấn nhiều hơn</h2>
                     <div class="flex flex-col gap-3 mb-4">
@@ -278,15 +277,23 @@ $nextTick(() => {
                             class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"
                             required />
                     </div>
-                    <div class="flex flex-col gap-3 mb-4">
-                        <label class="block font-semibold">Email <span class="text-red-500">*</span></label>
-                        <input type="email" x-model="email"
-                            class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"
-                            required />
+                    <div class="flex flex-col md:grid md:grid-cols-2 gap-3">
+
+                        <div class="flex flex-col gap-3 mb-4">
+                            <label class="block font-semibold">Email <span class="text-red-500">*</span></label>
+                            <input type="email" x-model="email"
+                                class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"
+                                required />
+                        </div>
+                        <div class="flex flex-col gap-3 mb-4">
+                            <label class="block font-semibold">Số điện thoại</label>
+                            <input type="text" x-model="phone"
+                                class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]" />
+                        </div>
                     </div>
                     <div class="flex flex-col gap-3 mb-4">
-                        <label class="block font-semibold">Số điện thoại</label>
-                        <input type="text" x-model="phone"
+                        <label class="block font-semibold">Công ty</label>
+                        <input type="text" x-model="company"
                             class="w-full px-3 py-2 border rounded-md text-sm focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]" />
                     </div>
                     <div class="flex flex-col gap-3 mb-4">
@@ -303,14 +310,9 @@ $nextTick(() => {
                             class="w-full px-3 py-2 border rounded-md focus:outline-none border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]"></textarea>
                     </div>
                 </form>
-                <div class="rounded-lg md:overflow-hidden pb-8">
-                    <img class="w-full h-full object-cover opacity-90 rounded-lg"
-                        src="{{ asset('assets/images/contact-bg.png') }}" alt="contact-us-form-bg">
-                </div>
             </div>
-            <div class="absolute bottom-0 flex justify-end py-2 right-0 px-3 sm:px-8 w-full bg-white rounded-lg">
-                <button type="button"
-                    @click="showModal = false; document.body.classList.remove('overflow-hidden');"
+            <div class="flex justify-end right-0 px-3 sm:px-8 w-full bg-white rounded-lg">
+                <button type="button" @click="showModal = false; document.body.classList.remove('overflow-hidden');"
                     class="px-4 py-2 bg-gray-300 rounded mr-2">Hủy</button>
                 <button type="button" @click="submitForm"
                     class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark lg:block"
@@ -319,8 +321,8 @@ $nextTick(() => {
                     <div x-show="isLoading" class="flex">
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10"
-                                stroke="currentColor" stroke-width="4"></circle>
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor"
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>
@@ -349,6 +351,7 @@ $nextTick(() => {
                     name: '',
                     email: '',
                     phone: '',
+                    company: '',
                     option: '1',
                     message: '',
                     isLoading: false,
@@ -357,14 +360,12 @@ $nextTick(() => {
                         const form = document.getElementById('request-form');
                         const formData = new FormData(form);
 
-                        // Thêm các trường cần thiết vào FormData
                         formData.append('full_name', this.name);
                         formData.append('email', this.email);
                         formData.append('phone_number', this.phone);
+                        formData.append('company', this.company);
                         formData.append('contact_reason_id', this.option);
                         formData.append('message', this.message);;
-
-                        console.log("Tst:", formData);
 
                         if (this.name && this.email && this.message) {
                             this.isLoading = true;
@@ -405,7 +406,6 @@ $nextTick(() => {
                 try {
                     const response = await fetch('{{ route('contact.reasons') }}');
                     const data = await response.json();
-                    console.log('Test ', data);
 
                     const selectElement = document.getElementById('contact-reasons');
 
