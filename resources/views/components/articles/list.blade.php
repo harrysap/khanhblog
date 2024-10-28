@@ -62,7 +62,7 @@
             this._currentPage = value
         },
     
-        perPage: 6,
+        perPage: 12,
         totalItems: 0,
         get totalPages() {
             return Math.ceil(this.totalItems / this.perPage)
@@ -181,7 +181,7 @@
                         fill="#FF2AAC" />
                 </svg></span>
 
-            <h2 class="font-semibold text-lg">Thể Loại</h2>
+            <h2 class="font-semibold text-lg">Chủ Đề</h2>
         </div>
 
         {{-- List Of Categories --}}
@@ -228,7 +228,8 @@
             <div class="relative min-h-[16rem] mt-6">
                 {{-- Articles --}}
                 <div x-ref="article_cards_wrapper" x-init="() => {
-                    autoAnimate($refs.article_cards_wrapper)
+                    autoAnimate($refs.article_cards_wrapper);
+                    console.log('Hmmm: ', articles)
                 }"
                     class="grid w-full grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] items-start justify-center gap-6">
                     <template x-for="article in filteredArticles" :key="article.id">

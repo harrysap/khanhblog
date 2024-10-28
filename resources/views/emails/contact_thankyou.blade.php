@@ -131,7 +131,7 @@
 
                             <!-- LOGO -->
                             <a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
+                                href="https://khanhnp.com"><img border="0" vspace="0" hspace="0"
                                     src="https://blogger.googleusercontent.com/img/a/AVvXsEgq6w3Mdlm5UuEa1gtZunB10xtc9QqdNOyeKi0ljPa6d3t0AuJfTCkZncYMpysUWZMs0UJIXd3dFCLGQIZzOGcQfw7salzcGMuRrJxE-dGNJxgnklzmTuBFMcVliMfPyOoK_evMvL7tgCKE5JIZy4BM7k15PcSL3E3Dfn1JeECU24y5zoeIlm7_u9O2=s369"
                                     width="200" height="50" alt="Logo" title="Logo"
                                     style="
@@ -177,7 +177,7 @@
                     <tr>
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
 			padding-top: 20px;" class="hero"><a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
+                                href="https://khanhnp.com/contact"><img border="0" vspace="0" hspace="0"
                                     src="https://img.freepik.com/free-photo/hot-line-contact-us-call-center-search-interface_53876-124009.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1729382400&semt=ais_hybrid"
                                     alt="" title="Hero Image" width="560"
                                     style="
@@ -206,14 +206,14 @@
                     <tr>
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
 			padding-top: 25px;
-			padding-bottom: 5px;" class="button"><a href="https://github.com/konsav/email-templates/" target="_blank">
+			padding-bottom: 5px;" class="button"><a href="https://khanhnp.com/contact" target="_blank">
                                 <table border="0" cellpadding="0" cellspacing="0" align="center"
                                     style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
                                     <tr>
                                         <td align="center" valign="middle"
                                             style="padding: 12px 24px; margin: 0; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; background-color: #6a4ee9;"
                                             bgcolor="#E9703E"><a target="_blank" style="color: #FFFFFF;  font-size: 17px; font-weight: 400; line-height: 120%; text-decoration: none; font-family: 'Manrope', sans-serif;"
-                                                href="https://github.com/konsav/email-templates/">
+                                                href="https://khanhnp.com/contact">
                                                 Đi đến trang liên hệ
                                             </a>
                                         </td>
@@ -320,7 +320,7 @@
 			color: #000000;
             font-family: 'Manrope', sans-serif;
 			" class="paragraph">
-                            Nếu có thắc mắc thêm, vui lòng liên hệ đến <a href="mailto:support@ourteam.com" target="_blank"
+                            Nếu có thắc mắc thêm, vui lòng liên hệ đến <a href="mailto:contact@khanhnph.com" target="_blank"
                                 style="color: #127DB3;  font-size: 17px; font-weight: 400; line-height: 160%; font-family: 'Manrope', sans-serif;">support@ourteam.com</a>
                         </td>
                     </tr>
@@ -399,8 +399,8 @@
 			" class="footer">
 
                             Bạn nhận được email này do trước đó đã để lại thông tin tại trang <a
-                                href="https://github.com/konsav/email-templates/" target="_blank"
-                                style="text-decoration: underline; color: #999999;  font-size: 13px; font-weight: 400; line-height: 150%;">https://github.com/konsav/email-templates/</a>.
+                                href="https://khanhnp.com" target="_blank"
+                                style="text-decoration: underline; color: #999999;  font-size: 13px; font-weight: 400; line-height: 150%;">https://khanhnp.com</a>.
 
                             <!-- ANALYTICS -->
                             <img width="1" height="1" border="0" vspace="0" hspace="0"

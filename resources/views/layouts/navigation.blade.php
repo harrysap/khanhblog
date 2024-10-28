@@ -18,7 +18,6 @@ window.addEventListener('scroll', () => {
     const response = await fetch('{{ route('contact.reasons') }}');
     const data = await response.json();
     this.contactReasons = data;
-    console.log('Test ', data);
 })();
 
 $nextTick(() => {
@@ -264,7 +263,7 @@ $nextTick(() => {
             x-transition:leave="transition ease-in duration-300 transform"
             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
             @click.away="showModal = false; document.body.classList.remove('overflow-hidden');"
-            class="bg-white p-2 sm:p-6 rounded shadow-lg w-screen h-screen md:h-auto md:w-[50vw] default:w-[40vw] relative flex flex-col justify-between">
+            class="bg-white p-2 sm:p-6 rounded shadow-lg w-screen h-dvh md:h-auto md:w-[50vw] default:w-[40vw] relative flex flex-col justify-between">
             <div
                 class="flex flex-col md:flex-row gap-4 overflow-scroll pb-1.5 max-h-[95vh] overflow-scroll md:max-h-auto md:overflow-auto">
                 <form action="{{ route('contact.storeWithReason') }}" method="POST" x-ref="contactForm"
@@ -361,7 +360,6 @@ $nextTick(() => {
                         const form = document.getElementById('request-form');
                         const formData = new FormData(form);
 
-                        // Thêm các trường cần thiết vào FormData
                         formData.append('full_name', this.name);
                         formData.append('email', this.email);
                         formData.append('phone_number', this.phone);

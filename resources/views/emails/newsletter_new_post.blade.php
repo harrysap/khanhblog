@@ -94,7 +94,7 @@
     </style>
 
     <!-- MESSAGE SUBJECT -->
-    <title>Get this responsive email template</title>
+    <title>Một bài viết mới được đăng tại Khanh Blog</title>
 
 </head>
 
@@ -137,7 +137,7 @@
 
                             <!-- LOGO -->
                             <a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0"
+                                href="https://khanhnp.com/"><img border="0" vspace="0"
                                     hspace="0"
                                     src="https://blogger.googleusercontent.com/img/a/AVvXsEgq6w3Mdlm5UuEa1gtZunB10xtc9QqdNOyeKi0ljPa6d3t0AuJfTCkZncYMpysUWZMs0UJIXd3dFCLGQIZzOGcQfw7salzcGMuRrJxE-dGNJxgnklzmTuBFMcVliMfPyOoK_evMvL7tgCKE5JIZy4BM7k15PcSL3E3Dfn1JeECU24y5zoeIlm7_u9O2=s369"
                                     width="200" height="50" alt="Logo" title="Logo"
@@ -180,10 +180,10 @@
                             style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
 			padding-top: 20px;"
                             class="hero"><a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0"
+                                href="https://khanhnp.com/"><img border="0" vspace="0"
                                     hspace="0"
                                     src="{{ $post->cover_photo_path && Storage::exists($post->cover_photo_path) ? Storage::url($post->cover_photo_path) : 'https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-grid.png' }}"
-                                    alt="Please enable images to view this content" title="Hero Image" width="530"
+                                    alt="" title="Hero Image" width="530"
                                     style="
 			width: 88.33%;
 			max-width: 530px;
@@ -482,10 +482,11 @@
                             class="footer">
 
                             Bạn nhận được email này do trước đó đã để lại thông tin tại trang <a
-                                href="https://github.com/konsav/email-templates/" target="_blank"
+                                href="https://khanhnp.com/" target="_blank"
                                 style="text-decoration: underline; color: #828999; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 400; line-height: 150%;">shttps://github.com/konsav/email-templates</a>.
                             <div style="">
-                                <a href="https://yourdomain.com/unsubscribe?email=" target="_blank"
+                                <a href="https://khanhnp.com/unsubscribe-registration/{{ $data['email'] }}"
+                                    target="_blank"
                                     style="color: #828999; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
                                     Hủy Đăng Ký
                                 </a>

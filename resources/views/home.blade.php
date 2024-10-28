@@ -1,6 +1,5 @@
-{{-- <x-app-layout> --}}
 <x-layouts.appclient>
-    <div class="" x-data="{ isLoading: false }">
+    <div class="" x-data="home()">
         <section
             class="max-w-default mx-auto px-4 sm:px-6 default:px-12 flex flex-col-reverse md:flex-row justify-between gap-14 md:pt-6">
             <div class="self-center">
@@ -14,7 +13,7 @@
                     Cám ơn mọi người!!!
                 </p>
                 <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form-home"
-                    onsubmit="handleSubmitRegister(event)" class="flex flex-col gap-2 font-medium">
+                    @submit="handleSubmitRegisterHome(event)" class="flex flex-col gap-2 font-medium">
                     @csrf
                     <label for="email-subcribe-input-home" class="font-manrope text-sm">Đăng ký nhận thông tin bài viết
                         mới của mình qua email nhé </label>
@@ -29,7 +28,17 @@
                                 x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }"
                                 x-bind:disabled="isLoading">
                                 <span x-show="!isLoading">Đăng ký</span>
-                                <span x-show="isLoading" class="animate-spin">⏳</span>
+                                <div x-show="isLoading" class="flex">
+                                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                            stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                    <span class="loader">Đang tải...</span>
+                                </div>
                             </button>
                         </div>
                 </form>
@@ -155,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex gap-4 items-center">
+                                    {{-- <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center -mt-1.5">
                                             <div class="text-lg font-light text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
@@ -171,7 +180,7 @@
                                         <div class="flex flex-col gap-2">
                                             <p class="text-xs">{{ $featurePost['reading_time'] }} đọc</p>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="flex gap-4 items-center">
                                         <div class="flex w-5 justify-center">
                                             <div class="text-base font-light text-white">
@@ -347,7 +356,7 @@
                                                             <img class="w-5 aspect-1 rounded-full !object-cover"
                                                                 style="aspect-ratio: 1/1"
                                                                 x-bind:src="`/storage/${post.user.profile_photo_path}`"
-                                                                x-alt="post.author.name">
+                                                                x-alt="post.user.photo_alt_text">
                                                         </template>
                                                         <template x-if="! post.user.profile_photo_path">
                                                             <div
@@ -448,7 +457,7 @@
                                         </div>
                                         <a x-bind:href="'/blog/' + post.slug">
                                             <img class="w-full h-[250px] object-cover rounded-t-xl opacity-95 hover:opacity-85 transition-opacity duration-150 ease-linear"
-                                                :alt="post.photo_alt_text">
+                                                :src="`/storage/${post.cover_photo_path}`" :alt="post.photo_alt_text">
                                         </a>
                                     </div>
                                     <div class="flex flex-col gap-2 sm:gap-4 px-4">
@@ -609,6 +618,42 @@
     </section>
     </div>
     @push('scripts')
+        <script>
+            function home() {
+                return {
+                    isLoading: false,
+                    handleSubmitRegisterHome(event) {
+                        event.preventDefault();
+
+                        const form = document.getElementById('register-form-home');
+                        const formData = new FormData(form);
+
+                        this.isLoading = true;
+
+                        fetch(form.action, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'Accept': 'application/json',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.message);
+                                form.reset();
+                            })
+                            .catch(error => {
+                                alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                console.error('Error:', error);
+                            })
+                            .finally(() => {
+                                this.isLoading = false;
+                            });
+                    }
+                }
+            }
+        </script>
         <!-- Import Swiper and initialize -->
         <script type="module">
             const swiper = new Swiper('.testimonial-swiper-container', {
@@ -677,11 +722,9 @@
                         console.error('Error:', error);
                     })
                     .finally(() => {
-                        // Reset trạng thái loading
                         this.isLoading = false;
                     });
             }
         </script>
     @endpush
-    {{-- </x-app-layout> --}}
 </x-layouts.appclient>

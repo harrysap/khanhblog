@@ -60,13 +60,17 @@ class NewsletterController extends Controller
         return response()->json(['message' => 'Cảm ơn bạn đã đăng ký nhận bảng tin!']);
     }
 
-    public function unsubscribe(Request $request, $id)
+    public function unsubscribe(Request $request)
     {
-        $newsletter = Newsletter::findOrFail($id);
+        $email = $request->input('email');
+        $reason = $request->input('reason');
+    
+        $newsletter = Newsletter::where('email', $email)->firstOrFail();
+    
         $newsletter->active = false;
-        $newsletter->reason = $request->reason;
+        $newsletter->reason = $reason;
         $newsletter->save();
-
-        return redirect('/')->with('message', 'Bạn đã hủy đăng ký thành công!');
+        
+        return response()->json(['message' => 'Bạn đã hủy đăng ký thành công!']);
     }
 }

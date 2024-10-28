@@ -1,5 +1,5 @@
 <footer class="relative">
-    <div class="max-w-default mx-auto flex flex-col">
+    <div x-data="footer()" class="max-w-default mx-auto flex flex-col">
         <div class="py-24">
             <div class="flex gap-6 lg:gap-16 flex-col lg:flex-row px-4 lg:px-6">
                 <div class="flex flex-col sm:flex-row gap-6 sm:justify-between lg:gap-16">
@@ -23,7 +23,8 @@
                             <h3 class="text-lg font-bold leading-normal">Kết nối với mình!</h3>
                         </div>
                         <ul class="list-none ml-8 mt-6">
-                            <li class="py-4 border-b border-border-main"><a href="https://www.linkedin.com/in/khanhnph/" target="_blank"
+                            <li class="py-4 border-b border-border-main"><a href="https://www.linkedin.com/in/khanhnph/"
+                                    target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
                                     <span class="text-sm">Kết nối trên <b> LinkedIn</b></span>
                                     <div>
@@ -31,7 +32,8 @@
                                             alt="linkedin-logo">
                                     </div>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="https://www.facebook.com/khanhnph" target="_blank"
+                            <li class="py-4 border-b border-border-main"><a href="https://www.facebook.com/khanhnph"
+                                    target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
                                     <span class="text-sm">Kết nối trên <b> Facebook</b></span>
                                     <div>
@@ -39,7 +41,8 @@
                                             alt="linkedin-logo">
                                     </div>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="https://www.youtube.com/khanhnph" target="_blank"
+                            <li class="py-4 border-b border-border-main"><a href="https://www.youtube.com/khanhnph"
+                                    target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
                                     <span class="text-sm">Xem trên <b> Youtube</b></span>
                                     <div>
@@ -47,7 +50,8 @@
                                             alt="linkedin-logo">
                                     </div>
                                 </a></li>
-                            <li class="py-4 border-b border-border-main"><a href="https://www.instagram.com/khanhnphh" target="_blank"
+                            <li class="py-4 border-b border-border-main"><a href="https://www.instagram.com/khanhnphh"
+                                    target="_blank"
                                     class="flex justify-between items-center text-gray-400 hover:text-btn-bg ease duration-200">
                                     <span class="text-sm">Hình ảnh trên <b> Instagram</b></span>
                                     <div>
@@ -96,18 +100,19 @@
                         </ul>
                     </div>
                 </div>
-                <div x-data="{ isLoading: false }" class="flex flex-col gap-8">
+                <div class="flex flex-col gap-8">
                     <div>
                         <img class="w-40" src="{{ asset('storage/assets/site_logo.png') }}"
                             alt="khanh-nguyen-blog-logo">
                     </div>
-                    <p class="leading-relaxed">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo tin tức
+                    <p class="leading-relaxed">Đăng ký để nhận thông báo email về bài đăng mới nhất và những thông báo
+                        tin tức
                         nổi bật</p>
                     <div>
                         <form action="{{ route('newsletter.subscribe') }}" method="POST" id="register-form"
-                            onsubmit="handleSubmitRegister(event)"
+                            @submit="handleSubmitRegister(event)"
                             class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
-                            @csrf <!-- Token để bảo vệ chống CSRF -->
+                            @csrf
                             <input type="email-subcribe-input" id="email-subcribe-input" name="email" x-ref="email"
                                 placeholder="Nhập địa chỉ email"
                                 class="focus:outline-none font-manrope w-full placeholder-[#707070]">
@@ -117,7 +122,17 @@
                                     x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }"
                                     x-bind:disabled="isLoading">
                                     <span x-show="!isLoading">Đăng ký</span>
-                                    <span x-show="isLoading" class="animate-spin">⏳</span>
+                                    <div x-show="isLoading" class="flex">
+                                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                            </path>
+                                        </svg>
+                                        <span class="loader">Đang tải...</span>
+                                    </div>
                                 </button>
                             </div>
                         </form>
@@ -133,35 +148,39 @@
 
     @push('scripts')
         <script>
-            function handleSubmitRegister(event) {
-                event.preventDefault();
+            function footer() {
+                return {
+                    isLoading: false,
+                    handleSubmitRegister(event) {
+                        event.preventDefault();
 
-                const form = document.getElementById('register-form');
-                const formData = new FormData(form);
+                        const form = document.getElementById('register-form');
+                        const formData = new FormData(form);
 
-                this.isLoading = true;
+                        this.isLoading = true;
 
-                fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'Accept': 'application/json',
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        form.reset();
-                    })
-                    .catch(error => {
-                        alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
-                        console.error('Error:', error);
-                    })
-                    .finally(() => {
-                        // Reset trạng thái loading
-                        this.isLoading = false;
-                    });
+                        fetch(form.action, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'Accept': 'application/json',
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.message);
+                                form.reset();
+                            })
+                            .catch(error => {
+                                alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
+                                console.error('Error:', error);
+                            })
+                            .finally(() => {
+                                this.isLoading = false;
+                            });
+                    }
+                }
             }
         </script>
     @endpush

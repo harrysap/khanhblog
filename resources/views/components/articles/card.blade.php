@@ -21,7 +21,7 @@
             <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug" x-text="article.title"
                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
             <p x-text="article.sub_title"
-                class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"></p>
+                class="relative text-sm font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"></p>
         </div>
 
         <div class="flex gap-4 justify-center px-4 py-4">

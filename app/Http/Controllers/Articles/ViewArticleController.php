@@ -14,30 +14,39 @@ class ViewArticleController extends Controller
         $title=(Lang::getLocale() == 'vi') ? $blogs->title : ($blogs->title_en ?? $blogs->title);
         $averageReadingSpeed = 200;
         $bodyContent = (Lang::getLocale() == 'vi') ? $blogs->body : $blogs->body_en;
-
+        
         $wordCount = str_word_count(strip_tags($bodyContent));
         $totalSeconds = ceil(($wordCount / $averageReadingSpeed) * 60);
-
+        
         $minutes = floor($totalSeconds / 60);
         $seconds = $totalSeconds % 60;
-
+        
         $readingTime = sprintf('%d phút %d giây', $minutes, $seconds);
+        
+        $subtitle = $blogs->sub_title;
+        $coverPhotoPath = asset('storage/' . $blogs->cover_photo_path);
+        $siteLogo = asset('storage/assets/site_logo.png');
 
         seo()
-            ->title("{$title} by {$blogs->user->name}")
-            ->description($title)
-            ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
-            ->tag('previewlinks:overline', 'Filament')
-            ->tag('previewlinks:title', $title)
-            ->tag('previewlinks:subtitle', "By {$blogs->user->name}")
-            ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
-            ->tag('previewlinks:repository', 'filament/filament')
-            ->withUrl()
-            ->url($blogs->canonical_url ?? request()->url())
-            ->rawTag('<meta name="description" content="'. $title.'">')
-            ->rawTag('fb_url', '<meta property="fb:url" content="bar" />');
-
-        $types= collect([
+            ->title($title)
+            ->description($subtitle)
+            ->image($coverPhotoPath)
+            ->rawTag('<meta property="og:title" content="' . $title . '" />')
+            ->rawTag('<meta property="og:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="og:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="og:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
+            ->rawTag('<meta property="og:type" content="article" />')
+            ->rawTag('<meta property="twitter:card" content="summary_large_image" />')
+            ->rawTag('<meta property="twitter:title" content="' . $title . '" />')
+            ->rawTag('<meta property="twitter:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="twitter:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="linkedin:title" content="' . $title . '" />')
+            ->rawTag('<meta property="linkedin:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="linkedin:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="linkedin:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
+            ->rawTag('<meta name="description" content="' . $subtitle . '">');
+        
+            $types= collect([
             'article' => [
                 'slug' => 'article',
                 'name' => 'Article',
@@ -142,21 +151,29 @@ class ViewArticleController extends Controller
         $seconds = $totalSeconds % 60;
 
         $readingTime = sprintf('%d phút %d giây', $minutes, $seconds);
+        $subtitle = $blogs->sub_title;
+        $coverPhotoPath = asset('storage/' . $blogs->cover_photo_path);
+        $siteLogo = asset('storage/assets/site_logo.png');
 
         seo()
-            ->title("{$title} by {$blogs->user->name}")
-            ->description($title)
-            ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
-            ->tag('previewlinks:overline', 'Filament')
-            ->tag('previewlinks:title', $title)
-            ->tag('previewlinks:subtitle', "By {$blogs->user->name}")
-            ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
-            ->tag('previewlinks:repository', 'filament/filament')
-            ->withUrl()
-            ->url($blogs->canonical_url ?? request()->url())
-            ->rawTag('<meta name="description" content="'. $title.'">')
-            ->rawTag('fb_url', '<meta property="fb:url" content="bar" />');
-
+            ->title($title)
+            ->description($subtitle)
+            ->image($coverPhotoPath)
+            ->rawTag('<meta property="og:title" content="' . $title . '" />')
+            ->rawTag('<meta property="og:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="og:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="og:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
+            ->rawTag('<meta property="og:type" content="article" />')
+            ->rawTag('<meta property="twitter:card" content="summary_large_image" />')
+            ->rawTag('<meta property="twitter:title" content="' . $title . '" />')
+            ->rawTag('<meta property="twitter:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="twitter:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="linkedin:title" content="' . $title . '" />')
+            ->rawTag('<meta property="linkedin:description" content="' . $subtitle . '" />')
+            ->rawTag('<meta property="linkedin:image" content="' . $coverPhotoPath . '" />')
+            ->rawTag('<meta property="linkedin:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
+            ->rawTag('<meta name="description" content="' . $subtitle . '">');
+            
         $types= collect([
             'article' => [
                 'slug' => 'article',

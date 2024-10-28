@@ -11,6 +11,7 @@ use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\App;
 use App\Models\Category;
 use App\Models\blogs;
+use App\Models\Newsletter;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Lang;
 
@@ -149,25 +150,40 @@ Route::prefix('/blog')->group(function () {
     })->name('blog');
 });
 Route::post('/subscribe-newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-Route::post('/unsubscribe-newsletter/{email}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+Route::get('/unsubscribe-registration/{email}', function ($email) {
+    $newsletter = Newsletter::where('email', $email)
+        ->where('active', 1)
+        ->first();
+
+    if (!$newsletter) {
+        abort(404); 
+    }
+
+    return view('unsubscribe', ['email' => $email]);
+});
+Route::post('/unsubscribe-newsletter', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+
+Route::get('blog/{category:slug}/{blogs:slug}', ViewArticleController::class)->name('posts.show');
+
+Route::get('{year}/{month}/{blogs:slug}', function ($year, $month, $slug) {
+    $blog = blogs::where('slug', $slug)
+        ->whereYear('published_at', $year)
+        ->whereMonth('published_at', $month)
+        ->orderBy('published_at', 'asc')
+        ->limit(20)
+        ->first();
+
+    if (!$blog) {
+        abort(404);
+    }
+
+    return app(ViewArticleController::class)->show($blog);
+})->name('post.show.byDate');
+
 Route::fallback(function () {
     return response()->view('errors.notfound', [], 404);
 });
-Route::name('admin.')->group(function () {
-    Route::get('blog/{category:slug}/{blogs:slug}', ViewArticleController::class)->name('post.show');
-    
-    Route::get('{year}/{month}/{blogs:slug}', function ($year, $month, $slug) {
-        $blog = blogs::where('slug', $slug)
-            ->whereYear('published_at', $year)
-            ->whereMonth('published_at', $month)
-            ->orderBy('published_at', 'asc')
-            ->limit(20)
-            ->first();
 
-        if (!$blog) {
-            abort(404);
-        }
-
-        return app(ViewArticleController::class)->show($blog);
-    })->name('post.show.byDate');
+Route::name('admin.')->prefix('blog/{blogs:slug}')->group(function () {
+    Route::get('/', ViewArticleController::class)->name('post.show');
 });

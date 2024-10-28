@@ -1,4 +1,3 @@
-{{-- <x-app-layout> --}}
 <x-layouts.appclient>
     <div class="mt-[-24px] md:mt-0">
         <section class="pb-8 max-w-default mx-auto px-4 sm:px-6 flex justify-center">
@@ -181,8 +180,7 @@
                                     <div
                                         class="w-full flex justify-between px-3 py-1.5 pl-3.5 gap-3 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
                                         <input readonly type="blog-link-input" id="blog-link-input" name="blog-link"
-                                            x-ref="blog-link" placeholder="Nhập địa chỉ email" x-model="currentLink"
-                                            x-ref="blogLinkInput"
+                                            placeholder="Nhập địa chỉ email" x-model="currentLink"
                                             class="focus:outline-none font-manrope w-full placeholder-[#707070]">
                                         <div x-data="{ copied: false }">
                                             <button
@@ -303,9 +301,10 @@
                         </div>
 
                         <!-- Articles List -->
-                        <ul class="flex flex-col gap-1 mt-8" x-ref="article_cards_wrapper" x-init="() => {
+                        {{-- <ul class="flex flex-col gap-1 mt-8" x-ref="article_cards_wrapper" x-init="() => {
                             autoAnimate($refs.article_cards_wrapper)
-                        }">
+                        }"> --}}
+                        <ul class="flex flex-col gap-1 mt-8">
                             @foreach ($category_blogs as $index => $blog)
                                 <!-- Article -->
                                 <li class="flex gap-3 items-center pl-4">
@@ -618,165 +617,163 @@
             }
 
             document.addEventListener('DOMContentLoaded', () => {
-                document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
+                document.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                });
 
-        document.addEventListener('selectstart', function (e) {
-            e.preventDefault();
-        });
+                document.addEventListener('selectstart', function(e) {
+                    e.preventDefault();
+                });
 
                 document.addEventListener('copy', function(e) {
                     e.preventDefault();
                 });
-                const blogContainer = document.querySelector('.blog-container');
-                const tocList = document.getElementById('toc-list');
-                const tocHighlight = document.getElementById('toc-highlight');
+                // const blogContainer = document.querySelector('.blog-container');
+                // const tocList = document.getElementById('toc-list');
+                // const tocHighlight = document.getElementById('toc-highlight');
 
-                const headers = blogContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
-                if (headers.length == 0) {
-                    document.querySelector("#toc-container").innerHTML = "<span>Bài viết không đánh chỉ mục</span>";
-                    return;
-                }
-                headers.forEach(_ => console.log(_.innerText))
-                const tocItems = [];
-                let lowestLevel = Infinity;
-
-
-                headers.forEach((header) => {
-                    const level = parseInt(header.tagName.replace('H', ''), 10);
-                    if (level < lowestLevel) {
-                        lowestLevel = level;
-                    }
-                });
+                // const headers = blogContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                // if (headers.length == 0) {
+                //     document.querySelector("#toc-container").innerHTML = "<span>Bài viết không đánh chỉ mục</span>";
+                //     return;
+                // }
+                // headers.forEach(_ => console.log(_.innerText))
+                // const tocItems = [];
+                // let lowestLevel = Infinity;
 
 
-                headers.forEach((header, index) => {
-                    const id = `header-${index}`;
-                    header.setAttribute('id', id);
-
-                    const level = parseInt(header.tagName.replace('H', ''), 10);
-
-                    let displayedLevel = level - (lowestLevel -
-                        1);
-
-                    const paddingLeft = displayedLevel * 7;
-
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.className = 'toc-item text-sm block';
-                    a.textContent = header.innerText;
-                    a.setAttribute('data-id', id);
-                    a.style.paddingLeft = `${paddingLeft}px`;
-                    li.appendChild(a);
-                    tocList.appendChild(li);
-
-                    tocItems.push({
-                        id,
-                        offsetTop: header.offsetTop,
-                        level,
-                        element: a,
-                    });
-                });
+                // headers.forEach((header) => {
+                //     const level = parseInt(header.tagName.replace('H', ''), 10);
+                //     if (level < lowestLevel) {
+                //         lowestLevel = level;
+                //     }
+                // });
 
 
-                tocItems.forEach(item => {
-                    if (item.level === lowestLevel) {
-                        item.element.style.display = 'block';
-                    } else {
-                        item.element.style.display = 'none';
-                    }
-                });
+                // headers.forEach((header, index) => {
+                //     const id = `header-${index}`;
+                //     header.setAttribute('id', id);
 
-                tocList.addEventListener('click', (e) => {
-                    const item = e.target.closest('.toc-item');
-                    if (item) {
-                        const id = item.getAttribute('data-id');
-                        const targetElement = document.getElementById(id);
+                //     const level = parseInt(header.tagName.replace('H', ''), 10);
 
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                //     let displayedLevel = level - (lowestLevel -
+                //         1);
 
-                        const headerOffset = 80;
-                        const elementPosition = targetElement.getBoundingClientRect().top + window
-                            .pageYOffset; // Get the target element's position
-                        const offsetPosition = elementPosition - headerOffset;
+                //     const paddingLeft = displayedLevel * 7;
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                //     const li = document.createElement('li');
+                //     const a = document.createElement('a');
+                //     a.className = 'toc-item text-sm block';
+                //     a.textContent = header.innerText;
+                //     a.setAttribute('data-id', id);
+                //     a.style.paddingLeft = `${paddingLeft}px`;
+                //     li.appendChild(a);
+                //     tocList.appendChild(li);
 
-                window.addEventListener('scroll', () => {
-                    const scrollPosition = window.scrollY;
+                //     tocItems.push({
+                //         id,
+                //         offsetTop: header.offsetTop,
+                //         level,
+                //         element: a,
+                //     });
+                // });
 
-                    let currentVisibleLevel = lowestLevel;
 
-                    tocItems.forEach((item, index) => {
-                        if (scrollPosition >= item.offsetTop - 10) {
-                            if (item.level > currentVisibleLevel) {
-                                let leftIndex = -1;
-                                let rightIndex = -1;
+                // tocItems.forEach(item => {
+                //     if (item.level === lowestLevel) {
+                //         item.element.style.display = 'block';
+                //     } else {
+                //         item.element.style.display = 'none';
+                //     }
+                // });
 
-                                for (let i = index - 1; i >= 0; i--) {
-                                    if (tocItems[i].level === currentVisibleLevel) {
-                                        leftIndex = i;
-                                        break;
-                                    }
-                                }
+                // tocList.addEventListener('click', (e) => {
+                //     const item = e.target.closest('.toc-item');
+                //     if (item) {
+                //         const id = item.getAttribute('data-id');
+                //         const targetElement = document.getElementById(id);
 
-                                for (let i = index + 1; i < tocItems.length; i++) {
-                                    if (tocItems[i].level === currentVisibleLevel) {
-                                        rightIndex = i;
-                                        break;
-                                    }
-                                }
+                //         targetElement.scrollIntoView({
+                //             behavior: 'smooth',
+                //             block: 'start'
+                //         });
 
-                                tocItems.forEach((innerItem, idx) => {
-                                    if ((idx >= leftIndex && idx <= rightIndex) || innerItem
-                                        .level === currentVisibleLevel) {
-                                        innerItem.element.style.display = 'block';
-                                    } else {
-                                        innerItem.element.style.display = 'none';
-                                    }
-                                });
-                            } else {
-                                tocItems.forEach(innerItem => {
-                                    if (innerItem.level === currentVisibleLevel) {
-                                        innerItem.element.style.display = 'block';
-                                    } else {
-                                        innerItem.element.style.display = 'none';
-                                    }
-                                });
-                            }
+                //         const headerOffset = 80;
+                //         const elementPosition = targetElement.getBoundingClientRect().top + window
+                //             .pageYOffset; // Get the target element's position
+                //         const offsetPosition = elementPosition - headerOffset;
 
-                            document.querySelectorAll('.toc-item').forEach(el => el.classList.remove(
-                                'toc-active'));
-                            item.element.classList.add('toc-active');
+                //         window.scrollTo({
+                //             top: offsetPosition,
+                //             behavior: 'smooth'
+                //         });
+                //     }
+                // });
 
-                            tocHighlight.style.top = `${item.element.offsetTop}px`;
-                            tocHighlight.style.height = `${item.element.offsetHeight}px`;
+                // window.addEventListener('scroll', () => {
+                //     const scrollPosition = window.scrollY;
 
-                            const tocContainer = document.getElementById('toc-container');
-                            const tocItemPosition = item.element.offsetTop - tocContainer.offsetTop +
-                                tocContainer.scrollTop;
-                            const tocContainerHeight = tocContainer.clientHeight;
+                //     let currentVisibleLevel = lowestLevel;
 
-                            // Adjust scroll position if the item is out of view
-                            if (tocItemPosition < tocContainer.scrollTop || tocItemPosition >=
-                                tocContainer.scrollTop + tocContainerHeight) {
-                                tocContainer.scrollTop = tocItemPosition - tocContainerHeight / 2;
-                            }
-                        }
-                    });
-                });
+                //     tocItems.forEach((item, index) => {
+                //         if (scrollPosition >= item.offsetTop - 10) {
+                //             if (item.level > currentVisibleLevel) {
+                //                 let leftIndex = -1;
+                //                 let rightIndex = -1;
 
+                //                 for (let i = index - 1; i >= 0; i--) {
+                //                     if (tocItems[i].level === currentVisibleLevel) {
+                //                         leftIndex = i;
+                //                         break;
+                //                     }
+                //                 }
+
+                //                 for (let i = index + 1; i < tocItems.length; i++) {
+                //                     if (tocItems[i].level === currentVisibleLevel) {
+                //                         rightIndex = i;
+                //                         break;
+                //                     }
+                //                 }
+
+                //                 tocItems.forEach((innerItem, idx) => {
+                //                     if ((idx >= leftIndex && idx <= rightIndex) || innerItem
+                //                         .level === currentVisibleLevel) {
+                //                         innerItem.element.style.display = 'block';
+                //                     } else {
+                //                         innerItem.element.style.display = 'none';
+                //                     }
+                //                 });
+                //             } else {
+                //                 tocItems.forEach(innerItem => {
+                //                     if (innerItem.level === currentVisibleLevel) {
+                //                         innerItem.element.style.display = 'block';
+                //                     } else {
+                //                         innerItem.element.style.display = 'none';
+                //                     }
+                //                 });
+                //             }
+
+                //             document.querySelectorAll('.toc-item').forEach(el => el.classList.remove(
+                //                 'toc-active'));
+                //             item.element.classList.add('toc-active');
+
+                //             tocHighlight.style.top = `${item.element.offsetTop}px`;
+                //             tocHighlight.style.height = `${item.element.offsetHeight}px`;
+
+                //             const tocContainer = document.getElementById('toc-container');
+                //             const tocItemPosition = item.element.offsetTop - tocContainer.offsetTop +
+                //                 tocContainer.scrollTop;
+                //             const tocContainerHeight = tocContainer.clientHeight;
+
+                //             // Adjust scroll position if the item is out of view
+                //             if (tocItemPosition < tocContainer.scrollTop || tocItemPosition >=
+                //                 tocContainer.scrollTop + tocContainerHeight) {
+                //                 tocContainer.scrollTop = tocItemPosition - tocContainerHeight / 2;
+                //             }
+                //         }
+                //     });
+                // });
             });
         </script>
     @endpush
 </x-layouts.appclient>
-{{-- </x-app-layout> --}}

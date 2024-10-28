@@ -128,7 +128,7 @@
 
                             <!-- LOGO -->
                             <a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
+                                href="https://khanhnp.com"><img border="0" vspace="0" hspace="0"
                                     src="https://blogger.googleusercontent.com/img/a/AVvXsEgq6w3Mdlm5UuEa1gtZunB10xtc9QqdNOyeKi0ljPa6d3t0AuJfTCkZncYMpysUWZMs0UJIXd3dFCLGQIZzOGcQfw7salzcGMuRrJxE-dGNJxgnklzmTuBFMcVliMfPyOoK_evMvL7tgCKE5JIZy4BM7k15PcSL3E3Dfn1JeECU24y5zoeIlm7_u9O2=s369"
                                     width="100" height="30" alt="Logo" title="Logo"
                                     style="
@@ -142,14 +142,13 @@
                     <!-- HERO IMAGE -->
                     <tr>
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-			padding-top: 0px;" class="hero"><a target="_blank" style="text-decoration: none;"
-                                href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
+			padding-top: 0px;" class="hero"><div style="text-decoration: none;"><img border="0" vspace="0" hspace="0"
                                     src="https://cdni.iconscout.com/illustration/premium/thumb/outgoing-subscription-mail-illustration-download-in-svg-png-gif-file-formats--subscribe-to-e-service-daily-pack-network-communication-illustrations-3605610.png"
                                     alt="" title="Hero Image" width="340"
                                     style="
 			width: 87.5%;
 			max-width: 340px;
-			color: #FFFFFF; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
+			color: #FFFFFF; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></div>
                         </td>
                     </tr>
 
@@ -192,7 +191,7 @@
                     <tr>
                         <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
 			padding-top: 25px;
-			padding-bottom: 5px;" class="button"><a href="https://github.com/konsav/email-templates/" target="_blank"
+			padding-bottom: 5px;" class="button"><a href="https://khanhnp.com/" target="_blank"
                                 style="text-decoration: none;">
                                 <table border="0" cellpadding="0" cellspacing="0" align="center"
                                     style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;">
@@ -201,7 +200,7 @@
                                             style="padding: 12px 24px; margin: 0; text-decoration: none; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
                                             bgcolor="#6a4ee9"><a target="_blank" style="text-decoration: none; background-color: #6a4ee9;
 					color: #FFFFFF; font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
-                                                href="https://github.com/konsav/email-templates/">
+                                                href="https://khanhnp.com/">
                                                 Đi đến Khanh Blog
                                             </a>
                                         </td>
@@ -231,10 +230,10 @@
 			font-family: 'Manrope', sans-serif;" class="footer">
 
                             Bạn nhận được email này do trước đó đã để lại thông tin tại trang <a
-                                href="https://github.com/konsav/email-templates/" target="_blank"
+                                href="https://khanhnp.com/" target="_blank"
                                 style="text-decoration: underline; color: #828999; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 400; line-height: 150%;">shttps://github.com/konsav/email-templates</a>.
                                 <div style="">
-                                    <a href="https://yourdomain.com/unsubscribe?email={{ $data['email'] }}" target="_blank"
+                                    <a href="https://khanhnp.com/unsubscribe-registration/{{ $data['email'] }}" target="_blank"
                                        style="color: #828999; font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 600; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
                                         Hủy Đăng Ký
                                     </a>
