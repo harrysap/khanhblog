@@ -1,7 +1,17 @@
 @php
     $statePath = $getStatePath();
 @endphp
+<style>
+    .tox.tox-fullscreen .tox-editor-container {
+        padding-top: 120px !important;
+        /* Apply padding when in fullscreen mode */
+    }
 
+    .tox:not(.tox-fullscreen) .tox-editor-container {
+        padding-top: 0;
+        /* Remove padding when not in fullscreen mode */
+    }
+</style>
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field" class="relative z-0">
     @php
         $textareaID = 'tiny-editor-' . str_replace(['.', '#', '$'], '-', $getId()) . '-' . rand();
