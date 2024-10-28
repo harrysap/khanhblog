@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Filament\Forms\Components\Tabs;
 use Illuminate\Support\Str;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use Lang;
 use App\Forms\Components\CKEditor;
 class blogs extends Model
@@ -145,10 +146,15 @@ class blogs extends Model
                                         ->maxLength(255)
                                         ->label('Tóm tắt nội dung')
                                         ->columnSpanFull(),
-                                    CKEditor::make('body')
+                                    TinyEditor::make('body')
+                                        ->fileAttachmentsDisk('public')
+                                        ->fileAttachmentsVisibility('public')
+                                        ->fileAttachmentsDirectory('uploads')
+                                        ->profile('full')
+                                        ->ltr() // Set RTL or use ->direction('auto|rtl|ltr')
+                                        ->resize('both')
+                                        ->columnSpan('full')
                                         ->required()
-                                        ->label('Nội dung chính')
-                                        ->columnSpanFull(),
                                 ]),
                             ]),
                     Fieldset::make('Hình Ảnh')
