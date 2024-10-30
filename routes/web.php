@@ -27,7 +27,21 @@ Route::get('/', function () {
         ->tag('previewlinks:title', $setting->site_name ?? 'Trang chủ')
         ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
         ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
-        ->tag('previewlinks:repository', 'harrydev/sap');
+        ->tag('previewlinks:repository', 'harrydev/sap')
+        ->rawTag('<meta property="og:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
+        ->rawTag('<meta property="og:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="og:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
+        ->rawTag('<meta property="og:url" content="' . (request()->url()) . '" />')
+        ->rawTag('<meta property="og:type" content="article" />')
+        ->rawTag('<meta property="twitter:card" content="summary_large_image" />')
+        ->rawTag('<meta property="twitter:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
+        ->rawTag('<meta property="twitter:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="twitter:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
+        ->rawTag('<meta property="linkedin:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
+        ->rawTag('<meta property="linkedin:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="linkedin:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
+        ->rawTag('<meta property="linkedin:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
+        ->rawTag('<meta name="description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '">');
 
     $blogs = blogs::select([
             'posts.id', 'posts.title', 'posts.slug', 'posts.sub_title', 'posts.cover_photo_path', 
