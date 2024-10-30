@@ -12,18 +12,21 @@ use Illuminate\Support\Facades\App;
 use App\Models\Category;
 use App\Models\blogs;
 use App\Models\Newsletter;
+use App\Models\settings;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Lang;
 
 Route::get('/', function () {
+    $setting = settings::find(1);
+
     seo()
-        ->title("Khanh Nguyen's Blog")
-        ->description('chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+        ->title($setting->site_name ?? "Khanh Nguyen's Blog")
+        ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
         ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
-        ->tag('previewlinks:overline', 'SAP B1')
-        ->tag('previewlinks:title', 'Bài viết')
-        ->tag('previewlinks:subtitle', 'chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-        ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
+        ->tag('previewlinks:overline', 'SAP')
+        ->tag('previewlinks:title', $setting->site_name ?? 'Trang chủ')
+        ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+        ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
         ->tag('previewlinks:repository', 'harrydev/sap');
 
     $blogs = blogs::select([
@@ -35,7 +38,7 @@ Route::get('/', function () {
         ->join('category_post', 'posts.id', '=', 'category_post.post_id')
         ->join('categories', 'category_post.category_id', '=', 'categories.id') 
         ->with(['user', 'categories'])
-        ->inRandomOrder()
+        ->orderBy('posts.published_at', 'desc') 
         ->take(6)
         ->get()
         ->map(function ($blog) {
@@ -56,12 +59,13 @@ Route::get('/', function () {
     $categories = Category::withCount('blogs')
         ->having('blogs_count', '>', 0) 
         ->inRandomOrder()
-        ->limit(4)
+        ->limit(7)
         ->with(['blogs' => function ($query) {
-            $query->inRandomOrder()
+            $query->orderBy('published_at', 'desc')
                 ->published()
                 ->with(['user', 'tags'])
-                ->limit(5);
+                ->limit(5) 
+                ->get();
         }])
         ->get()
         ->map(function ($category) {
@@ -99,31 +103,35 @@ Route::get('/404', function () {
 Route::prefix('/blog')->group(function () {
     Route::get('/', ListArticlesController::class)->name('blogs');
     Route::get('/search', [SearchArticleController::class, 'search'])->name('search');
+    Route::get('/tag/{tagName}', [SearchArticleController::class, 'showBlogsByTag'])->name('tag');
+    // Route::get('/tag', [SearchArticleController::class, 'search'])->name('tag');
     Route::get('/category', function () {
+        $setting = settings::find(1);
         seo()
             ->title((App::getLocale() === 'vi' ? 'Danh mục thể loại' : 'Categories') . ' | Khanh Nguyen')
-            ->description('chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
             ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
             ->tag('previewlinks:overline', 'SAP B1')
             ->tag('previewlinks:title', 'Bài viết')
-            ->tag('previewlinks:subtitle', 'chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-            ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
+            ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
             ->tag('previewlinks:repository', 'harrydev/sap');
 
         return view('categories');
     })->name('categories');
     Route::get('/category/{categoryName}', function ($categoryName) {
+        $setting = settings::find(1);
         $category = Category::withCount('blogs')->where('slug', $categoryName)->firstOrFail();
         $blogs = $category->blogs()->published()->with('user')->get();
 
         seo()
             ->title($category['name'] . ' | Khanh Nguyen')
-            ->description('chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
             ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
             ->tag('previewlinks:overline', 'SAP B1')
-            ->tag('previewlinks:title', 'Bài viết')
-            ->tag('previewlinks:subtitle', 'chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-            ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
+            ->tag('previewlinks:title', 'Chủ đề bài viết')
+            ->tag('previewlinks:subtitle', $category['description'] ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->tag('previewlinks:image', asset($category->svg ?? 'assets/default_image.png'))
             ->tag('previewlinks:repository', 'harrydev/sap');
 
         $averageReadingSpeed = 200;
@@ -145,9 +153,7 @@ Route::prefix('/blog')->group(function () {
             'blogs' => $blogs,
         ]);
     })->name('category');
-    Route::get('/test/{blogName}', function ($blogName) {
-        return view('blog', ['blogName' => $blogName]);
-    })->name('blog');
+    
 });
 Route::post('/subscribe-newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/unsubscribe-registration/{email}', function ($email) {

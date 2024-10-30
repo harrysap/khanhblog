@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contact;
+use App\Models\settings;
 use App\Models\ContactReason;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -13,15 +14,18 @@ class ContactController extends Controller
 {
     public function create()
     {
+        $setting = settings::find(1);
+        
         seo()
-        ->title((App::getLocale() === 'vi' ? 'Liên hệ' : 'Contact me') . ' | Khanh Nguyen')
-        ->description('chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-        ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
-        ->tag('previewlinks:overline', 'SAP B1')
-        ->tag('previewlinks:title', 'Bài viết')
-        ->tag('previewlinks:subtitle', 'chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-        ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
-        ->tag('previewlinks:repository', 'harrydev/sap');
+            ->title((App::getLocale() === 'vi' ? 'Liên hệ' : 'Contact me') . ' | Khanh Nguyen')
+            ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->image(asset($settings->image_home ?? 'assets/default_image.png'))
+            // ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
+            ->tag('previewlinks:overline', 'SAP B1')
+            ->tag('previewlinks:title', 'Bài viết')
+            ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
+            ->tag('previewlinks:repository', 'harrydev/sap');
 
         $contactReasons = ContactReason::all();
 

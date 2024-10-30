@@ -1,18 +1,22 @@
 <x-layouts.appclient>
     <div class="mt-[-24px] md:mt-0">
-        <section class="pb-8 max-w-default mx-auto px-4 sm:px-6 flex justify-center">
-            <img class="w-full min-h-32 h-full object-cover rounded-sm shadow-md"
-                src="{{ asset('assets/images/banner-ads-home.png') }}" alt="ads-banner-1">
+        <section class="flex md:hidden md:pb-8 max-w-default mx-auto px-4 sm:px-6 justify-center">
+            <a href="https://www.udemy.com/course/sap-s4hana-for-beginners/?fbclid=IwY2xjawGNjGhleHRuA2FlbQIxMAABHdJ10B8tcRmASOKwpeHBynpmMdxJUuwKm-ZExlwog9KnaGgGp0aOLOjI-Q_aem_1oMlMK52oIbNxp1zqBvhHw&couponCode=80D2208CC4FCA5197F87"
+                target="_blank">
+                <img class="w-full h-full object-cover rounded-sm shadow-md"
+                    src="{{ asset('storage/assets/advertisement-course.gif') }}" alt="ads-banner-1">
+            </a>
         </section>
         <section class="max-w-default mx-auto flex px-4 md:px-2 flex-col justify-between gap-6">
-            <div class="flex justify-center flex-col default:flex-row gap-8 mt-6 lg:mt-14 default:mt-20">
+            <div class="flex justify-center flex-col default:flex-row gap-8">
                 <!-- Cột trái -->
                 <div
                     class="w-full md:w-[96%] md:mx-auto default:mx-0 default:-mr-[15px] default:w-3/4 mr-2 z-10 overflow-visible">
                     <div
-                        class="h-fit rounded-xl mt-0 md:-mt-[80px] default:-mt-[70px] bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] px-4 py-6 md:p-6">
+                        class="h-fit rounded-xl mt-8 bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] px-4 py-6 md:p-6">
                         <div id="blog-title" class="flex flex-col gap-4 items-center">
-                            <h1 class="font-bold text-xl text-3xl default:text-4xl leading-normal text-center">
+                            <h1
+                                class="font-bold text-xl md:text-3xl default:text-4xl text-center leading-relaxed default:!leading-normal">
                                 {{ App::getLocale() === 'vi' ? $article->title : $article->title_en ?? $article->title }}
                             </h1>
                             <div class="flex gap-2 text-sm font-light text-btn-bg">
@@ -109,10 +113,10 @@
                                     <p class="font-semibold text-nowrap">Thẻ được gắn:</p>
                                     <div class="flex flex-wrap gap-4">
                                         @foreach ($article->tags as $tag)
-                                            <div
+                                            <a href="/blog/tag/{{ $tag->slug }}"
                                                 class="py-1 px-3 rounded ease duration-200 text-[#4D6385] text-xs shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
                                                 {{ $tag->name }}
-                                            </div>
+                                            </a>
                                         @endforeach
                                     </div>
                                 @endif
@@ -207,7 +211,8 @@
                         @if ($previous_blog)
                             <a href="/blog/{{ $previous_blog->category_slug }}/{{ $previous_blog->slug }}"
                                 title="{{ App::getLocale() === 'vi' ? $previous_blog->title : $previous_blog->title_en ?? $previous_blog->title }}"
-                                class="flex items-center justify-between bg-btn-lg text-white p-6 pl-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/previousBtn">
+                                class="flex items-center justify-between bg-btn-lg text-white p-6 pl-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/previousBtn"
+                                style="background-color: {{ $previous_blog->background }}">
                                 <div class="grid grid-cols-7 items-center gap-4">
                                     <div
                                         class="col-span-1 bg-white text-btn-lg rounded-full w-20 h-8 flex items-center justify-end pr-3 -translate-x-12 ease-linear duration-200 group-hover/previousBtn:-translate-x-10">
@@ -233,7 +238,8 @@
                         @if ($next_blog)
                             <a href="/blog/{{ $next_blog->category_slug }}/{{ $next_blog->slug }}"
                                 title="{{ App::getLocale() === 'vi' ? $next_blog->title : $next_blog->title_en ?? $next_blog->title }}"
-                                class="flex items-center justify-between bg-btn-lg text-white p-6 pr-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/nextBtn">
+                                class="flex items-center justify-between bg-btn-lg text-white p-6 pr-0 rounded-lg w-full md:w-1/2 overflow-hidden cursor-pointer group/nextBtn"
+                                style="background-color: {{ $next_blog->background }}">
                                 <div class="grid grid-cols-7 items-center gap-4">
                                     <div class="text-right col-span-6">
                                         <p class="text-sm font-manrope">Bài Viết Tiếp Theo</p>
@@ -259,28 +265,33 @@
                         <div class="flex flex-col gap-4 sm:gap-0 sm:flex-row items-center justify-between mb-4">
                             <div class="flex items-center">
                                 <div class="flex gap-4 items-center cursor-pointer group">
-                                    <div
-                                        class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center">
-                                        {{-- style="background-color: #F95353"> --}}
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    <a href="/blog/category/{{ $article->categories->first()->slug }}">
+                                        <div
+                                            class="relative w-14 h-14 lg:w-16 lg:h-16 aspect-1 rounded-full text-white text-4xl flex justify-center items-center">
+                                            {{-- style="background-color: #F95353"> --}}
+                                            {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             viewBox="0 0 24 24">
                                             <path fill="currentColor"
                                                 d="M0 6.064v11.872h12.13L24 6.064zm3.264 2.208h.005c.863.001 1.915.245 2.676.633l-.82 1.43c-.835-.404-1.255-.442-1.73-.467c-.708-.038-1.064.215-1.069.488c-.007.332.669.633 1.305.838c.964.306 2.19.715 2.377 1.9L7.77 8.437h2.046l2.064 5.576l-.007-5.575h2.37c2.257 0 3.318.764 3.318 2.519c0 1.575-1.09 2.514-2.936 2.514h-.763l-.01 2.094l-3.588-.003l-.25-.908c-.37.122-.787.189-1.23.189c-.456 0-.885-.071-1.263-.2l-.358.919l-2 .006l.09-.462q-.043.038-.087.074c-.535.43-1.208.629-2.037.644l-.213.002a5.1 5.1 0 0 1-2.581-.675l.73-1.448c.79.467 1.286.572 1.956.558c.347-.007.598-.07.761-.239a.56.56 0 0 0 .156-.369c.007-.376-.53-.553-1.185-.756c-.531-.164-1.135-.389-1.606-.735c-.559-.41-.825-.924-.812-1.65a2 2 0 0 1 .566-1.377c.519-.537 1.357-.863 2.363-.863m10.597 1.67v1.904h.521c.694 0 1.247-.23 1.248-.964c0-.709-.554-.94-1.248-.94zm-5.087.767l-.748 2.362c.223.085.481.133.757.133c.268 0 .52-.047.742-.126l-.736-2.37z" />
                                         </svg> --}}
-                                        <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
-                                            src="{{ asset('storage/' . $article->categories->first()->svg) }}"
-                                            alt="post-img-small-5">
-                                        {{-- <div class="absolute z-0 inset-0 rounded-full ring-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                                            <img class="rounded-full w-14 h-14 lg:w-16 lg:h-16 aspect-1"
+                                                src="{{ asset('storage/' . $article->categories->first()->svg) }}"
+                                                alt="post-img-small-5">
+                                            {{-- <div class="absolute z-0 inset-0 rounded-full ring-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
                                             style="--tw-ring-color: {{ $$article->categories->first()['secondaryColor'] }};">
                                         </div> --}}
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="ml-4 flex flex-col gap-1.5">
-                                    <p class="text-sm text-gray-600 font-manrope">Những bài viết gần đây của <span
-                                            class="font-semibold">Thể loại</span></p>
+                                    <p class="text-sm text-gray-600 font-manrope">Những bài viết gần đây cùng <span
+                                            class="font-semibold">chủ đề</span></p>
                                     @if ($article->categories->isNotEmpty())
-                                        <h2 class="text-2xl font-bold text-gray-800">
-                                            {{ $article->categories->first()->name }}</h2>
+                                        <a href="/blog/category/{{ $article->categories->first()->slug }}">
+                                            <h2
+                                                class="text-2xl font-bold text-gray-800 hover:underline hover:decoration-black ease-in duration-200">
+                                                {{ $article->categories->first()->name }}</h2>
+                                        </a>
                                     @else
                                         <h2 class="text-2xl font-bold text-gray-800">{{ $article->user->name }}</h>
                                     @endif
@@ -288,7 +299,8 @@
                             </div>
                             @if ($article->categories->isNotEmpty())
                                 <a href="/blog/category/{{ $article->categories->first()->slug }}"
-                                    class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200">
+                                    class="bg-btn-bg text-white px-4 py-2 rounded hover:bg-black transition duration-200"
+                                    style="background-color: {{ $article->categories->first()->background }}">
                                     Bài Viết Cùng Chủ Đề
                                 </a>
                             @else
@@ -386,13 +398,13 @@
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
-                                    fill="#6A4EE9" />
+                                    fill="#010afe" />
                                 <path
                                     d="M175.985 1.65187C176.905 -0.440486 179.743 -0.545128 180.855 1.33801L181.015 1.65187L183.855 8.10842C186.338 13.7532 190.465 18.4885 195.675 21.6894L196.553 22.2085L201.597 25.0756C203.364 26.0802 203.462 28.5637 201.891 29.7323L201.597 29.9243L196.553 32.7915C191.225 35.8199 186.948 40.4176 184.284 45.9593L183.855 46.8916L181.015 53.3481C180.095 55.4405 177.257 55.5451 176.145 53.662L175.985 53.3481L173.145 46.8916C170.662 41.247 166.535 36.5116 161.325 33.3106L160.447 32.7915L155.403 29.9243C153.636 28.9201 153.538 26.4366 155.109 25.2676L155.403 25.0756L160.447 22.2085C165.775 19.1801 170.052 14.5825 172.716 9.04067L173.145 8.10842L175.985 1.65187Z"
                                     fill="#FF2AAC" />
                                 <path
                                     d="M95.0792 11.7576C98.8924 3.19801 110.648 2.76993 115.255 10.4737L115.921 11.7576L127.686 38.1708C137.972 61.2632 155.07 80.6346 176.652 93.7295L180.289 95.8531L201.186 107.582C208.507 111.692 208.914 121.852 202.406 126.632L201.186 127.418L180.289 139.147C158.217 151.536 140.498 170.345 129.462 193.015L127.686 196.829L115.921 223.242C112.109 231.802 100.352 232.23 95.7443 224.526L95.0792 223.242L83.3146 196.829C73.0292 173.738 55.9299 154.365 34.3481 141.271L30.71 139.147L9.81289 127.418C2.49301 123.31 2.08625 113.15 8.5929 108.367L9.81289 107.582L30.71 95.8531C52.7827 83.4638 70.5023 64.6557 81.5376 41.9846L83.3146 38.1708L95.0792 11.7576Z"
-                                    fill="#6A4EE9" />
+                                    fill="#010afe" />
                                 <path
                                     d="M91.0792 8.75792C94.8924 0.197554 106.648 -0.229829 111.255 7.47396L111.921 8.75792L123.686 35.1712C133.972 58.2627 151.07 77.6349 172.652 90.7297L176.289 92.8531L197.186 104.582C204.507 108.692 204.914 118.852 198.406 123.632L197.186 124.418L176.289 136.147C154.217 148.536 136.498 167.345 125.462 190.015L123.686 193.829L111.921 220.242C108.109 228.802 96.3518 229.23 91.7443 221.526L91.0792 220.242L79.3142 193.829C69.0294 170.738 51.9304 151.365 30.3482 138.271L26.71 136.147L5.81293 124.418C-1.50702 120.31 -1.91373 110.15 4.59288 105.367L5.81293 104.582L26.71 92.8531C48.7831 80.4643 66.502 61.6556 77.5377 38.9843L79.3142 35.1712L91.0792 8.75792Z"
                                     fill="#FF2AAC" />
@@ -416,7 +428,7 @@
                                         </g>
                                     </svg>
                                 </div>
-                                <p class="text-sm text-[#4D6385] font-semibold">Thể loại:</p>
+                                <p class="text-sm text-[#4D6385] font-semibold">Chủ đề:</p>
                             </div>
                             @if ($article->categories->isNotEmpty())
                                 <span class="text-sm text-[#4D6385]">{{ $article->categories->first()->name }}</span>
@@ -441,7 +453,7 @@
                             </div>
                             <span class="text-sm text-[#4D6385]">{{ $article->user->name }}</span>
                         </div>
-                        <div class="flex gap-1">
+                        {{-- <div class="flex gap-1">
                             <div class="flex gap-2">
                                 <div class="text-sm font-light text-btn-bg w-4 flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
@@ -456,8 +468,8 @@
                                 <p class="text-sm text-[#4D6385] font-semibold">Thời lượng đọc:</p>
                             </div>
                             <span class="text-sm text-[#4D6385]">{{ $reading_time }}</span>
-                        </div>
-                        <div class="flex gap-1">
+                        </div> --}}
+                        {{-- <div class="flex gap-1">
                             <div class="flex gap-2">
                                 <div class="text-sm font-light text-btn-bg w-4 flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
@@ -478,22 +490,57 @@
                                     {{ $article->updated_at->diffForHumans() }}
                                 @endif
                             </span>
-                        </div>
+                        </div> --}}
 
                     </div>
+
+                    <!-- Title -->
+                    @if ($article->tags && $article->tags->isNotEmpty())
+                        <div class="flex gap-4 items-center mt-8">
+                            <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
+                                        fill="#010afe" />
+                                    <path
+                                        d="M175.985 1.65187C176.905 -0.440486 179.743 -0.545128 180.855 1.33801L181.015 1.65187L183.855 8.10842C186.338 13.7532 190.465 18.4885 195.675 21.6894L196.553 22.2085L201.597 25.0756C203.364 26.0802 203.462 28.5637 201.891 29.7323L201.597 29.9243L196.553 32.7915C191.225 35.8199 186.948 40.4176 184.284 45.9593L183.855 46.8916L181.015 53.3481C180.095 55.4405 177.257 55.5451 176.145 53.662L175.985 53.3481L173.145 46.8916C170.662 41.247 166.535 36.5116 161.325 33.3106L160.447 32.7915L155.403 29.9243C153.636 28.9201 153.538 26.4366 155.109 25.2676L155.403 25.0756L160.447 22.2085C165.775 19.1801 170.052 14.5825 172.716 9.04067L173.145 8.10842L175.985 1.65187Z"
+                                        fill="#FF2AAC" />
+                                    <path
+                                        d="M95.0792 11.7576C98.8924 3.19801 110.648 2.76993 115.255 10.4737L115.921 11.7576L127.686 38.1708C137.972 61.2632 155.07 80.6346 176.652 93.7295L180.289 95.8531L201.186 107.582C208.507 111.692 208.914 121.852 202.406 126.632L201.186 127.418L180.289 139.147C158.217 151.536 140.498 170.345 129.462 193.015L127.686 196.829L115.921 223.242C112.109 231.802 100.352 232.23 95.7443 224.526L95.0792 223.242L83.3146 196.829C73.0292 173.738 55.9299 154.365 34.3481 141.271L30.71 139.147L9.81289 127.418C2.49301 123.31 2.08625 113.15 8.5929 108.367L9.81289 107.582L30.71 95.8531C52.7827 83.4638 70.5023 64.6557 81.5376 41.9846L83.3146 38.1708L95.0792 11.7576Z"
+                                        fill="#010afe" />
+                                    <path
+                                        d="M91.0792 8.75792C94.8924 0.197554 106.648 -0.229829 111.255 7.47396L111.921 8.75792L123.686 35.1712C133.972 58.2627 151.07 77.6349 172.652 90.7297L176.289 92.8531L197.186 104.582C204.507 108.692 204.914 118.852 198.406 123.632L197.186 124.418L176.289 136.147C154.217 148.536 136.498 167.345 125.462 190.015L123.686 193.829L111.921 220.242C108.109 228.802 96.3518 229.23 91.7443 221.526L91.0792 220.242L79.3142 193.829C69.0294 170.738 51.9304 151.365 30.3482 138.271L26.71 136.147L5.81293 124.418C-1.50702 120.31 -1.91373 110.15 4.59288 105.367L5.81293 104.582L26.71 92.8531C48.7831 80.4643 66.502 61.6556 77.5377 38.9843L79.3142 35.1712L91.0792 8.75792Z"
+                                        fill="#FF2AAC" />
+                                </svg></span>
+
+                            <h2 class="font-semibold text-lg">Tag Cloud</h2>
+                        </div>
+
+                        <div
+                            class="mt-4 rounded-xl bg-white border border-border-main shadow-sm p-4 flex flex-wrap gap-4">
+                            @foreach ($article->tags as $tag)
+                                <a href="/blog/tag/{{ $tag->slug }}" class="flex items-center gap-2 h-4">
+                                    <span class="align-middle">•</span>
+                                    <span class="text-[#4D6385] text-xs">
+                                        {{ $tag->name }}
+                                    </span>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <div class="flex gap-4 items-center mt-8">
                         <span class="text-[#FF2AAC]"><svg width="20" height="20" viewBox="0 0 207 230"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M177.985 2.65187C178.905 0.559514 181.743 0.454872 182.855 2.33801L183.015 2.65187L185.855 9.10842C188.338 14.7532 192.465 19.4885 197.675 22.6894L198.553 23.2085L203.597 26.0756C205.364 27.0802 205.462 29.5637 203.891 30.7323L203.597 30.9243L198.553 33.7915C193.225 36.8199 188.948 41.4176 186.284 46.9593L185.855 47.8916L183.015 54.3481C182.095 56.4405 179.257 56.5451 178.145 54.662L177.985 54.3481L175.145 47.8916C172.662 42.247 168.535 37.5116 163.325 34.3106L162.447 33.7915L157.403 30.9243C155.636 29.9201 155.538 27.4366 157.109 26.2676L157.403 26.0756L162.447 23.2085C167.775 20.1801 172.052 15.5825 174.716 10.0407L175.145 9.10842L177.985 2.65187Z"
-                                    fill="#6A4EE9" />
+                                    fill="#010afe" />
                                 <path
                                     d="M175.985 1.65187C176.905 -0.440486 179.743 -0.545128 180.855 1.33801L181.015 1.65187L183.855 8.10842C186.338 13.7532 190.465 18.4885 195.675 21.6894L196.553 22.2085L201.597 25.0756C203.364 26.0802 203.462 28.5637 201.891 29.7323L201.597 29.9243L196.553 32.7915C191.225 35.8199 186.948 40.4176 184.284 45.9593L183.855 46.8916L181.015 53.3481C180.095 55.4405 177.257 55.5451 176.145 53.662L175.985 53.3481L173.145 46.8916C170.662 41.247 166.535 36.5116 161.325 33.3106L160.447 32.7915L155.403 29.9243C153.636 28.9201 153.538 26.4366 155.109 25.2676L155.403 25.0756L160.447 22.2085C165.775 19.1801 170.052 14.5825 172.716 9.04067L173.145 8.10842L175.985 1.65187Z"
                                     fill="#FF2AAC" />
                                 <path
                                     d="M95.0792 11.7576C98.8924 3.19801 110.648 2.76993 115.255 10.4737L115.921 11.7576L127.686 38.1708C137.972 61.2632 155.07 80.6346 176.652 93.7295L180.289 95.8531L201.186 107.582C208.507 111.692 208.914 121.852 202.406 126.632L201.186 127.418L180.289 139.147C158.217 151.536 140.498 170.345 129.462 193.015L127.686 196.829L115.921 223.242C112.109 231.802 100.352 232.23 95.7443 224.526L95.0792 223.242L83.3146 196.829C73.0292 173.738 55.9299 154.365 34.3481 141.271L30.71 139.147L9.81289 127.418C2.49301 123.31 2.08625 113.15 8.5929 108.367L9.81289 107.582L30.71 95.8531C52.7827 83.4638 70.5023 64.6557 81.5376 41.9846L83.3146 38.1708L95.0792 11.7576Z"
-                                    fill="#6A4EE9" />
+                                    fill="#010afe" />
                                 <path
                                     d="M91.0792 8.75792C94.8924 0.197554 106.648 -0.229829 111.255 7.47396L111.921 8.75792L123.686 35.1712C133.972 58.2627 151.07 77.6349 172.652 90.7297L176.289 92.8531L197.186 104.582C204.507 108.692 204.914 118.852 198.406 123.632L197.186 124.418L176.289 136.147C154.217 148.536 136.498 167.345 125.462 190.015L123.686 193.829L111.921 220.242C108.109 228.802 96.3518 229.23 91.7443 221.526L91.0792 220.242L79.3142 193.829C69.0294 170.738 51.9304 151.365 30.3482 138.271L26.71 136.147L5.81293 124.418C-1.50702 120.31 -1.91373 110.15 4.59288 105.367L5.81293 104.582L26.71 92.8531C48.7831 80.4643 66.502 61.6556 77.5377 38.9843L79.3142 35.1712L91.0792 8.75792Z"
                                     fill="#FF2AAC" />
@@ -553,8 +600,8 @@
             </div>
         </section>
         {{-- <section class="pt-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 flex justify-center">
-            <img class="w-full min-h-32 h-full object-cover rounded-sm shadow-md"
-                src="{{ asset('assets/images/banner-ads-home.png') }}" alt="ads-banner-1">
+            <img class="w-full h-full object-cover rounded-sm shadow-md"
+               src="{{ asset('storage/assets/advertisement-course.gif') }}" alt="ads-banner-1">
         </section> --}}
         <section>
             <div class="relative bg-white shadow-[0px_2px_5px_0px_rgba(0,0,0,0.03)] overflow-hidden my-8 md:my-14">

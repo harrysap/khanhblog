@@ -142,7 +142,7 @@
 
                     </div>
                 </div>
-                <p class="text-center default:text-left my-4 default:pl-10 py-2 default:border-l">
+                <p class="text-center default:text-left my-4 default:pl-10 py-2 default:border-l tracking-wider">
                     {{ $category->description }}</p>
             </div>
             <div x-ref="article_cards_wrapper" x-init="() => {
@@ -173,7 +173,7 @@
                                         class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
                                 </div>
                                 <span
-                                    class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"
+                                    class="relative font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center text-sm"
                                     x-text="article.sub_title"></span>
                             </div>
                             <div class="flex gap-4 justify-center px-4 pb-4">

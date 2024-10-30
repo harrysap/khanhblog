@@ -4,7 +4,8 @@
         <section class="max-w-default mx-auto px-4 sm:px-6 flex flex-col justify-between gap-6 md:pt-8">
             <div class="flex flex-col gap-0 md:gap-4 lg:w-2/3 items-center mx-auto">
                 <h1 class="font-bold text-3xl md:text-4xl text-center mb-4 md:mb-8">Chủ đề mình viết ✨</h1>
-                <p class="text-center my-4">Đây là danh mục các chủ đề chính mà mình viết trên blog liên quan về SAP. Bạn có thể xem các nội dung từ cơ bản đến nâng cao hơn.</p>
+                <p class="text-center my-4">Đây là danh mục các chủ đề chính mà mình viết trên blog liên quan về SAP. Bạn
+                    có thể xem các nội dung từ cơ bản đến nâng cao hơn.</p>
             </div>
             <div
                 class="mt-8 bg-white rounded-xl relative border border-border-main py-10 md:py-12 px-8 md:px-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 default:grid-cols-4 gap-y-12">
@@ -25,8 +26,8 @@
                             {{-- <div
                             class="absolute z-10 -top-2 -right-0.5 rounded-full w-6 aspect-1 bg-text-main text-xs text-white font-bold flex justify-center items-center">
                             {{ $category['quantity'] }}</div> --}}
-                            <div class="absolute z-0 inset-0 rounded-full ring-4 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-                                style="--tw-ring-color: {{ $category['secondaryColor'] }};">
+                            <div class="absolute inset-0 rounded-full transition-shadow duration-500 opacity-0 ease-in-out hover:shadow-[0_0_0_4px_rgba(0,0,0,0)] hover:opacity-100"
+                                style="box-shadow: 0 0 0 4px {{ $category->background . '33' }}">
                             </div>
                         </div>
                         <div class="">
