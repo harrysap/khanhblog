@@ -44,15 +44,15 @@ Route::get('/', function () {
         ->rawTag('<meta name="description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '">');
 
     $blogs = blogs::select([
-            'posts.id', 'posts.title', 'posts.slug', 'posts.sub_title', 'posts.cover_photo_path', 
-            'posts.photo_alt_text', 'posts.published_at', 'posts.created_at', 'posts.user_id', 
+            'posts.id', 'posts.title', 'posts.slug', 'posts.sub_title', 'posts.cover_photo_path',
+            'posts.photo_alt_text', 'posts.published_at', 'posts.created_at', 'posts.user_id',
             'categories.slug as category_slug'
         ])
         ->published()
         ->join('category_post', 'posts.id', '=', 'category_post.post_id')
-        ->join('categories', 'category_post.category_id', '=', 'categories.id') 
+        ->join('categories', 'category_post.category_id', '=', 'categories.id')
         ->with(['user', 'categories'])
-        ->orderBy('posts.published_at', 'desc') 
+        ->orderBy('posts.published_at', 'desc')
         ->take(6)
         ->get()
         ->map(function ($blog) {
@@ -71,34 +71,34 @@ Route::get('/', function () {
         });
 
     $categories = Category::withCount('blogs')
-        ->having('blogs_count', '>', 0) 
+        ->having('blogs_count', '>', 0)
         ->inRandomOrder()
         ->limit(7)
         ->with(['blogs' => function ($query) {
             $query->orderBy('published_at', 'desc')
                 ->published()
                 ->with(['user', 'tags'])
-                ->limit(5) 
+                ->limit(5)
                 ->get();
         }])
         ->get()
         ->map(function ($category) {
             $averageReadingSpeed = 200;
-    
+
             foreach ($category->blogs as $blog) {
                 $bodyContent = (Lang::getLocale() == 'vi') ? $blog->body : $blog->body_en;
-    
+
                 $wordCount = str_word_count(strip_tags($bodyContent));
                 $totalSeconds = ceil(($wordCount / $averageReadingSpeed) * 60);
-    
+
                 $minutes = floor($totalSeconds / 60);
                 $seconds = $totalSeconds % 60;
-    
+
                 $blog->reading_time = sprintf('%d phút %d giây', $minutes, $seconds);
 
                 $blog->category_slug = $category->slug;
             }
-    
+
             return $category;
         });
 
@@ -153,21 +153,21 @@ Route::prefix('/blog')->group(function () {
             $bodyContent = (App::getLocale() === 'vi') ? $blog->body : $blog->body_en;
             $wordCount = str_word_count(strip_tags($bodyContent));
             $totalSeconds = ceil(($wordCount / $averageReadingSpeed) * 60);
-    
+
             $minutes = floor($totalSeconds / 60);
             $seconds = $totalSeconds % 60;
-    
+
             $blog->reading_time = sprintf('%d phút %d giây', $minutes, $seconds);
             $blog->category_slug = $category->slug;
         }
-    
+
         return view('category', [
             'categoryName' => $categoryName,
             'category' => $category,
             'blogs' => $blogs,
         ]);
     })->name('category');
-    
+
 });
 Route::post('/subscribe-newsletter', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/unsubscribe-registration/{email}', function ($email) {
@@ -176,7 +176,7 @@ Route::get('/unsubscribe-registration/{email}', function ($email) {
         ->first();
 
     if (!$newsletter) {
-        abort(404); 
+        abort(404);
     }
 
     return view('unsubscribe', ['email' => $email]);

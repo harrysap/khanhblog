@@ -36,7 +36,12 @@ class blogs extends Model
         'scheduled_for' => 'datetime',
         'status' => PostStatus::class,
         'user_id' => 'integer',
+        'views' => 'integer',
     ];
+    protected $dates = [
+        'scheduled_for',
+    ];
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_post', 'post_id', 'category_id');
@@ -64,10 +69,10 @@ class blogs extends Model
         return $query->where('status', PostStatus::PUBLISHED)->latest('published_at');
     }
 
-//    public function scopeScheduled(Builder $query)
-//    {
-//        return $query->where('status', PostStatus::SCHEDULED)->latest('scheduled_for');
-//    }
+    public function scopeScheduled(Builder $query)
+    {
+        return $query->where('status', PostStatus::SCHEDULED)->latest('scheduled_for');
+    }
 
     public function scopePending(Builder $query)
     {
@@ -80,6 +85,10 @@ class blogs extends Model
     public function isStatusPublished()
     {
         return $this->status === PostStatus::PUBLISHED;
+    }
+    public function isScheduled()
+    {
+        return $this->status === PostStatus::SCHEDULED;
     }
     public function relatedPosts($take = 3)
     {
@@ -115,12 +124,25 @@ class blogs extends Model
                                 ->relationship('tags', 'name')
                                 ->label('Thẻ')
                                 ->columnSpanFull(),
-                            ToggleButtons::make('status')
-                                ->live()
-                                ->inline()
-                                ->options(PostStatus::class)
-                                ->label('Trạng thái')
-                                ->required()
+                            Fieldset::make('Status')
+                                 ->schema([
+                                     ToggleButtons::make('status')
+                                         ->live()
+                                         ->inline()
+                                         ->options(PostStatus::class)
+                                         ->required(),
+
+                                    DateTimePicker::make('scheduled_for')
+                                        ->label('Đăng bài vào lúc')
+                                        ->visible(function ($get) {
+                                            return $get('status') === PostStatus::SCHEDULED->value;
+                                        })
+                                        ->required(function ($get) {
+                                            return $get('status') === PostStatus::SCHEDULED->value;
+                                        })
+                                        ->minDate(now()->addMinutes(5))
+                                        ->native(false),
+                                 ]),
                         ]),
 
                     Tabs::make('Tabs')
@@ -172,25 +194,6 @@ class blogs extends Model
                                 TextInput::make('photo_alt_text')->required()->label('Tiêu đề ảnh'),
                         ])->columns(1),
 
-                    // Fieldset::make('Status')
-                    //     ->schema([
-
-                    //         ToggleButtons::make('status')
-                    //             ->live()
-                    //             ->inline()
-                    //             ->options(PostStatus::class)
-                    //             ->required(),
-
-                    //        DateTimePicker::make('scheduled_for')
-                    //            ->visible(function ($get) {
-                    //                return $get('status') === PostStatus::SCHEDULED->value;
-                    //            })
-                    //            ->required(function ($get) {
-                    //                return $get('status') === PostStatus::SCHEDULED->value;
-                    //            })
-                    //            ->minDate(now()->addMinutes(5))
-                    //            ->native(false),
-                    //     ]),
                     Select::make('user_id')
                      ->relationship('user', 'name')
                         ->nullable(false)

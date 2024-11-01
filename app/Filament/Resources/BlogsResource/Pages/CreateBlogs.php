@@ -7,9 +7,11 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Enums\PostStatus;
 use App\Mail\PostPublished;
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Newsletter;
-
+use Carbon\Carbon;
+use App\Jobs\PostScheduleJob;
 class CreateBlogs extends CreateRecord
 {
     protected static string $resource = BlogsResource::class;
@@ -29,7 +31,14 @@ class CreateBlogs extends CreateRecord
     protected function afterCreate(): void
     {
         $post = $this->record;
+        if ( $post->isScheduled()) {
 
+            $now = Carbon::now();
+            $scheduledFor = Carbon::parse($this->record->scheduled_for);
+            PostScheduleJob::dispatch($this->record)
+                ->delay($now->diffInSeconds($scheduledFor));
+
+        }
         if ($post->is_published) {
             $newsletters = Newsletter::where('active', true)->get();
 

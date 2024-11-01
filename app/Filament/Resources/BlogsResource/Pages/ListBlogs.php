@@ -14,7 +14,7 @@ class ListBlogs extends ListRecords
 
     protected function getColumns(): int | array
     {
-        return 2;
+        return 3;
     }
 
     protected function getHeaderActions(): array
@@ -43,11 +43,11 @@ class ListBlogs extends ListRecords
                     $query->pending();
                 })
                 ->icon('heroicon-o-clock'),
-//            'scheduled' => Tab::make('Scheduled')
-//                ->modifyQueryUsing(function ($query) {
-//                    $query->scheduled();
-//                })
-//                ->icon('heroicon-o-calendar-days'),
+                'scheduled' => Tab::make('Scheduled')
+                    ->modifyQueryUsing(function ($query) {
+                        $query->scheduled();
+                    })
+                    ->icon('heroicon-o-calendar-days'),
         ];
     }
 }

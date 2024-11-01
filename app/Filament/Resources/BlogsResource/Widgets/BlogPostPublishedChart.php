@@ -13,11 +13,11 @@ class BlogPostPublishedChart extends BaseWidget
 
 
     {
-        return 2;
+        return 3;
     }
     protected function getStats(): array
     {
-        //   BaseWidget\Stat::make('Scheduled Post', Post::scheduled()->count()),
+        //
         return [
             BaseWidget\Stat::make('Published Post', Post::published()->count())
                 ->icon('heroicon-o-document-text')
@@ -26,6 +26,7 @@ class BlogPostPublishedChart extends BaseWidget
             BaseWidget\Stat::make('Pending Post', Post::pending()->count())
                 ->icon('heroicon-o-clock')
               ,
+            BaseWidget\Stat::make('Scheduled Post', Post::scheduled()->count()),
         ];
     }
 }

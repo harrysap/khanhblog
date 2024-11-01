@@ -11,6 +11,7 @@ class ViewArticleController extends Controller
 {
     public function __invoke(Category $category, blogs $blogs)
     {
+        $blogs->increment('views');
         $title=(Lang::getLocale() == 'vi') ? $blogs->title : ($blogs->title_en ?? $blogs->title);
         $averageReadingSpeed = 200;
         $bodyContent = (Lang::getLocale() == 'vi') ? $blogs->body : $blogs->body_en;
@@ -29,7 +30,7 @@ class ViewArticleController extends Controller
 
         seo()
             ->title($title)
-            ->description($subtitle)
+            ->description($subtitle??$title)
             ->image($coverPhotoPath)
             ->rawTag('<meta property="og:title" content="' . $title . '" />')
             ->rawTag('<meta property="og:description" content="' . $subtitle . '" />')

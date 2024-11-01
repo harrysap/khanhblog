@@ -9,6 +9,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+
 class BlogPublished
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -20,6 +22,7 @@ class BlogPublished
     public function __construct($post)
     {
         $this->post = $post;
+        Log::info('Sự kiện BlogPublished đã được kích hoạt cho post_id: ' .  $this->post->id);
     }
 
     /**
@@ -27,10 +30,4 @@ class BlogPublished
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
-    {
-        return [
-            new PrivateChannel('channel-name'),
-        ];
-    }
 }

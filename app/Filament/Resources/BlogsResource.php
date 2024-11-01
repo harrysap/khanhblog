@@ -62,6 +62,8 @@ class BlogsResource extends Resource
 
                 UserPhotoName::make('user')
                     ->label('Author'),
+                Tables\Columns\TextColumn::make('views')
+                    ->sortable(),
                 Tables\Columns\ToggleColumn::make('is_published')
                     ->label('Publish')
                     ->updateStateUsing(function (post $record,$state) {
