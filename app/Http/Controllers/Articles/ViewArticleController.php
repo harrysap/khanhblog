@@ -98,7 +98,7 @@ class ViewArticleController extends Controller
         }
 
         $previousBlog = blogs::query()
-            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.sub_title', 'posts.sub_title_en', 'categories.slug as category_slug')
+            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.sub_title', 'posts.sub_title_en', 'categories.slug as category_slug', 'categories.background')
             ->where('posts.id', '<', $blogs->id)
             ->where('posts.is_published', true)
             ->orderBy('posts.id', 'desc')
@@ -107,7 +107,7 @@ class ViewArticleController extends Controller
             ->first();
 
         $nextBlog = blogs::query()
-            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.sub_title', 'posts.sub_title_en', 'categories.slug as category_slug')
+            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.sub_title', 'posts.sub_title_en', 'categories.slug as category_slug', 'categories.background')
             ->where('posts.id', '>', $blogs->id)
             ->where('posts.is_published', true)
             ->orderBy('posts.id', 'asc')
@@ -116,14 +116,14 @@ class ViewArticleController extends Controller
             ->first();
 
         $recentCategoryBlogs = blogs::query()
-            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.created_at', 'posts.cover_photo_path', 'posts.photo_alt_text', 'categories.slug as category_slug') // Change 'blogs' to 'posts'
+            ->select('posts.id', 'posts.title', 'posts.title_en', 'posts.slug', 'posts.slug_en', 'posts.created_at', 'posts.cover_photo_path', 'posts.photo_alt_text', 'categories.slug as category_slug', 'categories.background') // Change 'blogs' to 'posts'
             ->join('category_post', 'posts.id', '=', 'category_post.post_id')
             ->join('categories', 'category_post.category_id', '=', 'categories.id')
-            ->where('categories.id', $firstCategory->id)
+            // ->where('categories.id', $firstCategory->id)
             ->where('posts.id', '!=', $blogs->id)
             ->published()
             ->with('categories')
-            ->orderBy('posts.updated_at', 'desc')
+            ->orderBy('posts.published_at', 'desc')
             ->limit(3)
             ->get();
 
