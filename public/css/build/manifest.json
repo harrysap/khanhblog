@@ -1,0 +1,48 @@
+{
+  "_index-!~{005}~.js": {
+    "file": "assets/index-CadXE96n.css",
+    "src": "_index-!~{005}~.js"
+  },
+  "_index-CvKxDmcs.js": {
+    "file": "assets/index-CvKxDmcs.js",
+    "name": "index",
+    "css": [
+      "assets/index-CadXE96n.css"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CoCdm2ZM.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/harry.css": {
+    "file": "assets/harry-DVjgHBbu.css",
+    "src": "resources/css/harry.css",
+    "isEntry": true
+  },
+  "resources/images/articles/handsholdinglightbulbs.webp": {
+    "file": "assets/handsholdinglightbulbs-buKLdcjz.webp",
+    "src": "resources/images/articles/handsholdinglightbulbs.webp"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DXtDpv7F.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_index-CvKxDmcs.js"
+    ]
+  },
+  "resources/js/harry.js": {
+    "file": "assets/harry-xGwYcVIx.js",
+    "name": "harry",
+    "src": "resources/js/harry.js",
+    "isEntry": true,
+    "imports": [
+      "_index-CvKxDmcs.js"
+    ],
+    "css": [
+      "assets/harry-O5dgg_Xy.css"
+    ]
+  }
+}

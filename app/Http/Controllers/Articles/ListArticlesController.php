@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Articles;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\blogs;
+use App\Models\settings;
 use App\Models\Category as ArticleCategory;
 use Lang;
 
@@ -12,15 +13,17 @@ class ListArticlesController extends Controller
 {
     public function __invoke()
     {
+        $setting = settings::find(1);
         cache()->forget('articles');
 
         seo()
             ->title(((Lang::getLocale() == 'vi') ? 'Bài viết' : 'Article') . ' | Khanh Nguyen')
-            ->description('chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
             ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
             ->tag('previewlinks:overline', 'SAP B1')
             ->tag('previewlinks:title', 'Bài viết')
-            ->tag('previewlinks:subtitle', 'chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+            ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
             ->tag('previewlinks:image', 'https://filamentphp.com/images/icon.png')
             ->tag('previewlinks:repository', 'harrydev/sap');
 

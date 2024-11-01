@@ -185,15 +185,15 @@ $nextTick(() => {
                         </ul>
                     </li> --}}
                     <li>
-                        <a href="/blog"
+                        <a href="/blog/category"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">Bài Viết</span>
+                            <span class="ms-3 text-text-primary">Chủ Đề Mình Viết</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/blog/category"
+                        <a href="/blog"
                             class="flex text-primary-500 focus:bg-primary-100 items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                            <span class="ms-3 text-text-primary">Danh Mục Thể Loại</span>
+                            <span class="ms-3 text-text-primary">Tất Cả Bài Viết</span>
                         </a>
                     </li>
                     <li>
@@ -205,7 +205,8 @@ $nextTick(() => {
                 </ul>
                 <div class="flex justify-center gap-4 items-center sm:ms-6 mt-4 mb-8">
                     <button @click="showModal = true; document.body.classList.add('overflow-hidden');"
-                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Tư
+                        class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark">Đăng ký
+                        tư
                         vấn</button>
                 </div>
             </div>
@@ -311,14 +312,14 @@ $nextTick(() => {
                     </div>
                 </form>
             </div>
-            <div class="flex justify-end right-0 px-3 sm:px-8 w-full bg-white rounded-lg">
+            <div class="flex justify-end right-0 px-3 w-full bg-white rounded-lg">
                 <button type="button" @click="showModal = false; document.body.classList.remove('overflow-hidden');"
-                    class="px-4 py-2 bg-gray-300 rounded mr-2">Hủy</button>
+                    class="px-4 py-2 bg-gray-300 rounded border border-btn-bg sm:border-none mr-2 sm:w-auto w-1/2">Hủy</button>
                 <button type="button" @click="submitForm"
-                    class="py-2 px-[22px] bg-btn-bg rounded text-white ease duration-200 hover:bg-btn-dark lg:block"
+                    class="py-2 px-[22px] bg-btn-bg rounded sm:w-auto w-1/2 text-white ease duration-200 hover:bg-btn-dark lg:block"
                     x-bind:class="{ 'opacity-50 cursor-not-allowed': isLoading }" x-bind:disabled="isLoading">
-                    <span x-show="!isLoading">Nộp tin</span>
-                    <div x-show="isLoading" class="flex">
+                    <span x-show="!isLoading">Gửi</span>
+                    <div x-show="isLoading" class="flex justify-center items-center">
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -329,6 +330,30 @@ $nextTick(() => {
                         </svg>
                         <span class="loader">Đang tải...</span>
                     </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="showSuccessModal" x-cloak
+        class="fixed inset-0 flex items-center justify-center bg-bg-overlay bg-opacity-30 z-[10004]">
+        <div x-show="showSuccessModal" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-300 transform"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90"
+            class="bg-white p-4 sm:p-6 rounded shadow-lg w-screen md:w-[30vw] max-w-md text-center">
+            <div class="flex flex-col items-center space-y-4">
+                <svg class="text-green-500" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                    <g fill="none" fill-rule="evenodd">
+                        <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" />
+                        <path fill="currentColor" d="M19.495 3.133a1 1 0 0 1 1.352.309l.99 1.51a1 1 0 0 1-.155 1.279l-.003.004l-.014.013l-.057.053l-.225.215a84 84 0 0 0-3.62 3.736c-2.197 2.416-4.806 5.578-6.562 8.646c-.49.856-1.687 1.04-2.397.301l-6.485-6.738a1 1 0 0 1 .051-1.436l1.96-1.768A1 1 0 0 1 5.6 9.2l3.309 2.481c5.169-5.097 8.1-7.053 10.586-8.548m.21 2.216c-2.29 1.432-5.148 3.509-9.998 8.358A1 1 0 0 1 8.4 13.8l-3.342-2.506l-.581.524l5.317 5.526c1.846-3.07 4.387-6.126 6.49-8.438a86 86 0 0 1 3.425-3.552l-.003-.005Z" />
+                    </g>
+                </svg>
+                <h2 class="text-lg font-semibold">Đã gửi yêu cầu thành công</h2>
+                <p>Cảm ơn bạn đã liên hệ!</p>
+                <button @click="showSuccessModal = false; show = false"
+                    class="mt-4 py-2 px-[22px] bg-btn-bg rounded flex-1 sm:flex-auto sm:w-auto text-white ease duration-200 hover:bg-btn-dark lg:block transition">
+                    Đóng
                 </button>
             </div>
         </div>
@@ -348,6 +373,7 @@ $nextTick(() => {
                     closing: false,
                     searchText: '',
                     showModal: false,
+                    showSuccessModal: false,
                     name: '',
                     email: '',
                     phone: '',
@@ -380,9 +406,9 @@ $nextTick(() => {
                                 .then(response => response.json())
                                 .then(data => {
                                     if (data.success) {
-                                        alert("Đã gửi yêu cầu thành công, cảm ơn bạn!");
                                         form.reset();
                                         this.showModal = false;
+                                        this.showSuccessModal = true;
                                     } else {
                                         alert('Đã có lỗi xảy ra! Vui lòng thử lại sau.');
                                     }

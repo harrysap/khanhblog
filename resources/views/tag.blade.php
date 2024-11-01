@@ -1,35 +1,9 @@
 <x-layouts.appclient>
-    @php
-        $searchQuery = request('query');
-    @endphp
     <div class="">
         <section
             class="max-w-default mx-auto px-4 sm:px-6 default:px-0 flex flex-col justify-between gap-10 md:gap-14 pt-4 md:pt-8">
-            <div class="relative px-4 md:p-6 text-center w-full flex flex-col gap-6" x-data="{ searchText: '{{ $searchQuery }}' }">
-                <h1 class="text-3xl font-bold leading-relaxed">Kết quả tìm kiếm cho "{{ $searchQuery }}"</h1>
-                <div>
-                    <div
-                        class="w-full mx-auto md:w-3/4 default:w-1/2 flex justify-between px-3 py-1.5 pl-3.5 border rounded-md bg-white text-sm border-border-gray focus:border-border-main focus-within:border-[rgba(106,_78,_233,_.4)] transition-colors duration-300 ease-in-out focus-within:shadow-[0px_0px_10px_-3px_rgba(106,78,233,0.4)]">
-                        <input type="search-section-input" id="search-section-input" name="search-section"
-                            x-model="searchText" placeholder="Nhập tên bài viết tìm kiếm"
-                            class="focus:outline-none font-manrope w-full placeholder-[#707070]"
-                            @keyup.enter="if (searchText && searchText !== '{{ $searchQuery }}') window.location.href = '/blog/search?query=' + encodeURIComponent(searchText)">
-                        <div>
-                            <button
-                                @click.prevent="if (searchText && searchText !== '{{ $searchQuery }}') window.location.href = '/blog/search?query=' + encodeURIComponent(searchText)"
-                                :disabled="searchText === '{{ $searchQuery }}' || searchText.trim() === ''"
-                                class="py-2 px-[22px] rounded text-white ease duration-200 hover:bg-btn-dark text-nowrap"
-                                :class="{
-                                    'bg-slate-500 hover:bg-slate-500 cursor-not-allowed': searchText === '{{ $searchQuery }}' ||
-                                        searchText.trim() === '',
-                                    'bg-btn-bg': !(
-                                        searchText === '{{ $searchQuery }}' || searchText.trim() === '')
-                                }">
-                                Tìm kiếm
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="relative px-4 md:p-6 text-center w-full flex flex-col gap-6">
+                <h1 class="text-3xl font-bold leading-relaxed">Danh sách bài đăng cho từ khoá #{{ $tag->name }}</h1>
             </div>
 
             <div class="space-y-8 mt-4">
@@ -80,23 +54,6 @@
                                                 <p class="text-xs text-[#4D6385]">{{ $post['user']['name'] }}</p>
                                             </div>
                                         </div>
-                                        {{-- <div class="flex gap-2 items-center">
-                                            <div class="flex w-5 justify-center">
-                                                <div class="text-sm font-light text-btn-bg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                        height="1.2em" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2">
-                                                            <path d="M10 2h4m-2 12l3-3" />
-                                                            <circle cx="12" cy="14" r="8" />
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-col gap-2">
-                                                <p class="text-xs text-[#4D6385]">{{ $post['reading_time'] }} đọc</p>
-                                            </div>
-                                        </div> --}}
                                         <div class="flex gap-2 items-center">
                                             <div class="flex w-5 justify-center">
                                                 <div class="text-sm font-light text-btn-bg">
@@ -201,24 +158,6 @@
                                                 <p class="text-xs text-[#4D6385]">{{ $post['user']['name'] }}</p>
                                             </div>
                                         </div>
-                                        {{-- <div class="flex gap-2 items-center">
-                                            <div class="flex w-5 justify-center">
-                                                <div class="text-sm font-light text-btn-bg">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em"
-                                                        height="1.2em" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2">
-                                                            <path d="M10 2h4m-2 12l3-3" />
-                                                            <circle cx="12" cy="14" r="8" />
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-col gap-2">
-                                                <p class="text-xs text-[#4D6385]">{{ $post['reading_time'] }} đọc</p>
-                                            </div>
-                                        </div> --}}
                                         <div class="flex gap-2 items-center">
                                             <div class="flex w-5 justify-center">
                                                 <div class="text-sm font-light text-btn-bg">
@@ -252,14 +191,12 @@
                         <p class="text-gray-600">Xin vui lòng kiểm tra lại sau.</p>
                     </div>
                 @endif
-
             </div>
 
             <section class="flex md:hidden pt-12 max-w-default mx-auto px-4 sm:px-6 default:px-0 justify-center">
-                <a href="https://www.udemy.com/course/sap-s4hana-for-beginners/?fbclid=IwY2xjawGNjGhleHRuA2FlbQIxMAABHdJ10B8tcRmASOKwpeHBynpmMdxJUuwKm-ZExlwog9KnaGgGp0aOLOjI-Q_aem_1oMlMK52oIbNxp1zqBvhHw&couponCode=80D2208CC4FCA5197F87"
-                    target="_blank">
+                <a href="https://www.udemy.com/course/sap-s4hana-for-beginners/?fbclid=IwY2xjawGNjGhleHRuA2FlbQIxMAABHdJ10B8tcRmASOKwpeHBynpmMdxJUuwKm-ZExlwog9KnaGgGp0aOLOjI-Q_aem_1oMlMK52oIbNxp1zqBvhHw&couponCode=80D2208CC4FCA5197F87" target="_blank">
                     <img class="w-full h-full object-cover rounded-sm shadow-md"
-                        src="{{ asset('storage/assets/advertisement-course.gif') }}" alt="ads-banner-1">
+                    src="{{ asset('storage/assets/advertisement-course.gif') }}" alt="ads-banner-1">
                 </a>
             </section>
         </section>

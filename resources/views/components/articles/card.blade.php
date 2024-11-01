@@ -5,9 +5,9 @@
         class="aspect-[16/9] w-full rounded-xl bg-cover bg-center bg-no-repeat ring-1 ring-dawn-pink"></div> --}}
 
     <div class="relative overflow-hidden">
-        <div
-            class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer">
-            <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug">
+        <div class="w-fit h-8 absolute rounded-full z-10 bg-btn-bg text-white flex items-center pl-12 pr-6 text-xs font-normal ease-linear duration-200 -left-6 top-6 hover:translate-x-2 cursor-pointer"
+            :style="{ backgroundColor: categories[article.categories].background }">
+            <a x-bind:href="'/blog/category/' + article.categories[0]">
                 <span x-text="categories[article.categories].name"></span>
             </a>
         </div>
@@ -21,7 +21,8 @@
             <a x-bind:href="'/blog/' + article.categories[0] + '/' + article.slug" x-text="article.title"
                 class="relative cursor-pointer font-manrope font-semibold text-xl text-center leading-relaxed group/title line-clamp-2 hover:underline hover:decoration-black ease-in duration-200"></a>
             <p x-text="article.sub_title"
-                class="relative text-sm font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center"></p>
+                class="relative text-sm font-manrope text-[#2b2b2b] leading-relaxed group/title line-clamp-3 text-center">
+            </p>
         </div>
 
         <div class="flex gap-4 justify-center px-4 py-4">
