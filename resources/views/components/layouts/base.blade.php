@@ -16,9 +16,10 @@
     <x-seo::meta />
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
     {{-- Favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png?v=w1dBNxT7Wg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=w1dBNxT7Wg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=w1dBNxT7Wg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/storage/assets/site_favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/{{ asset('/storage/assets/site_favicon.ico') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/storage/assets/site_favicon.ico') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/storage/assets/site_favicon.ico') }}" />
     <link rel="manifest" href="/favicon/site.webmanifest?v=w1dBNxT7Wg" />
     <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg?v=w1dBNxT7Wg" color="#fdae4b" />
     <link rel="shortcut icon" href="/favicon/favicon.ico?v=w1dBNxT7Wg" />

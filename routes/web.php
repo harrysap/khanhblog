@@ -25,23 +25,23 @@ Route::get('/', function () {
         ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
         ->tag('previewlinks:overline', 'SAP')
         ->tag('previewlinks:title', $setting->site_name ?? 'Trang chủ')
-        ->tag('previewlinks:subtitle', $setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
+        ->tag('previewlinks:subtitle', $setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant.')
         ->tag('previewlinks:image', asset($settings->image_home ?? 'assets/default_image.png'))
         ->tag('previewlinks:repository', 'harrydev/sap')
         ->rawTag('<meta property="og:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
-        ->rawTag('<meta property="og:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="og:description" content="' . ($setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant.') . '" />')
         ->rawTag('<meta property="og:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
         ->rawTag('<meta property="og:url" content="' . (request()->url()) . '" />')
         ->rawTag('<meta property="og:type" content="article" />')
         ->rawTag('<meta property="twitter:card" content="summary_large_image" />')
         ->rawTag('<meta property="twitter:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
-        ->rawTag('<meta property="twitter:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="twitter:description" content="' . ($setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant.') . '" />')
         ->rawTag('<meta property="twitter:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
         ->rawTag('<meta property="linkedin:title" content="' . ($setting->site_name ?? "Khanh Nguyen's Blog") . '" />')
-        ->rawTag('<meta property="linkedin:description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '" />')
+        ->rawTag('<meta property="linkedin:description" content="' . ($setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant.') . '" />')
         ->rawTag('<meta property="linkedin:image" content="' . (asset($settings->image_home ?? 'assets/default_image.png')) . '" />')
         ->rawTag('<meta property="linkedin:url" content="' . ($blogs->canonical_url ?? request()->url()) . '" />')
-        ->rawTag('<meta name="description" content="' . ($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.') . '">');
+        ->rawTag('<meta name="description" content="' . ($setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant..') . '">');
 
     $blogs = blogs::select([
             'posts.id', 'posts.title', 'posts.slug', 'posts.sub_title', 'posts.cover_photo_path',
