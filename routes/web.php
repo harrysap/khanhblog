@@ -22,7 +22,7 @@ Route::get('/', function () {
     seo()
         ->title($setting->site_name ?? "Khanh Nguyen's Blog")
         ->description($setting->site_description ?? 'Chia sẻ về các bài viết công nghệ, lập trình, ERP, SAP B1, NETSUITE, Misa.')
-        ->image('https://previewlinks.io/generate/templates/1055/meta?url=' . url()->current())
+        ->image( asset($settings->image_home ?? 'assets/default_image.png'))
         ->tag('previewlinks:overline', 'SAP')
         ->tag('previewlinks:title', $setting->site_name ?? 'Trang chủ')
         ->tag('previewlinks:subtitle', $setting->site_description ?? 'Mình là Khanh Nguyễn, blog này chia sẻ các thông tin về hệ thống SAP S/4 HANA, SAP Business One và các chủ đề liên quan đến hệ thống SAP và nghề SAP Consultant.')
