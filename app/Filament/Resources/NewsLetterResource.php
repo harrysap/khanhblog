@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsLetterResource\Pages;
 use App\Filament\Resources\NewsLetterResource\RelationManagers;
-use App\Models\NewsLetter;
+use App\Models\Newsletter;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -36,7 +36,7 @@ class NewsLetterResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(NewsLetter::query())
+            ->query(Newsletter::query())
             ->columns([
                 TextColumn::make('email')
                     ->label('Email')

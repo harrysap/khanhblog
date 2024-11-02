@@ -10,7 +10,7 @@ class SendBlogPublishedNotification
     public function handle($event)
     {
         Log::info('Listener is triggered');
-        $subscribers = NewsLetter::where('active', 1)->get();
+        $subscribers = Newsletter::where('active', 1)->get();
 
         foreach ($subscribers as $subscriber) {
             //logging the email
