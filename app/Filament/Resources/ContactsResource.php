@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Support\Enums\MaxWidth;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 class ContactsResource extends Resource
 {
     protected static ?string $model = Contact::class;
@@ -76,6 +77,7 @@ class ContactsResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
             ]);
     }
 
