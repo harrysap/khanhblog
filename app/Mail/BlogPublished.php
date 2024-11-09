@@ -40,7 +40,7 @@ class BlogPublished extends Mailable
         $this->groupedPosts = $otherPosts->chunk(2);
         return new Content(
             view: 'emails.newsletter_new_post',
-            with: ['post' => $this->post,'groupedPosts' => $this->groupedPosts,'data' =>['email'=>$this->toEamil] ]);
+            with: ['post' => $this->post,'groupedPosts' => $this->groupedPosts,'data' =>['email'=>$this->toEamil],'recipientEmail'=> $this->toEamil]);
     }
 
 }

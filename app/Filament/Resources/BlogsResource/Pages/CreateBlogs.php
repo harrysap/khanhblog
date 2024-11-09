@@ -43,7 +43,7 @@ class CreateBlogs extends CreateRecord
             $newsletters = Newsletter::where('active', true)->get();
 
             foreach ($newsletters as $newsletter) {
-                Mail::to($newsletter->email)->send(new PostPublished($post));
+                Mail::to($newsletter->email)->queue(new PostPublished($post));
             }
         }
     }
